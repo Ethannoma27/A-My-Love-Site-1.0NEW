@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>提交工单</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f7; /* 更柔和的背景色 */
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    label {
+      font-size: 16px;
+      color: #666;
+      margin: 8px 0;
+      display: block;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0 20px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 16px;
+      background-color: #f9f9f9;
+      transition: border-color 0.3s ease;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #1E90FF; /* 用浅蓝色作为焦点颜色 */
+      outline: none;
+    }
+    .cta-btn {
+      display: block;
+      width: 100%;
+      padding: 12px; /* 适中的高度 */
+      background-color: #007BFF; /* 蓝色按钮 */
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 16px;
+      margin-top: 20px;
+      text-align: center;
+      transition: background-color 0.3s ease;
+    }
+    .cta-btn:hover {
+      background-color: #0056b3; /* 深蓝色悬停效果 */
+    }
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 20px;
+      color: #888;
+    }
+    .footer a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>提交工单</h1>
+    <form action="/submit-ticket" method="POST">
+      <label for="name">您的姓名</label>
+      <input type="text" id="name" name="name" placeholder="请输入您的姓名" required>
+
+      <label for="email">您的电子邮件</label>
+      <input type="email" id="email" name="email" placeholder="请输入您的电子邮件" required>
+
+      <label for="issue-type">请选择问题类型</label>
+      <select id="issue-type" name="issue-type" required>
+        <option value="技术支持">技术支持</option>
+        <option value="订单查询">订单查询</option>
+        <option value="售后服务">售后服务</option>
+        <option value="其他问题">其他问题</option>
+      </select>
+
+      <label for="description">问题描述</label>
+      <textarea id="description" name="description" rows="4" placeholder="详细描述您的问题或需求" required></textarea>
+
+      <label for="attachment">上传附件（可选）</label>
+      <input type="file" id="attachment" name="attachment">
+
+      <!-- 修改为跳转链接 -->
+      <a href="Provide.html" class="cta-btn">提交工单</a>
+    </form>
+  </div>
+
+  <div class="footer">
+    <p>您的隐私对我们至关重要，我们将严格保护您的个人信息。 <a href="#">隐私政策</a></p>
+  </div>
+</body>
+</html>
