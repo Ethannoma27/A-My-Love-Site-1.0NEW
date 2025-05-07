@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 90%;
+      margin: 20px auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2196F3;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    /* Order Information */
+    .order-info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .order-info div {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .order-info label {
+      font-weight: bold;
+      color: #333;
+      width: 40%;
+    }
+
+    .order-info span {
+      color: #555;
+      width: 55%;
+    }
+
+    /* Machine details */
+    .machine-details {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .machine {
+      background-color: #f5f5f5;
+      padding: 8px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; /* Align elements vertically */
+    }
+
+    .machine h4 {
+      text-align: left;
+      color: #333;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .machine div {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Align items center horizontally */
+      justify-content: flex-start; /* Align items to top */
+      margin-bottom: 10px;
+    }
+
+    .machine label {
+      font-weight: bold;
+      width: 100%; /* Ensure label takes full width */
+      text-align: center; /* Align label text to center */
+      margin-bottom: 5px;
+    }
+
+    .machine img {
+      max-width: 40%;
+      height: auto;
+      margin-left: 0;
+      display: block;
+      align-self: center; /* Align the image horizontally */
+    }
+
+    /* Add hashrate text above the image */
+    .hashrate-info {
+      font-size: 14px;
+      color: #333;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 10px; /* Increase space between text and image */
+    }
+
+    /* Make SN Number and Package Photo labels look like hashrate info */
+    .machine .photo-label {
+      font-size: 14px;
+      color: #333;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 10px; /* Add margin to space out the text from image */
+    }
+
+    /* Tracking Photos section at the end */
+    .tracking-photos {
+      margin-top: 30px;
+      text-align: left;
+    }
+
+    .tracking-photos h2 {
+      text-align: left;
+      color: #2196F3;
+      font-size: 18px;
+    }
+
+    .tracking-photos .tracking-photo {
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    .tracking-photos img {
+      max-width: 80%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Print button */
+    .print-btn-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .btn-print {
+      background-color: #2196F3;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-print:hover {
+      background-color: #2196F3;
+    }
+
+    /* Print version styles */
+    @media print {
+      body {
+        font-size: 9pt;
+        margin: 0;
+      }
+      .container {
+        width: 90%;
+        margin: 0;
+        padding: 10px;
+        box-shadow: none;
+      }
+      .order-info div {
+        page-break-inside: avoid;
+      }
+      h1 {
+        font-size: 18px;
+      }
+      .machine-details {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 10px;
+      }
+      .machine {
+        padding: 8px;
+      }
+      .tracking-photos {
+        margin-top: 30px;
+        text-align: left;
+      }
+      .tracking-photos h2 {
+        font-size: 14px;
+        color: #2196F3;
+      }
+      .tracking-photos img {
+        max-width: 90%;
+      }
+    }
+
+    @media print {
+      .btn-print {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Order Report</h1>
+
+    <!-- Order Information -->
+    <div class="order-info">
+      <div>
+        <label>Order Number:</label>
+        <span>Ali0420</span>
+      </div>
+      <div>
+        <label>Customer Name:</label>
+        <span>Ali</span>
+      </div>
+      <div>
+        <label>Order Status:</label>
+        <span>Full Paid</span>
+      </div>
+      <div>
+        <label>Payment Date:</label>
+        <span>2025-04-20</span>
+      </div>
+      <div>
+        <label>Order Model:</label>
+        <span>Used Whatsminer M50 120TH/s</span>
+      </div>
+      <div>
+        <label>Quantity:</label>
+        <span>3 Pcs</span>
+      </div>
+      <div>
+        <label>Estimated Shipping Date:</label>
+        <span>2025-04-24</span>
+      </div>
+      <div>
+        <label>Actual Shipping Date:</label>
+        <span>2025-04-27</span>
+      </div>
+      <div>
+        <label>Shipping Status:</label>
+        <span>Full shipped</span>
+      </div>
+      <div>
+        <label>Tracking Number:</label>
+        <span>SF0281210222586</span>
+      </div>
+    </div>
+
+    <!-- Machine Details (3 Machines) -->
+    <div class="machine-details">
+      <!-- Machine 1 -->
+      <div class="machine">
+        <h4>Machine 1</h4>
+        <div>
+          <div class="hashrate-info">Hashrate: 125 TH/s</div>
+          <img src="images/hastrate_photo1.jpg" alt="Hashrate Photo 1">
+        </div>
+        <div>
+          <div class="photo-label">SN Number Photo:</div>
+          <img src="images/sn_photo1.jpg" alt="SN Number Photo 1">
+        </div>
+        <div>
+          <div class="photo-label">Package Photo:</div>
+          <img src="images/package_photo1.jpg" alt="Package Photo 1">
+        </div>
+      </div>
+
+      <!-- Machine 2 -->
+      <div class="machine">
+        <h4>Machine 2</h4>
+        <div>
+          <div class="hashrate-info">Hashrate: 125 TH/s</div>
+          <img src="images/hastrate_photo2.jpg" alt="Hashrate Photo 2">
+        </div>
+        <div>
+          <div class="photo-label">SN Number Photo:</div>
+          <img src="images/sn_photo2.jpg" alt="SN Number Photo 2">
+        </div>
+        <div>
+          <div class="photo-label">Package Photo:</div>
+          <img src="images/package_photo2.jpg" alt="Package Photo 2">
+        </div>
+      </div>
+
+
+              <!-- Machine 3 -->
+              <div class="machine">
+                <h4>Machine 3</h4>
+                <div>
+                  <div class="hashrate-info">Hashrate: 126 TH/s</div>
+                  <img src="images/hastrate_photo3.jpg" alt="Hashrate Photo 3">
+                </div>
+                <div>
+                  <div class="photo-label">SN Number Photo:</div>
+                  <img src="images/sn_photo3.jpg" alt="SN Number Photo 3">
+                </div>
+                <div>
+                  <div class="photo-label">Package Photo:</div>
+                  <img src="images/package_photo3.jpg" alt="Package Photo 3">
+                </div>
+              </div>
+            </div>
+      
+              
+            <!-- Tracking Photos at the end -->
+         <div class="tracking-photos">
+         <h2>Tracking Photo</h2>
+         <div class="tracking-photo">
+         <img src="images/tracking_photo1.jpg" alt="Tracking Photo 1" style="max-width: 40%; height: auto; display: block; margin: 0 auto;">
+        </div> 
+        </div>
+      
+
+
+            <!-- Thank You Message and Smile Emoji -->
+        <div class="thank-you-message" style="text-align: center; margin-top: 30px; font-size: 16px; color: #333;">
+       <p>😊 Thank you so much for your trust! </p> 
+       <p> We look forward to collaborating with you again next time. </p>
+       </div>
+
+            <!-- Print Button -->
+            <div class="print-btn-container">
+              <button class="btn-print" onclick="window.print()">Print Report</button>
+            </div>
+          </div>
+        </body>
+      </html>
+
