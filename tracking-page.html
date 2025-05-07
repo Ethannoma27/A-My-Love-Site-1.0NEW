@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Tracking</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Order Tracking</h1>
+            <p>Please enter your order number to check the order status</p>
+        </header>
+        
+        <style>
+            /* 通用样式 */
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f4f6f9;
+                color: #333;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                transform: scale(0.95); /* 将页面缩放至 95% */
+                transform-origin: top center; /* 设置缩放的中心位置 */
+            }
+
+            /* 容器 */
+            .container {
+                width: 100%;
+                max-width: 600px;
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                padding: 30px;
+                box-sizing: border-box;
+            }
+
+            /* Header */
+            header {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+                color: #2196F3; /* 蓝色 */
+                margin: 0;
+            }
+
+            header p {
+                font-size: 1.1rem;
+                color: #777;
+            }
+
+            /* 订单跟踪表单 */
+            .order-tracking-form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+
+            .order-tracking-form input {
+                padding: 12px;
+                font-size: 1rem;
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                box-sizing: border-box;
+                outline: none;
+                transition: border-color 0.3s;
+            }
+
+            .order-tracking-form input:focus {
+                border-color: #2196F3; /* 蓝色 */
+            }
+
+            .order-tracking-form button {
+                padding: 12px 20px;
+                font-size: 1rem;
+                background-color: #2196F3; /* 蓝色 */
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .order-tracking-form button:hover {
+                background-color: #1976D2; /* 更深的蓝色 */
+            }
+
+            /* 订单详情 */
+            .order-details {
+                background-color: #f9f9f9;
+                padding: 20px;
+                border-radius: 8px;
+                display: none;
+                box-sizing: border-box;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .order-details h2 {
+                color: #333;
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+
+            .order-info p {
+                font-size: 1rem;
+                margin: 10px 0;
+                color: #555;
+            }
+
+            .order-info strong {
+                color: #2196F3; /* 蓝色 */
+            }
+
+            /* Video Section */
+            .video-section {
+                display: none;
+                margin-top: 20px;
+                text-align: center;
+            }
+
+            .videos {
+                display: flex;
+                justify-content: space-between;
+                gap: 15px;
+            }
+
+            .video {
+                width: 30%;
+            }
+
+            video {
+                max-width: 100%;
+            }
+        </style>
+
+        <div class="order-tracking-form">
+            <label for="orderId">Order Number:</label>
+            <input type="text" id="orderId" placeholder="Enter your order number">
+            <button id="trackOrderBtn">Order Tracking</button>
+            <p id="errorMessage" style="color: red; display: none;">Invalid order number! Please try again.</p>
+        </div>
+
+        <div id="orderDetails" class="order-details" style="display: none;">
+            <h2>Order Information</h2>
+            <div class="order-info">
+                <p><strong>Order Number:</strong> <span id="orderNumber"></span></p>
+                <p><strong>Customer Name:</strong> <span id="customerName"></span></p>
+                <p><strong>Order Status:</strong> <span id="orderStatus"></span></p> 
+                <p><strong>Payment Date:</strong> <span id="PaymentDate"></span></p>
+                <p><strong>Order Model:</strong> <span id="orderName"></span></p>
+                <p><strong>Quantity:</strong> <span id="quantity"></span></p>
+                <p><strong>Estimated Shipping Date:</strong> <span id="shippingDate"></span></p>
+                <p><strong>Shipping Status:</strong> <span id="ShippingStatus"></span></p>
+                <!-- 新增订单名称和数量的显示区域 -->
+                <p><strong>Tracking Number:</strong> <span id="TrackingNumber"></span></p>
+                <button id="viewVideosBtn">View Videos</button>
+            </div>
+        </div>
+
+        <div id="videoSectionContainer" class="video-section" style="display: none;">
+            <h2>Video Waiting Update</h2>
+            <div class="videos">
+                <div class="video">
+                    <video controls>
+                        <!-- 修正 MIME 类型 -->
+                        <source src="public/videos/Ordervideo1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- 修正下载链接路径 -->
+                    <a href="public/videos/Ordervideo1.mp4" download>Download Video 1</a>
+                </div>
+                <div class="video">
+                    <video controls>
+                        <!-- 修正 MIME 类型 -->
+                        <source src="public/videos/Ordervideo2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- 修正下载链接路径 -->
+                    <a href="public/videos/Ordervideo2.mp4" download>Download Video 2</a>
+                </div>
+                <div class="video">
+                    <video controls>
+                        <!-- 修正 MIME 类型 -->
+                        <source src="public/videos/Ordervideo3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- 修正下载链接路径 -->
+                    <a href="public/videos/Ordervideo3.mp4" download>Download Video 3</a>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <script>
+            document.getElementById('trackOrderBtn').addEventListener('click', function() {
+                const orderId = document.getElementById('orderId').value.trim();
+                const errorMessage = document.getElementById('errorMessage');
+                const trackOrderBtn = document.getElementById('trackOrderBtn');
+                
+                // 清除之前的错误消息
+                errorMessage.style.display = 'none';
+                
+                if (orderId === "") {
+                    alert("Please provide a valid order number!");
+                    return;
+                }
+
+                // 修改订单号验证规则，允许字母和数字的组合
+                if (!/^[a-zA-Z0-9]{5,10}$/.test(orderId)) {
+                    errorMessage.textContent = "Order number must be between 5 to 10 characters, and can include letters and numbers.";
+                    errorMessage.style.display = 'block';
+                    return;
+                }
+
+                // 模拟订单数据库
+                const ordersDatabase = {
+                    "Ali0420": {
+                        orderNumber: "Ali0420",
+                        customerName: "Ali",
+                        PaymentDate: "2025-04-20",
+                        orderStatus: "Full Paid",
+                        shippingDate: "2025-04-24",
+                        ShippingStatus: "All shipped",
+                        orderModel: "Used Whatsminer M50 120TH/s", 
+                        quantity: "3 Pcs", 
+                        TrackingNumber: "SF0281210222586",
+                    },
+                    "67890": {
+                        orderNumber: "67890",
+                        customerName: "李四",
+                        PaymentDate: "2025-04-22",
+                        orderStatus: "已发货",
+                        shippingDate: "2025-05-03",
+                        ShippingStatus: "在途中",
+                        TrackingNumber: "67890",
+                        orderName: "Used Antminer S19", 
+                        quantity: "5 Pcs"
+                    }
+                };
+
+                // 检查订单号是否存在
+                if (ordersDatabase[orderId]) {
+                    const orderData = ordersDatabase[orderId];
+
+                     
+                                        // 显示订单信息
+                                        document.getElementById('orderNumber').textContent = orderData.orderNumber;
+                    document.getElementById('customerName').textContent = orderData.customerName;
+                    document.getElementById('PaymentDate').textContent = orderData.PaymentDate;
+                    document.getElementById('orderStatus').textContent = orderData.orderStatus;
+                    document.getElementById('shippingDate').textContent = orderData.shippingDate;
+                    document.getElementById('ShippingStatus').textContent = orderData.ShippingStatus;
+                    document.getElementById('orderName').textContent = orderData.orderModel;
+                    document.getElementById('quantity').textContent = orderData.quantity;
+                    document.getElementById('TrackingNumber').textContent = orderData.TrackingNumber;
+
+                    // 显示订单详情
+                    document.getElementById('orderDetails').style.display = 'block'; 
+
+                    // 更改按钮文本为 "Order Report" 并设置跳转链接
+                    trackOrderBtn.textContent = 'Order Report';
+                    trackOrderBtn.onclick = function() {
+                        window.location.href = 'public/Order_report.html'; // 跳转到订单报告页面
+                    };
+                } else {
+                    errorMessage.textContent = "Order number not found. Please try again.";
+                    errorMessage.style.display = 'block';
+                }
+
+                // 点击"查看视频"按钮时显示视频部分
+                document.getElementById('viewVideosBtn').addEventListener('click', function() {
+                    const videoSectionContainer = document.getElementById('videoSectionContainer'); 
+                    
+                    // 切换视频部分的显示和隐藏
+                    if (videoSectionContainer.style.display === 'none' || videoSectionContainer.style.display === '') {
+                        videoSectionContainer.style.display = 'block';
+                    } else {
+                        videoSectionContainer.style.display = 'none';
+                    } 
+                }); 
+            });
+        </script>
+    </div>
+</body>
+</html>
+
