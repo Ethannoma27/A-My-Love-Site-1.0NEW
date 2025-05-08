@@ -730,6 +730,7 @@ header nav ul li a:hover {
   </footer>
 
   <script>
+
     // Start of Tawk.to Script
     (function() {
       var Tawk_API = Tawk_API || {};
@@ -743,53 +744,62 @@ header nav ul li a:hover {
     })();
     // End of Tawk.to Script
   
-    // Video switching logic
     const video1 = document.getElementById("video1");
     const video2 = document.getElementById("video2");
-    const switchInterval = 8000; // 8 seconds interval for switching
     let isSwitching = false;
-  
-    // Helper function to handle video playback and state change
-    function playVideo(video, hideOthers = false) {
-      // Play the video
-      video.style.opacity = '1';
-      video.style.visibility = 'visible';
-      video.play().catch(error => console.error('Video play error:', error));
-  
-      // Optionally hide the other video
-      if (hideOthers) {
-        video.style.opacity = '0';
-        video.style.visibility = 'hidden';
-      }
-    }
-  
-    // Function to handle switching between video1 and video2
+    const switchInterval = 8000; // 每 8 秒切换一次视频
+
     function switchVideo() {
-      if (isSwitching) return; // Avoid switching if it's already happening
-  
+      if (isSwitching) return; // 如果已经在切换中，跳过
       isSwitching = true;
-  
+
       if (video1.style.opacity === '1') {
-        // Switch to video2
-        playVideo(video2, true);
+        video1.pause();
+        video1.style.opacity = '0';
+        video2.classList.add('show');
+        video2.style.opacity = '1';
+        video2.style.visibility = 'visible';
+        video2.play().catch((error) => {
+          console.log('播放视频2失败:', error);
+        });
+
         setTimeout(() => {
-          playVideo(video1, true); // Switch back to video1 after the interval
+          video2.pause();
+          video2.classList.remove('show');
+          video2.style.opacity = '0';
+          video2.style.visibility = 'hidden';
+          video1.style.opacity = '1';
+          video1.style.visibility = 'visible';
+          video1.play().catch((error) => {
+            console.log('播放视频1失败:', error);
+          });
+
           isSwitching = false;
         }, switchInterval);
       } else {
-        // Switch to video1
-        playVideo(video1, true);
+        video2.pause();
+        video2.classList.remove('show');
+        video2.style.opacity = '0';
+        video2.style.visibility = 'hidden';
+        video1.style.opacity = '1';
+        video1.style.visibility = 'visible';
+        video1.play().catch((error) => {
+          console.log('播放视频1失败:', error);
+        });
+
         isSwitching = false;
       }
     }
-  
-    // Start by playing video1
-    playVideo(video1);
-  
-    // Set interval to automatically switch videos every 8 seconds
+
+    // 页面加载时播放视频1
+    video1.play().catch((error) => {
+      console.log('播放视频1失败:', error);
+    });
+
+    // 每8秒切换视频
     setInterval(switchVideo, switchInterval);
   </script>
-
-
+</body>
+</html>
 
 
