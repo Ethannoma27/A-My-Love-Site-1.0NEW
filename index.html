@@ -508,7 +508,6 @@ header nav ul li a:hover {
   .privacy-badge a:hover {
     text-decoration: underline;
   }
-
 /* 调整响应式设计 */
 @media (max-width: 768px) {
   /* 页面容器调整 */
@@ -519,23 +518,47 @@ header nav ul li a:hover {
   /* 页眉调整 */
   header {
     padding: 10px 15px; /* 减少内边距，使得内容更加紧凑 */
+    display: flex;
+    justify-content: space-between;  /* 居中布局 */
+    align-items: center;  /* 垂直居中对齐 */
+    background: linear-gradient(to right, #b0e0e6, #f0f8ff);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
   header .logo {
-    font-size: 20px; /* 缩小 logo 字体 */
+    font-size: 20px;  /* 缩小 logo 字体 */
+    font-weight: 600;
+    color: #3a5f97;
+    font-family: 'Poppins', sans-serif;
+    white-space: nowrap;  /* 防止文字换行 */
   }
 
   header .header-right {
-    gap: 8px; /* 缩小右侧按钮间距 */
-    flex-direction: row; /* 确保内容横向排列 */
+    display: flex;
+    gap: 15px;  /* 调整按钮间的间距 */
     align-items: center;
   }
 
-    /* Featured Product Showcase - 修改为 2 列 */
-    .featured-product-showcase {
-      grid-template-columns: repeat(2, 1fr); /* 修改为2列布局 */
-    }
-    
+  header .header-right a {
+    font-size: 24px;  /* 图标按钮字体增大 */
+    color: #3a5f97;
+    transition: color 0.3s ease;
+  }
+
+  header .header-right a:hover {
+    color: #ffcc00;  /* 鼠标悬浮时的颜色 */
+  }
+
+  /* 隐藏多余的文字 */
+  .logo .since, .logo .evolved, .brand-mission {
+    display: none;  /* 隐藏不需要的文本 */
+  }
+
+  /* Featured Product Showcase - 修改为 2 列 */
+  .featured-product-showcase {
+    grid-template-columns: repeat(2, 1fr); /* 修改为2列布局 */
+  }
+  
   /* 页脚调整 */
   .footer-container {
     flex-direction: column; /* 使页脚垂直排列 */
@@ -558,34 +581,49 @@ header nav ul li a:hover {
     text-align: center;
   }
 
+
   /* 视频区调整 */
   .video-section {
-    height: 36vh; /* 缩小视频容器的高度 */
+    height: 30vh; /* 缩小视频容器的高度，确保视频显示不会占用太多屏幕空间 */
+    position: relative; /* 使得视频可以通过绝对定位充满容器 */
+    overflow: hidden; /* 防止内容溢出 */
   }
 
+  /* 视频容器 */
   .video-container {
-    height: 100%; /* 保证视频填充容器 */
+    position: absolute; /* 确保视频容器占满整个父容器 */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%; /* 使视频容器适应屏幕宽度 */
+    height: 100%; /* 使视频容器适应视频的高度 */
+    opacity: 1; /* 确保视频可见 */
+    visibility: visible; /* 确保视频容器在显示时可见 */
+    transition: opacity 0.5s ease; /* 添加过渡效果，切换时平滑 */
   }
 
+  /* 视频本身 */
   .video-container video {
-    object-fit: cover; /* 确保视频不变形 */
+    width: 100%;  /* 视频宽度自适应屏幕 */
+    height: 100%; /* 视频高度填充容器 */
+    object-fit: cover; /* 保证视频全屏显示，不变形 */
+    object-position: center; /* 保证视频居中显示 */
   }
 
-  /* 文字内容调整 */
-  .intro-text {
-    font-size: 18px; /* 缩小文字大小，50% */
+  /* 优化视频切换时的过渡效果 */
+  .video-container.show {
+    opacity: 1; /* 确保视频在显示时的透明度为 1 */
+    visibility: visible; /* 确保视频可见 */
   }
 
-  .intro-text h2 {
-    font-size: 32px; /* 调整标题字体大小 */
-  }
-
-  /* 针对移动端调整文字大小，确保在小屏幕上合适 */
-  .intro-text {
-    font-size: 16px; /* 调整手机端文字大小 */
+  .video-container.hide {
+    opacity: 0; /* 隐藏视频 */
+    visibility: hidden; /* 确保视频不占空间 */
   }
 }
- 
+
+
   </style>
 </head>
 <body>
@@ -600,7 +638,8 @@ header nav ul li a:hover {
         <span class="heart-icon">❤️</span>
         Brand Mission: To honor our promises and build lifelong, friendly relationships with our customers
       </p>
-    </div>
+    </div> 
+    </div> 
 
     <nav>
       <ul>
@@ -711,7 +750,8 @@ header nav ul li a:hover {
   <footer>
     <div class="footer-container">
       <div class="footer-left">
-        <p>&copy; 2025 HiwinMiner. All rights reserved.</p>
+
+        <p>&copy; 2025 . All rights reserved.</p>
       </div>
       <div class="footer-center">
         <p>
@@ -731,6 +771,7 @@ header nav ul li a:hover {
 
   <script>
 
+
     // Start of Tawk.to Script
     (function() {
       var Tawk_API = Tawk_API || {};
@@ -744,62 +785,81 @@ header nav ul li a:hover {
     })();
     // End of Tawk.to Script
   
-    const video1 = document.getElementById("video1");
-    const video2 = document.getElementById("video2");
-    let isSwitching = false;
-    const switchInterval = 8000; // 每 8 秒切换一次视频
+  const video1 = document.getElementById("video1");
+  const video2 = document.getElementById("video2");
+  let isSwitching = false;
+  const switchInterval = 8000; // 每 8 秒切换一次视频
 
-    function switchVideo() {
-      if (isSwitching) return; // 如果已经在切换中，跳过
-      isSwitching = true;
+  // 判断当前设备是否为手机端
+  const isMobile = window.innerWidth <= 768;
 
-      if (video1.style.opacity === '1') {
-        video1.pause();
-        video1.style.opacity = '0';
-        video2.classList.add('show');
-        video2.style.opacity = '1';
-        video2.style.visibility = 'visible';
-        video2.play().catch((error) => {
-          console.log('播放视频2失败:', error);
-        });
+  function switchVideo() {
+    if (isSwitching) return; // 如果已经在切换中，跳过
+    isSwitching = true;
 
-        setTimeout(() => {
-          video2.pause();
-          video2.classList.remove('show');
-          video2.style.opacity = '0';
-          video2.style.visibility = 'hidden';
-          video1.style.opacity = '1';
-          video1.style.visibility = 'visible';
-          video1.play().catch((error) => {
-            console.log('播放视频1失败:', error);
-          });
+    if (video1.style.opacity === '1') {
+      video1.pause();
+      video1.style.opacity = '0';
+      video2.classList.add('show');
+      video2.style.opacity = '1';
+      video2.style.visibility = 'visible';
+      // 如果是手机端，先检查视频是否已经缓冲完成
+      if (isMobile) {
+        video2.load(); // 只加载视频元数据，避免卡顿
+      }
+      video2.play().catch((error) => {
+        console.log('播放视频2失败:', error);
+      });
 
-          isSwitching = false;
-        }, switchInterval);
-      } else {
+      setTimeout(() => {
         video2.pause();
         video2.classList.remove('show');
         video2.style.opacity = '0';
         video2.style.visibility = 'hidden';
         video1.style.opacity = '1';
         video1.style.visibility = 'visible';
+        // 手机端避免连续播放，避免缓冲问题
+        if (isMobile) {
+          video1.load(); // 只加载元数据
+        }
         video1.play().catch((error) => {
           console.log('播放视频1失败:', error);
         });
 
         isSwitching = false;
+      }, switchInterval);
+    } else {
+      video2.pause();
+      video2.classList.remove('show');
+      video2.style.opacity = '0';
+      video2.style.visibility = 'hidden';
+      video1.style.opacity = '1';
+      video1.style.visibility = 'visible';
+      // 手机端避免连续播放，避免缓冲问题
+      if (isMobile) {
+        video1.load(); // 只加载元数据
       }
-    }
+      video1.play().catch((error) => {
+        console.log('播放视频1失败:', error);
+      });
 
-    // 页面加载时播放视频1
+      isSwitching = false;
+    }
+  }
+
+  // 页面加载时根据设备类型来决定如何播放视频
+  if (!isMobile) {
     video1.play().catch((error) => {
       console.log('播放视频1失败:', error);
     });
-
     // 每8秒切换视频
     setInterval(switchVideo, switchInterval);
-  </script>
+  } else {
+    // 对于手机端，播放视频时仅加载元数据，避免过多缓冲
+    video1.preload = "metadata"; // 只加载元数据
+    video2.preload = "metadata"; // 只加载元数据
+  }
+</script>
+
 </body>
 </html>
-
-
