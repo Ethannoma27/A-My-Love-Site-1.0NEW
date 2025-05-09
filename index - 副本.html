@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomePage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+
+/* 重置默认浏览器样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 默认字体：手机端使用 Roboto */
+html, body {
+  height: 100%; /* 确保html和body高度填满视口 */
+  margin: 0;
+  padding: 0;
+  width: 100%;  /* 确保宽度为100% */
+  overflow-x: hidden;  /* 防止水平滚动条 */
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Page Container */
+.page-container {
+  width: 100%;  /* 确保根容器宽度为100% */
+  overflow-x: hidden;  /* 防止溢出 */
+}
+
+/* Header Section */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;  /* 将对齐方式设置为靠上 */
+  padding: 30px 70px !important;  /* 缩小顶部和底部的 padding */
+  background: linear-gradient(to right, #b0e0e6, #f0f8ff);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+}
+
+header .logo,
+header .header-right {
+  line-height: 1.2; /* 减小字体行高，使字符垂直距离更紧凑 */
+}
+
+header .logo {
+  font-size: 30px !important ;  /* 字体大小可以根据需求调整 */
+  font-weight: 600;  /* 调整字重，接近 RENPHO 字体的效果 */
+  color: #3a5f97;
+  font-family: 'Poppins', sans-serif;  /* 确保使用相同的字体 */
+  letter-spacing: 0;  /* 无需增加字母间距，保持字体的紧凑感 */
+  text-align: center; /* 让 logo 和下面的文本居中对齐 */
+  margin-top: 5px;  /* 适当减小 logo 上方的间距 */ 
+}
+
+.logo .since {
+  font-size: 14px; /* 设置字体大小 */
+  color: #666; /* 设置颜色为灰色 */
+  margin-left: 8px; /* 给文字和 logo 之间留点空隙 */
+  font-style: italic; /* 使用斜体，显得更加优雅 */ 
+}
+
+/* 调整 "Evolved from Hawin" 位置，使其更靠下 */
+.logo .evolved {
+  font-size: 18px; /* 设置字体大小 */
+  color: #8E44AD; /* 设置颜色为灰色 */
+  font-style: italic; /* 斜体字 */
+  margin-top: 1px;  /* 减小顶部间距，使其更靠近 "Hiwin" 和 "Since 2017" */
+  line-height: 2;  /* 增加行高，让文本更有呼吸感 */
+}
+ 
+/* 品牌理念部分样式 */
+.brand-mission {
+  position: absolute;  /* 使用绝对定位 */
+  bottom: -20px;  /* 适当增加 bottom 值，使其距离 header 底部更远 */
+  left: 50px;  /* 使其与 logo 左侧对齐 */
+  font-size: 18px;  /* 稍微增大字体，提升视觉效果 */
+  color: #3a5f97;  /* 采用深蓝色，传递专业与信任感 */
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;  /* 更具现代感的字体 */
+  text-align: left;  /* 使文字左对齐 */
+  letter-spacing: 0.5px;  /* 微调字母间距，提升可读性 */
+  padding-bottom: 20px; /* 增加底部的间距，避免与视频部分重叠 */
+}
+
+/* 品牌使命文本样式 */
+.mission-text {
+  font-style: italic;
+  line-height: 1.7;  /* 增加行高，让文字更加通透和舒适 */
+  font-weight: 400;  /* 保持适中的字重 */
+}
+
+/* 心形图标样式 */
+.heart-icon {
+  color: #ff6f61; /* 温暖的心形红色 */
+  font-size: 22px;  /* 适当增大心形图标的大小 */
+  margin-right: 10px;  /* 增加图标和文字之间的间距 */
+}
+
+
+
+/* 新增的右侧按钮部分样式 */
+header .header-right {
+  display: flex;
+  justify-content: flex-end; /* 将按钮推到右边 */
+  gap: 20px; /* 按钮之间的间隔 */
+  margin-left: auto; /* 让按钮容器向右靠 */
+}
+
+header .header-right a {
+  font-size: 20px; /* 图标大小 */
+  color: #3a5f97;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+header .header-right a:hover {
+  color: #ffcc00; /* 悬浮时的颜色 */
+}
+
+/* 下拉菜单样式 */
+header nav ul li ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  min-width: 160px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s ease; /* 减少延迟 */
+  z-index: 9999;
+}
+
+header nav ul li:hover ul {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0s ease 0s; /* 悬浮时显示 */
+}
+
+header nav ul li ul li {
+  padding: 12px 20px;
+}
+
+header nav ul li ul li a {
+  color: #333;
+}
+
+header nav ul li ul li a:hover {
+  color: #ffcc00; /* 悬浮时下拉菜单文字颜色 */
+  background-color: #f4f4f4; /* 悬浮时下拉菜单背景颜色 */
+}
+
+/* 鼠标离开后隐藏下拉菜单 */
+header nav ul li {
+  position: relative;
+}
+
+
+header nav ul li:not(:hover):not(:focus-within) > ul {
+  opacity: 0;
+  visibility: hidden;
+  display: none;
+  transition: opacity 0.5s ease, visibility 0s ease 2s; /* 鼠标离开后延迟 2 秒隐藏菜单 */
+}
+
+
+
+/* Header Section */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 50px;
+  background: linear-gradient(to right, #b0e0e6, #f0f8ff);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header .logo {
+  font-size: 32px;
+  font-weight: 700;
+  color: #3a5f97;
+}
+
+header nav {
+  margin: 0 auto;
+}
+
+header nav ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: #555;
+  font-size: 18px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+  color: #ffcc00;
+}
+
+/* 让放大镜图标作为按钮 */
+.tracking-button {
+  font-size: 10px;  /* 设置图标的大小 */
+  color: #007bff;   /* 图标的颜色 */
+  text-decoration: none;
+  display: inline-flex;  /* 使用flex布局，使图标垂直水平居中 */
+  justify-content: center;
+  align-items: center;
+  width: 30px;   /* 按钮宽度 */
+  height: 30px;  /* 按钮高度 */
+  border-radius: 50%;  /* 圆形按钮 */
+  background-color: transparent;  /* 透明背景 */
+  border: 2px solid #007bff;  /* 蓝色边框 */
+}
+
+.tracking-button:hover {
+  background-color: #007bff; /* 鼠标悬停时背景色 */
+  color: #fff;  /* 鼠标悬停时图标颜色 */
+}
+
+.tracking-button i {
+  font-size: 10px;  /* 放大镜图标的大小 */
+}
+
+
+
+/* Video Section */
+.video-section {
+  position: relative;
+  width: 100%;
+  height: 72vh; /* 调整视频区域高度 */
+  overflow: hidden;
+  background-color: #000;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.video-container video {
+  width: 100%; /* 每个视频占据容器的 100% 宽度 */
+  height: 100%; /* 视频的高度填满容器 */
+  object-fit: cover;
+}
+
+/* 第一个视频 */
+#video1 {
+  position: absolute;
+  top: 0;
+  left: 0;  /* 视频1的默认位置 */
+  width: 100%;
+  height: auto;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 1s ease-in-out, left 1s ease-in-out;
+}
+
+/* 第二个视频，初始化时从右侧完全隐藏 */
+#video2 {
+  position: absolute;
+  top: 0;
+  left: 100%; /* 从右侧完全隐藏 */
+  width: 100%;
+  height: auto;
+  opacity: 0; /* 初始时不可见 */
+  transition: opacity 1s ease-in-out, left 1s ease-in-out;
+  z-index: 2;
+}
+
+/* 第二个视频滑入并可见 */
+#video2.show {
+  left: 0; /* 滑入到视口 */
+  opacity: 1; /* 显示视频 */
+}
+
+/* 保证视频1和视频2都能够从右侧滑入 */
+#video1.show {
+  left: 0; /* 视频1进入视口 */
+  opacity: 1; /* 显示视频 */
+
+}
+
+
+
+/* 确保只引入一次 Roboto 字体 */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+/* 确保文字显示在视频上方 */
+.intro-text {
+  position: absolute;
+  top: 15%; /* 让文字位于视频的上方 */
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-family: 'Roboto', sans-serif; /* 使用 Roboto 字体 */
+  text-align: center;
+  font-size: 80px; /* 字体大小保持较大 */
+  font-weight: 500; /* 使用稍微加粗的字体权重 */
+  line-height: 1.5; /* 行高保持适中 */
+  letter-spacing: 1px; /* 适中的字母间距 */
+  padding: 0 40px; /* 增加左右内边距，扩大文字容纳区域 */
+  width: 70%; /* 设置宽度为原来的 70% */
+  max-width: 70%; /* 确保文字最大宽度为 70% */
+  word-wrap: break-word; /* 允许文字换行 */
+  white-space: normal; /* 允许文本正常换行 */
+  z-index: 10; /* 确保文字显示在视频上方 */
+}
+
+/* 确保 h2 标签的样式也被正确应用 */
+.intro-text h2 {
+  margin: 0; /* 防止默认 margin */
+  font-family: 'Roboto', sans-serif; /* 使用 Roboto 字体 */
+  font-size: 80px; /* 保持较大字体 */
+  font-weight: 500; /* 使用稍微加粗的字体 */
+  line-height: 1.5; /* 行高 */
+  letter-spacing: 1px; /* 适中的字母间距 */
+  color: white; /* 白色字体 */
+  text-align: center;
+  word-wrap: break-word; /* 允许文字换行 */
+  white-space: normal; /* 允许正常换行 */
+}
+
+
+
+
+
+/* Featured Products Section */
+.featured-products {
+  padding: 50px 0;
+  background-color: #f4f4f4;
+  text-align: center; /* 让标题居中 */
+}
+
+.featured-products h2 {
+  font-size: 40px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #3a5f97;
+}
+
+.featured-products h5 {
+  font-size: 18px;
+  color: #777;
+  margin-bottom: 40px;
+}
+
+.featured-product-showcase {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 设置3列并且每列宽度相等 */
+  gap: 30px;
+  justify-items: center; /* 保证产品居中 */
+  padding: 0 20px; /* 在小屏幕上添加内边距 */
+}
+
+.featured-product-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px; /* 增加内边距 */
+  width: 100%; /* 确保卡片宽度占满容器 */
+}
+
+.featured-product-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px; /* 图片也添加圆角 */
+}
+
+.featured-product-card h3 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  margin: 20px 0 10px; /* 调整标题和其他内容的间距 */
+}
+
+.featured-product-card p {
+  font-size: 16px;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.buy-now-link {
+  display: inline-block;
+  padding: 14px 28px;
+  background-color: #5A8DEE;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600; /* 可以根据需要调整 */
+  text-transform: uppercase;
+  font-family: 'Helvetica Neue', Arial, sans-serif;  /* 使用类似 Withings 的字体 */
+  letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  
+  /* 四个角圆角效果 */
+  border-radius: 8px;  /* 这里你可以调整圆角的大小 */
+}
+
+.buy-now-link:hover {
+  background-color: #4169E1;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.buy-now-link:active {
+  background-color: #4169E1;
+  box-shadow: none;
+}
+
+
+  /* 页脚样式 */
+  footer {
+    background-color: #003366;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+    font-size: 16px;
+    border-top: 1px solid #444;
+  }
+
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .footer-left, .footer-center, .footer-right {
+    flex: 1;
+    padding: 10px;
+  }
+
+  .footer-left p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  .footer-center p {
+    margin: 0;
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .footer-center a {
+    color: #56CCF2;
+    text-decoration: none;
+    padding: 0 8px;
+  }
+
+  .footer-center a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .privacy-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .privacy-badge svg {
+    fill: #56CCF2;
+  }
+
+  .privacy-badge a {
+    color: #56CCF2;
+    text-decoration: none;
+    font-size: 16px;
+  }
+
+  .privacy-badge a:hover {
+    text-decoration: underline;
+  }
+
+/* 调整响应式设计 */
+@media (max-width: 768px) {
+  /* 页面容器调整 */
+  .page-container {
+    padding: 10px; /* 减少页边距，优化空间 */
+  }
+
+  /* 页眉调整 */
+  header {
+    padding: 10px 15px; /* 减少内边距，使得内容更加紧凑 */
+  }
+
+  header .logo {
+    font-size: 20px; /* 缩小 logo 字体 */
+  }
+
+  header .header-right {
+    gap: 8px; /* 缩小右侧按钮间距 */
+    flex-direction: row; /* 确保内容横向排列 */
+    align-items: center;
+  }
+
+    /* Featured Product Showcase - 修改为 2 列 */
+    .featured-product-showcase {
+      grid-template-columns: repeat(2, 1fr); /* 修改为2列布局 */
+    }
+    
+  /* 页脚调整 */
+  .footer-container {
+    flex-direction: column; /* 使页脚垂直排列 */
+    align-items: center;
+    padding: 10px 0; /* 增加页脚上下间距 */
+  }
+
+  .footer-left, .footer-center, .footer-right {
+    flex: none; /* 取消弹性布局，让它们独立显示 */
+    padding: 5px; /* 减少每个部分的内边距 */
+    text-align: center; /* 确保文本居中显示 */
+  }
+
+  .footer-left p, .footer-center p {
+    margin-bottom: 8px; /* 调整段落间距 */
+  }
+
+  .footer-right {
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* 视频区调整 */
+  .video-section {
+    height: 36vh; /* 缩小视频容器的高度 */
+  }
+
+  .video-container {
+    height: 100%; /* 保证视频填充容器 */
+  }
+
+  .video-container video {
+    object-fit: cover; /* 确保视频不变形 */
+  }
+
+  /* 文字内容调整 */
+  .intro-text {
+    font-size: 18px; /* 缩小文字大小，50% */
+  }
+
+  .intro-text h2 {
+    font-size: 32px; /* 调整标题字体大小 */
+  }
+
+  /* 针对移动端调整文字大小，确保在小屏幕上合适 */
+  .intro-text {
+    font-size: 16px; /* 调整手机端文字大小 */
+  }
+}
+ 
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      HiwinMiner<span class="since">Since 2017</span>
+      <p class="evolved">Hawinbon Reborn</p>
+    </div>
+
+    <div class="brand-mission">
+      <p class="mission-text">
+        <span class="heart-icon">❤️</span>
+        Brand Mission: To honor our promises and build lifelong, friendly relationships with our customers
+      </p>
+    </div>
+
+    <nav>
+      <ul>
+        <li>
+          <a href="#">New Releases</a>
+          <ul class="dropdown">
+            <li><a href="#">Mining Rigs</a></li>
+            <li><a href="#">Graphics Cards</a></li>
+            <li><a href="#">Mining Accessories</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Mining Equipment</a>
+          <ul class="dropdown">
+            <li><a href="#">ASIC Miners</a></li>
+            <li><a href="#">GPU Rigs</a></li>
+            <li><a href="#">Cooling Solutions</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Support</a>
+          <ul class="dropdown">
+            <li><a href="#">Troubleshooting Guides</a></li>
+            <li><a href="#">Mining Software</a></li>
+            <li><a href="#">Power Supply Tips</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Explore</a>
+          <ul class="dropdown">
+            <li><a href="#">Mining Tips</a></li>
+            <li><a href="#">Product Reviews</a></li>
+            <li><a href="#">Customer Feedback</a></li>
+          </ul>
+        </li>
+        <li>
+
+          <a href="tracking-page.html" class="tracking-button">
+            <i class="fas fa-search"></i> Tracking
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="header-right">
+      <a href="public/login.html"><i class="fas fa-user"></i></a>
+      <a href="public/XAdd-to-cart.html"><i class="fas fa-shopping-cart"></i></a>
+    </div>
+  </header>
+
+  <div class="video-section">
+    <div class="video-container">
+      <!-- 第一个视频 -->
+      <video id="video1" muted loop>
+        <source src="public/videos/video1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- 第二个视频 -->
+      <video id="video2" muted loop>
+        <source src="public/videos/video2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+      <div class="intro-text">
+        <h2>测试专业可视化精确与品质的融合</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="featured-products">
+    <h2>Our most iconic products.</h2>
+    <h5>Explore HiwinMiner devices today.</h5>
+    <div class="featured-product-showcase">
+      <div class="featured-product-card">
+        <img src="public/images/WhatsMiner-M30S++.png" alt="WhatsMiner-M30S++">
+        <h3>WhatsMiner M30S++ 112TH/s</h3>
+        <p>$688</p>
+        <a href="public/WhatsMiner M30S++page.html" class="buy-now-link">Buy now</a>
+      </div>
+      <div class="featured-product-card">
+        <img src="public/images/Antminer-S21+.png" alt="Antminer-S21+">
+        <h3>Antminer S21+ 216TH/s</h3>
+        <p>$3,240</p>
+        <a href="public/Antminer S21+page.html" class="buy-now-link">Buy now</a>
+      </div>
+      <div class="featured-product-card">
+        <img src="public/images/Avalon-A1466.png" alt="Avalon-A1466">
+        <h3>Avalon-A1466 162TH/s</h3>
+        <p>$1603</p>
+        <a href="/Avalon-A1466 page.html" class="buy-now-link">Buy now</a>
+      </div>
+      <div class="featured-product-card">
+        <img src="public/images/S21eXPHyd3U.jpg" alt="S21eXPHyd3U514TH/s">
+        <h3>Antminer S19 XP Hyd 3U 512TH/s</h3>
+        <p>$5499</p>
+        <a href="public/Antminer S19 XP Hyd 3U.html" class="buy-now-link">Buy now</a>
+      </div>
+      <div class="featured-product-card">
+        <img src="public/images/S21eXPHyd3U.jpg" alt="S21eXPHyd3U512TH/s">
+        <h3>AntminerS21eXP Hyd 3U 860TH/s</h3>
+        <p>$22,499</p>
+        <a href="public/Antminer S21e XP Hyd 3U860T.html" class="buy-now-link">Buy now</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        <p>&copy; 2025 HiwinMiner. All rights reserved.</p>
+      </div>
+      <div class="footer-center">
+        <p>
+          <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+        </p>
+      </div>
+      <div class="footer-right">
+        <div class="privacy-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M12 1C9.79 1 8 2.79 8 5v4H6c-1.1 0-1.99.9-1.99 2L4 19c0 1.1.89 1.99 1.99 1.99H17c1.1 0 1.99-.89 1.99-1.99V11c0-1.1-.89-1.99-1.99-1.99h-2V5c0-2.21-1.79-4-4-4zm1 15H9v-4h4v4zM12 3c1.1 0 2 .9 2 2v6H10V5c0-1.1.9-2 2-2z"/>
+          </svg>
+          <a href="public/privacy-policy.html" title="查看隐私政策">Protect customer privacy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+
+    // Start of Tawk.to Script
+    (function() {
+      var Tawk_API = Tawk_API || {};
+      var Tawk_LoadStart = new Date();
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = 'https://embed.tawk.to/681c6864c905ab190eadc942/1iqnffina';  // 这里是你的小部件 ID
+      script.charset = 'UTF-8';
+      script.setAttribute('crossorigin', '*');
+      document.getElementsByTagName("script")[0].parentNode.insertBefore(script, null);
+    })();
+    // End of Tawk.to Script
+  
+    const video1 = document.getElementById("video1");
+    const video2 = document.getElementById("video2");
+    let isSwitching = false;
+    const switchInterval = 8000; // 每 8 秒切换一次视频
+
+    function switchVideo() {
+      if (isSwitching) return; // 如果已经在切换中，跳过
+      isSwitching = true;
+
+      if (video1.style.opacity === '1') {
+        video1.pause();
+        video1.style.opacity = '0';
+        video2.classList.add('show');
+        video2.style.opacity = '1';
+        video2.style.visibility = 'visible';
+        video2.play().catch((error) => {
+          console.log('播放视频2失败:', error);
+        });
+
+        setTimeout(() => {
+          video2.pause();
+          video2.classList.remove('show');
+          video2.style.opacity = '0';
+          video2.style.visibility = 'hidden';
+          video1.style.opacity = '1';
+          video1.style.visibility = 'visible';
+          video1.play().catch((error) => {
+            console.log('播放视频1失败:', error);
+          });
+
+          isSwitching = false;
+        }, switchInterval);
+      } else {
+        video2.pause();
+        video2.classList.remove('show');
+        video2.style.opacity = '0';
+        video2.style.visibility = 'hidden';
+        video1.style.opacity = '1';
+        video1.style.visibility = 'visible';
+        video1.play().catch((error) => {
+          console.log('播放视频1失败:', error);
+        });
+
+        isSwitching = false;
+      }
+    }
+
+    // 页面加载时播放视频1
+    video1.play().catch((error) => {
+      console.log('播放视频1失败:', error);
+    });
+
+    // 每8秒切换视频
+    setInterval(switchVideo, switchInterval);
+  </script>
+</body>
+</html>
+
+
