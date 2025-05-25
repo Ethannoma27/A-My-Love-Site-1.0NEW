@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love u</u></title>
+    <style>
+        /* 合并 body 和 html 的设置 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        /* 背景与时光隧道效果 */
+        .time-tunnel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #000, rgba(0, 0, 0, 0.8) 80%);
+            z-index: -3;
+            animation: tunnelAnimation 5s ease-in-out forwards;
+        }
+
+        @keyframes tunnelAnimation {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* 星空效果 */
+        #starField {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: starAnimation 2s linear infinite;
+        }
+
+        @keyframes starAnimation {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        /* 主内容区（默认电脑端） */
+        .main-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            text-align: left;
+            padding: 40px 20px;
+            font-size: 1.5rem;
+            line-height: 2;
+            max-width: 800px;
+            margin-left: 5vw;
+            transform: translateY(-35%);
+        }
+
+        .content h1 {
+            font-size: 3rem;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+        }
+
+        .message {
+            font-size: 1.2rem;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+
+        /* 未来窗口 */
+        .future-window {
+            position: fixed;
+            top: 10vh;
+            right: 10vw;
+            width: 200px;
+            height: 150px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 3px solid #00ff99;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.4rem;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(0, 255, 153, 0.8);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: windowPulse 2s infinite;
+        }
+
+        @keyframes windowPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .future-window h3 {
+            font-size: 1.5rem;
+            text-shadow: 0 0 10px rgba(0, 255, 153, 0.8);
+            margin-bottom: 10px;
+        }
+
+        .future-window p {
+            font-size: 1.1rem;
+            text-shadow: 0 0 8px rgba(0, 255, 153, 0.6);
+            margin-top: 10px;
+        }
+
+       /* 底部留言 */
+
+         .footer {
+       position: absolute;
+       bottom: 20px;
+       left: 50%;
+       transform: translateX(-50%) scaleX(1.1); /* 通过 scaleX 扩展宽度 */
+       font-size: 1rem;
+       color: white;
+       text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+       z-index: 1;
+       width: 100%; /* 宽度为父容器的 100% */
+       max-width: none; /* 禁止最大宽度限制 */
+       text-align: center; /* 保证文字居中 */
+       padding: 0 20px; /* 增加左右内边距 */
+       white-space: nowrap; /* 防止文字换行 */
+       overflow: hidden; /* 隐藏溢出的内容 */
+       text-overflow: ellipsis; /* 用省略号表示超出的部分 */
+}
+
+    
+        /* 钢琴动图 */
+        .piano-image {
+            position: absolute;
+            top: 60%;
+            left: 60%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: auto;
+            z-index: 1;
+            opacity: 0.6;
+        }
+
+     /* 移动端优化 */
+@media (max-width: 768px) {
+    .content {
+        padding: 15px;
+        font-size: 1rem;
+        margin-left: 0;
+        transform: translateY(-50px); /* 移除上移 */
+    }
+
+    .content h1 {
+        font-size: 2rem;
+        transform: translateY(-20px); /* 向上移动 20px */
+    }
+
+    .message {
+        font-size: 1rem;
+        transform: translateY(20%); /* 文字下移 */
+    }
+
+    .future-window {
+        width: 180px;
+        height: 100px;
+        font-size: 1.2rem;
+        /* 使用 transform 来精确控制位置，移除 margin-top */
+        transform: translateY(-40vh); /* 使用视口高度百分比来定位 */
+        /* 进一步控制如果有必要 */
+    }
+
+    .piano-image {
+        width: 90%;
+        max-width: 200px;
+        opacity: 0.6;
+    }
+
+    .footer {
+        display: none;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <!-- Your HTML content goes here -->
+</body>
+</html>
+
+    
+</head>
+<body>
+
+    <!-- 隐藏音频播放器控件，并自动播放 -->
+    <audio id="myAudio" autoplay muted hidden>
+        <source src="http://img.wowocare.com/music_1648547973904.mp3" type="audio/mp3">
+        您的浏览器不支持音频播放。
+    </audio> 
+
+    <!-- 时光隧道背景 -->
+    <div class="time-tunnel"></div>
+
+    <!-- 星空背景 -->
+    <div id="starField">
+        <div class="star" style="top: 10%; left: 20%; width: 4px; height: 4px;"></div>
+        <div class="star" style="top: 30%; left: 50%; width: 2px; height: 2px;"></div>
+        <div class="star" style="top: 60%; left: 80%; width: 3px; height: 3px;"></div>
+    </div>
+
+    <!-- 主体区块：标题在最上方，然后是未来框，再是文字内容 -->
+    <div class="main-section">
+        <!-- 标题始终在最上方 -->
+        <div class="content title-only">
+            <h1>夜的钢琴曲</h1>
+        </div>
+
+        <!-- 未来窗口 -->
+        <div class="future-window">
+            <h3>遇见未来的我们</h3>
+            <p>一起看尽世间风景，经历更多的幸福与憧憬。</p>
+        </div>
+
+        <!-- 主要内容信息 -->
+        <div class="content">
+            <p class="message">我想 未来 我们一起创造更多 人生的美好</p>
+            <p class="message">认识我对象13周年，我没有想过，会一直这么喜欢着一个人</p>
+            <p class="message">也许以前的时候，是希望和那个人结婚，有一个形式的结果</p>
+            <p class="message">但是到现在我发现，我就是希望很美好的和那个人在一起</p>
+            <p class="message">去创造更多的美好，因为我们都很想念25岁的青春</p>
+            <p class="message">不仅是因为年轻、激情和浪漫，还有那份爱的自由、轻松和快乐</p>
+        </div>
+    </div>
+
+    <!-- 插入钢琴动图 -->
+    <img src="images/piano.gif" alt="钢琴弹奏" class="piano-image">
+
+    <!-- 底部留言 -->
+    <div class="footer">
+        
+        <p>Youth is a promise with no regrets,without you life could never be so beautiful,so I need you</p>
+    </div>
+
+    <script>
+        window.onload = function() {
+            var audio = document.getElementById('myAudio');
+            // 尝试播放音频
+            audio.play().then(function() {
+                audio.muted = false;
+                console.log("音频自动播放并解除静音");
+            }).catch(function(error) {
+                console.log("自动播放失败，原因:", error);
+            });
+        };
+
+        // 流星动画的优化版本
+        function createMeteor() {
+            const meteor = document.createElement('div');
+            meteor.classList.add('meteor');
+            const startX = Math.random() * -10;
+            const startY = Math.random() * -10;
+            meteor.style.left = `${startX}vw`;
+            meteor.style.top = `${startY}vh`;
+
+            document.body.appendChild(meteor);
+            meteor.addEventListener('animationend', () => meteor.remove());
+        }
+
+        const maxMeteors = 2;
+        function controlMeteors() {
+            const currentMeteors = document.querySelectorAll('.meteor').length;
+            if (currentMeteors < maxMeteors) createMeteor();
+        }
+
+        setInterval(controlMeteors, 8000);
+
+        // 颗粒星星优化
+        function createStar() {
+            const starField = document.getElementById('starField');
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const size = Math.random() * 3 + 1;
+            const opacity = Math.random() * 0.8 + 0.2;
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            const duration = Math.random() * 1 + 2;
+
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${x}vw`;
+            star.style.top = `${y}vh`;
+            star.style.opacity = opacity;
+            star.style.animationDuration = `${duration}s`;
+
+            starField.appendChild(star);
+            setTimeout(() => star.remove(), duration * 1000);
+        }
+
+        setInterval(createStar, 50);
+
+        function adjustHeight() {
+        var viewportHeight = window.innerHeight;  // 获取当前浏览器窗口的可视区域高度
+       document.documentElement.style.setProperty('--vh', `${viewportHeight}px`);  // 设置一个 CSS 变量 '--vh' 为当前窗口的高度
+          }
+
+        // 检测是否为手机端设备
+      if (window.matchMedia("(max-width: 768px)").matches) {
+       // 只有当屏幕宽度小于或等于 768px 时才会执行调整
+      window.addEventListener('resize', adjustHeight);
+      adjustHeight();  // 初始化时调用一次
+   }
+
+    </script>
+</body>
+
+</html>
+
+
+
+
+

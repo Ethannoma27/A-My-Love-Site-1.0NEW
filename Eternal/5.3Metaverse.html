@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱你的元宇宙</title>
+    <style>
+        /* 基本布局 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            z-index: 1;
+        }
+
+        /* 背景宇宙动画 - 这里改为图片背景 */
+        .background {
+            position: fixed; /* 使用 fixed 保证背景充满整个屏幕 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/background1.jpg'); /* 设置背景图片 */
+            background-size: cover; /* 使背景图片覆盖整个屏幕 */
+            background-position: center;
+            animation: backgroundAnimation 25s ease infinite;
+            z-index: -2;
+            overflow: hidden;
+            filter: blur(3px); /* 设置轻微的朦胧感 */
+            opacity: 0.75; /* 增加透明度，0表示完全透明，1表示完全不透明 */
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+           /* 星星的容器，放置在背景之后 */
+           @keyframes backgroundAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        
+            /* 星星的容器，放置在背景之后 */
+            #starField {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* 星星层级应该高于背景层级 */
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* 创建颗粒感的星星 */
+        .star {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            opacity: 0;
+            animation: starAnimation 2s linear infinite;
+        }
+
+        /* 更自然的闪烁动画 */
+        @keyframes starAnimation {
+            0% {
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0.2;
+            }
+        }
+
+
+        /* 文字样式 */
+        h1 {
+            font-size: 3rem;
+            font-family: 'Arial', sans-serif;
+            text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8), 0px 0px 20px rgba(255, 255, 255, 0.6);
+            margin: 20px;
+        }
+
+        .message {
+            font-size: 1.5rem;
+            text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8), 0px 0px 20px rgba(255, 255, 255, 0.6);
+            margin-top: 20px;
+        }
+
+        /* 爱心按钮 */
+        .heart-button {
+            font-size: 4rem;
+            cursor: pointer;
+            margin-top: 30px;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* 爱心点击动画 */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.3);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* 爱心光效 */
+        .love-effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s;
+        }
+
+        /* 底部 */
+        .footer {
+            margin-top: 50px;
+            font-size: 1.2rem;
+            color: #fff;
+            text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8), 0px 0px 20px rgba(255, 255, 255, 0.6);
+        }
+
+        
+            /* 流星效果 */
+.meteor {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 3px; /* 增加流星的高度，使头部不那么重 */
+  width: 20px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  opacity: 0.8;
+  transform-origin: top left;
+  transform: rotate(45deg);
+  animation: meteorAnimation 12s linear infinite;
+}
+
+/* 流星尾巴效果 */
+.meteor::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -80px;  /* 延长尾巴的起始位置 */
+  width: 80px;  /* 增加尾巴的长度 */
+  height: 3px;  /* 增加尾巴的高度，使尾巴看起来更加自然 */
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  animation: tailEffect 2s linear infinite;  /* 使尾巴扩展更慢 */
+}
+
+/* 流星的动画：缓慢的从左上角到右下角 */
+@keyframes meteorAnimation {
+  0% {
+    transform: translate(-15vw, -15vh) rotate(45deg);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(100vw, 100vh) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* 流星尾巴动画 */
+@keyframes tailEffect {
+  0% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(3);  /* 更大倍数，让尾巴显得更自然 */
+  }
+}
+
+    </style>
+</head>
+<body>
+    <audio id="myAudio" autoplay muted preload="auto" hidden>
+        <source src="mp3/meteorshower1.mp3" type="audio/mp3">
+        您的浏览器不支持音频播放。
+    </audio> 
+        
+
+    <div class="container">
+        <!-- 背景星空 -->
+        <div class="background"></div>
+
+       
+        <!-- 星星效果 -->
+       <div id="starField"></div>
+
+        <!-- 主要内容区域 -->
+        <div class="content">
+            <h1>我爱你，平淡生活里的诗</h1>
+            <p class="message">生活很平淡，但爱你，依然是平淡生活里一首美丽的诗。</p>
+            <p class="message">虽然我现在也拿不出多么珍贵的礼物去证明我的爱有多珍贵，但只要你能够感受到我爱你的心。</p>
+        </div>
+
+
+        <!-- 爱心按钮 -->
+        <div class="heart-button" onclick="heartClick()">
+            ❤️
+        </div>
+
+        <!-- 互动效果 -->
+        <div id="loveEffect" class="love-effect"></div>
+
+        <!-- 底部留言 -->
+        <div class="footer">
+
+            <p>No matter how the world changes,My love is endless</p>
+        </div>
+    </div>
+
+    <script>
+  window.onload = function() {
+    var audio = document.getElementById('myAudio');
+    audio.preload = "auto";  // 提前加载音频
+
+    // 确保音频可以播放（监听 canplaythrough 事件，表示音频加载完毕）
+    audio.addEventListener('canplaythrough', function() {
+        // 设置一个标记来确保只播放一次
+        if (!audio.hasPlayed) {
+            audio.hasPlayed = true;  // 设置标记
+
+            audio.play().then(function() {
+                audio.muted = false; // 解除静音
+                console.log("音频自动播放并解除静音");
+            }).catch(function(error) {
+                console.log("自动播放失败，原因:", error);
+            });
+        } else {
+            console.log("音频已经播放过，跳过");
+        }
+    });
+
+    // 如果音频无法自动播放（防止某些浏览器限制），可以考虑通过用户交互来触发播放。
+};
+
+
+        // 点击爱心触发动画
+        function heartClick() {
+            const effect = document.getElementById('loveEffect'); 
+            effect.style.opacity = 1;
+
+            // 创建爱心扩散效果
+            setTimeout(() => {
+                effect.style.opacity = 0;
+            }, 1000);
+        }
+
+         // 创建流星的函数
+         function createMeteor() {
+                const meteor = document.createElement('div');
+                meteor.classList.add('meteor');
+       
+                // 随机设置流星的初始位置
+                const startX = Math.random() * -10;
+                const startY = Math.random() * -10;
+                meteor.style.left = `${startX}vw`;
+                meteor.style.top = `${startY}vh`;
+       
+                document.body.appendChild(meteor);
+       
+                // 流星动画结束后移除
+                meteor.addEventListener('animationend', () => {
+                    meteor.remove();
+                });
+            }
+       
+            const maxMeteors = 2;
+       
+            function controlMeteors() {
+                const currentMeteors = document.querySelectorAll('.meteor').length;
+                if (currentMeteors < maxMeteors) {
+                    createMeteor();
+                }
+            }
+       
+            setInterval(controlMeteors, 8000);
+
+            // 创建颗粒星星
+            function createStar() {
+                const starField = document.getElementById('starField');
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                const size = Math.random() * 3 + 1;
+                const opacity = Math.random() * 0.8 + 0.2;
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const duration = Math.random() * 1 + 2;
+                
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${x}vw`;
+                star.style.top = `${y}vh`;
+                star.style.opacity = opacity;
+                star.style.animationDuration = `${duration}s`;
+                
+                starField.appendChild(star);
+                
+                setTimeout(() => {
+                    star.remove();
+                }, duration * 1000);
+            }
+
+            setInterval(createStar, 50);
+    </script> 
+</body>
+</html>
+
+
+
+
+
+
+
+
+

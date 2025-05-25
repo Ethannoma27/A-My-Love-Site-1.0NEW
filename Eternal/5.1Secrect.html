@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>情感表白页面</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #F1E0FF, #FFECF3); /* 淡紫色到浅粉色渐变 */
+            color: #4A4A4A; /* 柔和的灰色字体 */
+            text-align: center;
+            padding: 50px;
+            transition: background 0.5s ease;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.85); /* 半透明白色背景 */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.1); /* 微弱的阴影效果 */
+            max-width: 500px;
+            margin: auto;
+            position: relative;
+            z-index: 10;
+        }
+        h2 {
+            font-size: 28px;
+            color: #5C5C5C; /* 柔和的深灰色 */
+            margin-bottom: 20px;
+        }
+        .input-box {
+            padding: 14px;
+            font-size: 18px;
+            width: 80%;
+            border-radius: 10px;
+            border: 2px solid #F8B7D3; /* 适中的浅粉色边框 */
+            margin: 20px 0;
+            outline: none;
+            transition: all 0.3s ease;
+            background-color: #FFE6F0; /* 淡粉色背景 */
+        }
+        .input-box:focus {
+            border-color: #FF80B3;
+            background-color: #FFF0F7;
+        }
+        .btn {
+            background-color: #FFB7D3; /* 温柔的粉色 */
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn:hover {
+            background-color: #FF80B3; /* 更深的粉色 */
+        }
+        .btn:active {
+            transform: scale(0.98);
+        }
+        .btn:focus {
+            outline: none;
+        }
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background-color: #FF80B3;
+            transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+            border-radius: 50%;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+        }
+        .btn:hover:before {
+            width: 0;
+            height: 0;
+            top: 50%;
+            left: 50%;
+        }
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+        .shake {
+            animation: shake 0.5s ease-in-out infinite;
+        }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+        .heart {
+            font-size: 60px;
+            color: #FF80B3;
+            animation: heartBeat 1.5s ease-in-out infinite;
+        }
+        @keyframes heartBeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+        /* 弹窗样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: scale(0.8);
+            transition: all 0.5s ease;
+        }
+        .modal.visible {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content.visible {
+            transform: scale(1);
+        }
+        .close-btn {
+            background-color: #FF80B3;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .close-btn:hover {
+            background-color: #FF6491;
+        }
+        /* 错误提示 */
+        .error-message {
+            font-size: 16px;
+            color: #FF6347;
+            margin-top: 10px;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        /* 调整按钮位置 */
+        .close-btn {
+            margin-top: 20px; /* 向下移动按钮 */
+        }
+
+    </style>
+</head>
+<body>
+            <!-- 隐藏音频播放器控件，并自动播放 -->
+    <audio id="myAudio" autoplay muted hidden>
+        <source src="https://ting8.yymp3.com/new21/guangchangwu/18.mp3" type="audio/mp3">
+        您的浏览器不支持音频播放。
+    </audio>
+
+    <script>
+        window.onload = function() {
+            var audio = document.getElementById('myAudio');
+
+            // 播放音频后，解除静音
+            audio.play().then(function() {
+                // 播放成功，解除静音
+                audio.muted = false;
+            }).catch(function(error) {
+                console.log("自动播放失败，原因:", error);
+            });
+        };
+
+        // 密钥的 Base64 编码
+        const encodedKey = "MTIwNTI1";  // Base64 编码 
+
+        function checkKey() {
+            const key = document.getElementById('key').value;
+            const modal = document.getElementById('modal');
+            const modalContent = document.querySelector('.modal-content');
+            const errorMessage = document.getElementById('error-message');
+            const audio = document.getElementById('myAudio');
+
+            // 解码 Base64 密钥
+            const decodedKey = atob(encodedKey);  // atob() 用于解码 Base64 字符串
+
+            if (key === decodedKey) {
+                // 显示弹窗并添加动画效果
+                modal.classList.add('visible');
+                modalContent.classList.add('visible');
+                errorMessage.textContent = ''; // 清空错误信息
+
+                // 播放音频
+                audio.play().then(function() {
+                    // 播放成功，解除静音
+                    audio.muted = false;
+                }).catch(function(error) {
+                    console.log("自动播放失败，原因:", error);
+                });
+
+            } else {
+                // 错误提示：调侃风格
+                errorMessage.textContent = "嘿，这个密钥专属某人可见啦，哈哈哈😏";
+                errorMessage.classList.add('shake');
+                // 给输入框添加摇晃动画
+                document.querySelector('.input-box').classList.add('shake');
+                setTimeout(() => {
+                    document.querySelector('.input-box').classList.remove('shake');
+                }, 500);
+                // 让错误信息渐变显示
+                setTimeout(() => {
+                    errorMessage.classList.remove('shake');
+                }, 3000);
+            }
+        }
+
+        // 关闭弹窗
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            const modalContent = document.querySelector('.modal-content');
+            modal.classList.remove('visible');
+            modalContent.classList.remove('visible');
+        }
+    </script>
+  
+    <div class="container">
+        <h2>请输入密钥来解锁内个谁的表白</h2>
+        <input type="text" id="key" class="input-box" placeholder="请输入密钥...">
+        <button class="btn" onclick="checkKey()"><span>确认</span></button>
+        <div id="error-message" class="error-message"></div> <!-- 错误提示位置 -->
+    </div>
+
+    <!-- 弹窗 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3>她的表白：</h3>
+            <p>"最好的年纪遇见了你，你在我心里占据了最重要的位置，</p>
+            <p> 我的爱将伴随一生。"</p>
+            <div class="heart">❤️</div>
+            <button class="close-btn" onclick="closeModal()">我懂了</button>
+        </div>
+    </div>
+</body>
+</html> 
+
+
+
