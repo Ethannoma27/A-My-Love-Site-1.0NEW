@@ -238,6 +238,23 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 恢复阴影 */
         }
 
+          /* 手机端优化 */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em; /* 适配小屏幕的标题大小 */
+            }
+
+            p {
+                font-size: 1em; /* 减小文字大小 */
+            }
+
+            .button {
+                padding: 6px 14px; /* 缩小按钮尺寸 */
+                font-size: 1em; /* 减小按钮文字大小 */
+                bottom: 10px; /* 将按钮距离底部的距离稍微调小 */
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -413,4 +430,7 @@
 
 
 </body>
+
+
+
 </html>
