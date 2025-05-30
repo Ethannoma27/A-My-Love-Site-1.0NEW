@@ -213,36 +213,40 @@
 
 
         }
+/* 优化后的按钮样式 */
+.button {
+    background: linear-gradient(45deg, #f39c12, #f1c40f);
+    color: white;
+    border: none;
+    padding: 12px 30px; /* 增大按钮的内边距 */
+    font-size: 1.2em;  /* 字体大小 */
+    font-family: 'Cinzel', serif;
+    border-radius: 25px; /* 增大圆角 */
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 增强阴影 */
+    position: fixed; /* 使用fixed确保按钮不随页面滚动 */
+    bottom: 35px; /* 距离底部20px */
+    right: 190px;  /* 距离右侧20px，调整按钮向右移动 */
+    display: block; /* 确保按钮显示 */
+    z-index: 1000; /* 确保按钮显示在所有内容之上 */
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
 
-        /* 优化后的按钮样式 */
 
-        .button {
-            background: linear-gradient(45deg, #f39c12, #f1c40f);
-            color: white;
-            border: none;
-            padding: 8px 18px; /* 更小的padding */
-            font-size: 1.1em;  /* 字体大小缩小 */
-            font-family: 'Cinzel', serif;
-            border-radius: 20px; /* 适中的圆角 */
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-            position: absolute;
-            bottom: 79%; /* 以百分比为单位，避免固定像素值 */
-            right: 30%;  /* 同样使用百分比，让按钮与右侧距离保持一致 */
-            display: block; /* 确保按钮显示 */
-        }
+/* hover 效果 */
+.button:hover {
+    background: linear-gradient(45deg, #f1c40f, #f39c12);
+    transform: scale(1.05); /* 微微放大 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* 增强阴影 */
+}
 
-        .button:hover {
-            background: linear-gradient(45deg, #f1c40f, #f39c12);
-            transform: scale(1.03); /* 微微放大 */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 增强阴影 */
-        }
+/* active 效果 */
+.button:active {
+    transform: scale(0.98); /* 点击时稍微缩小 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 恢复阴影 */
+}
 
-        .button:active {
-            transform: scale(0.98); /* 点击时稍微缩小 */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 恢复阴影 */
-        }
+ 
 
           /* 手机端优化 */
 
@@ -253,11 +257,11 @@
     p {
         font-size: 1em;
     }
-    .button {
-        padding: 6px 14px; /* 缩小按钮尺寸 */
+  .button {
+        padding: 8px 20px; /* 缩小按钮尺寸 */
         font-size: 1em; /* 减小按钮文字大小 */
-        bottom: 10px; /* 调整按钮与底部的距离 */
-        display: block; /* 确保按钮显示 */
+        bottom: 15px; /* 更小的底部距离 */
+        margin-left: -45px; /* 调整居中偏移量 */
     }
 }
 
