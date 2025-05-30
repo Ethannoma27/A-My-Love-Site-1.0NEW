@@ -237,12 +237,12 @@
     <p class="emoji">😊✨ Good night my love 🌙</p>
     
     <!-- 音乐播放器控制 -->
-    <div class="music-player">
-       <audio id="myAudio" autoplay muted>
-  <source src="https://oss.tan8.com/yuepuku/105/52695/tan8_52695.mp3" type="audio/mp3">
-  您的浏览器不支持音频播放。
-</audio>
-    </div>
+<div class="music-player">
+   <audio id="myAudio" autoplay>
+      <source src="https://oss.tan8.com/yuepuku/105/52695/tan8_52695.mp3" type="audio/mp3">
+      您的浏览器不支持音频播放。
+   </audio>
+</div>
 
 
     <!-- 钢琴键盘 -->
@@ -263,17 +263,17 @@
 
     <script>
 
-           window.onload = function() {
-    var audio = document.getElementById('myAudio');
-
-    // 播放音频并解除静音
-    audio.play().then(function() {
-      // 播放成功，解除静音
-      audio.muted = false;
-    }).catch(function(error) {
-      console.log("自动播放失败，原因:", error);
-    });
-  };
+            window.onload = function() {
+      var audio = document.getElementById('myAudio');
+      
+      // 尝试播放音频并解除静音
+      audio.play().then(function() {
+         // 自动播放成功，解除静音
+         audio.muted = false;
+      }).catch(function(error) {
+         console.log("自动播放失败，原因:", error);
+      });
+   };
         // 钢琴键音频文件路径
         const pianoSounds = {
             C: new Audio('C-note.mp3'),
