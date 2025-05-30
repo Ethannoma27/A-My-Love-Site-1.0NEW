@@ -20,7 +20,7 @@
     align-items: center;
     text-align: center;
     position: relative;
-    transform: scale(0.9) translateY(5%); /* 缩小整体页面 10% 并向下移动 5% */
+    transform: scale(0.9) translateY(5%); /* 缩小整体页面 10% 并向上移动 5% */ 
     transform-origin: top center; /* 以顶部中心为缩放的中心 */
 }
 
@@ -80,6 +80,8 @@
             text-shadow: 0px 0px 10px rgba(255,255,255,0.8), 0px 0px 20px rgba(255,255,255,0.6);
             animation: float 6s ease-in-out infinite; /* 浮动时间增加为 6s */
             font-family: 'Dancing Script', cursive; /* 使用浪漫的手写字体 */
+        
+           transform: translateY(30vh); /* 使用 vh 让元素向下移动，15vh 可根据需要调整 */ 
         }
 
 
@@ -98,8 +100,11 @@
             color: #f8f8f8;
             text-shadow: 0px 0px 10px rgba(255,255,255,0.7), 0px 0px 20px rgba(255,255,255,0.5);
             animation: fadeIn 12s ease-in-out infinite; /* 渐显效果的停留时间增加到 12s */
+          
         }
-
+           .move-down {
+        margin-top: 70px; /* 仅调整这一段的上边距 */
+     }
 
         .emoji {
             font-size: 2em;
@@ -223,8 +228,8 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease;
             position: absolute;
-            bottom: 490px; /* 距离底部20px */
-            right: 390px;  /* 距离右侧20px */
+            bottom: 79%; /* 以百分比为单位，避免固定像素值 */
+            right: 30%;  /* 同样使用百分比，让按钮与右侧距离保持一致 */
             display: block; /* 确保按钮显示 */
         }
 
@@ -275,7 +280,7 @@
     <!-- Soul mate 按钮 -->
     <button id="playButton" class="button">Soul mate</button>
 
-    <p>
+    <p class="move-down"> 
     我今天睡的有点晚，或许是因为心灵感应 The Rhythm of yearning <br>
     就像你说的 和时间没有绝对关系，过去也很爱，纯粹的爱着你 <br>
     爱你就像爱世界 🌏，Just like the songs of my soul <br>
