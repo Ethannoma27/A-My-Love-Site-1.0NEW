@@ -208,6 +208,36 @@
 
 
         }
+
+        /* 优化后的按钮样式 */
+
+        .button {
+            background: linear-gradient(45deg, #f39c12, #f1c40f);
+            color: white;
+            border: none;
+            padding: 8px 18px; /* 更小的padding */
+            font-size: 1.1em;  /* 字体大小缩小 */
+            font-family: 'Cinzel', serif;
+            border-radius: 20px; /* 适中的圆角 */
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            position: absolute;
+            bottom: 490px; /* 距离底部20px */
+            right: 390px;  /* 距离右侧20px */
+        }
+
+        .button:hover {
+            background: linear-gradient(45deg, #f1c40f, #f39c12);
+            transform: scale(1.03); /* 微微放大 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 增强阴影 */
+        }
+
+        .button:active {
+            transform: scale(0.98); /* 点击时稍微缩小 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 恢复阴影 */
+        }
+
     </style>
 </head>
 <body>
@@ -223,10 +253,13 @@
     </div>
 
     <h1>I love you </h1>
-    
+
+    <!-- Soul mate 按钮 -->
+    <button id="playButton" class="button">Soul mate</button>
+
     <p>
-    我今天睡的有点晚，或许是因为心灵感应 The Rhythm of yearning。<br>
-    就像你说的 和时间没有绝对关系，过去也很爱，纯粹的爱着你。<br>
+    我今天睡的有点晚，或许是因为心灵感应 The Rhythm of yearning <br>
+    就像你说的 和时间没有绝对关系，过去也很爱，纯粹的爱着你 <br>
     爱你就像爱世界 🌏，Just like the songs of my soul <br>
 </p>
 
@@ -237,13 +270,13 @@
     <p class="emoji">😊✨ Good night my love 🌙</p>
     
     <!-- 音乐播放器控制 -->
-<div class="music-player">
-   <audio id="myAudio" autoplay>
-      <source src="https://oss.tan8.com/yuepuku/105/52695/tan8_52695.mp3" type="audio/mp3">
-      您的浏览器不支持音频播放。
-   </audio>
-</div>
 
+      <div class="music-player">
+        <audio id="myAudio" preload="auto" muted>
+            <source src="https://oss.tan8.com/yuepuku/105/52695/tan8_52695.mp3" type="audio/mp3">
+            您的浏览器不支持音频播放。
+        </audio>
+    </div>
 
     <!-- 钢琴键盘 -->
     <div class="piano">
@@ -263,17 +296,20 @@
 
     <script>
 
-            window.onload = function() {
-      var audio = document.getElementById('myAudio');
-      
-      // 尝试播放音频并解除静音
-      audio.play().then(function() {
-         // 自动播放成功，解除静音
-         audio.muted = false;
-      }).catch(function(error) {
-         console.log("自动播放失败，原因:", error);
-      });
-   };
+          document.getElementById('playButton').addEventListener('click', function() {
+            var audio = document.getElementById('myAudio');
+            
+            // 跳到第 2 秒
+            audio.currentTime = 2; 
+
+            // 解除静音并播放音频
+            audio.muted = false; 
+            audio.play().then(function() {
+                console.log("音乐正在播放，从第 3 秒开始");
+            }).catch(function(error) {
+                console.log("播放失败，原因:", error);
+            });
+        });
         // 钢琴键音频文件路径
         const pianoSounds = {
             C: new Audio('C-note.mp3'),
