@@ -12,7 +12,7 @@
     color: white;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow-y: auto; /* 只允许垂直滚动 */ 
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -241,21 +241,21 @@
 
           /* 手机端优化 */
 
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
+    @media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+    p {
+        font-size: 1em;
+    }
+    .button {
+        padding: 6px 14px; /* 缩小按钮尺寸 */
+        font-size: 1em; /* 减小按钮文字大小 */
+        bottom: 10px; /* 调整按钮与底部的距离 */
+        display: block; /* 确保按钮显示 */
+    }
+}
 
-            p {
-                font-size: 1em;
-            }
-
-            .button {
-                padding: 6px 14px; /* 缩小按钮尺寸 */
-                font-size: 1em; /* 减小按钮文字大小 */
-                bottom: 10px; /* 将按钮距离底部的距离稍微调小 */
-            }
-        }
 
     </style>
 </head>
