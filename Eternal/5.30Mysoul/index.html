@@ -238,10 +238,10 @@
     
     <!-- 音乐播放器控制 -->
     <div class="music-player">
-          <audio id="myAudio" autoplay muted hidden>
-        <source src="/mp3/my soul.mp3" type="audio/mp3">
-        您的浏览器不支持音频播放。
-    </audio>
+       <audio id="myAudio" autoplay muted>
+  <source src="/mp3/my soul.mp3" type="audio/mp3">
+  您的浏览器不支持音频播放。
+</audio>
     </div>
 
 
@@ -263,17 +263,17 @@
 
     <script>
 
-          window.onload = function() {
-            var audio = document.getElementById('myAudio');
+           window.onload = function() {
+    var audio = document.getElementById('myAudio');
 
-            // 播放音频后，解除静音
-            audio.play().then(function() {
-                // 播放成功，解除静音
-                audio.muted = false;
-            }).catch(function(error) {
-                console.log("自动播放失败，原因:", error);
-            });
-        };
+    // 播放音频并解除静音
+    audio.play().then(function() {
+      // 播放成功，解除静音
+      audio.muted = false;
+    }).catch(function(error) {
+      console.log("自动播放失败，原因:", error);
+    });
+  };
         // 钢琴键音频文件路径
         const pianoSounds = {
             C: new Audio('C-note.mp3'),
