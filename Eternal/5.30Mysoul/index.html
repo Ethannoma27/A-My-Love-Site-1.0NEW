@@ -225,6 +225,7 @@
             position: absolute;
             bottom: 490px; /* 距离底部20px */
             right: 390px;  /* 距离右侧20px */
+            display: block; /* 确保按钮显示 */
         }
 
         .button:hover {
@@ -239,13 +240,14 @@
         }
 
           /* 手机端优化 */
+
         @media (max-width: 600px) {
             h1 {
-                font-size: 2em; /* 适配小屏幕的标题大小 */
+                font-size: 2em;
             }
 
             p {
-                font-size: 1em; /* 减小文字大小 */
+                font-size: 1em;
             }
 
             .button {
