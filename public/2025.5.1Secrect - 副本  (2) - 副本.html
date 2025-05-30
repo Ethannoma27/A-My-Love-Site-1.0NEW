@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快速连贯的钢琴演奏</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #1d2b64; /* 深蓝色背景 */
+            font-family: 'Cinzel', serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        /* 星星背景 */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: #1d2b64;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: twinkle 1.5s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+      /* 钢琴键盘样式 */
+.piano {
+    position: fixed;
+    top: 20px; /* 距离顶部20px */
+    right: 20px; /* 距离右边20px */
+    display: flex;
+    position: relative;
+    z-index: 10;
+    transform: scale(0.5); /* 整体缩小 50% */
+    transform-origin: top right; /* 确保缩放中心为右上角 */
+}
+
+
+        .white-key, .black-key {
+            border: 1px solid #333;
+            margin: 0 1px;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.1s ease;
+        }
+
+       .white-key {
+    background-color: white;
+    width: 60px;
+    height: 150px; /* 缩短了高度 */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.black-key {
+    background-color: black;
+    width: 40px;
+    height: 100px; /* 缩短了高度 */
+    position: absolute;
+    left: 60px;
+    margin-left: -20px;
+    z-index: 1;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+        /* 钢琴键按下时的动态效果 */
+        .key-pressed {
+            animation: keyPress 0.2s ease forwards; /* 按下时的动画 */
+        }
+
+        /* 模拟钢琴键的弹奏效果 */
+        @keyframes keyPress {
+            0% {
+                transform: translateY(0); /* 初始位置 */
+            }
+            50% {
+                transform: translateY(10px); /* 向下移动 */
+            }
+            100% {
+                transform: translateY(0); /* 回到原位 */
+            }
+        }
+
+        /* 音乐标题 */
+        .music-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6em;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            max-width: 80%;
+            color: #f8f8f8;
+            text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.7), 0px 0px 20px rgba(255, 255, 255, 0.5);
+        }
+
+        /* 音乐播放器控制 */
+        .music-player {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none; /* 隐藏播放器 */
+        }
+    </style>
+</head>
+<body>
+
+  <h1>复杂的钢琴演奏</h1>
+    <p>在钢琴上，您将看到和听到和弦与单个音符的交替演奏。</p>
+
+    <!-- 钢琴键盘 -->
+    <div class="piano">
+        <div class="white-key" id="C"></div>
+        <div class="black-key" id="C#"></div>
+        <div class="white-key" id="D"></div>
+        <div class="black-key" id="D#"></div>
+        <div class="white-key" id="E"></div>
+        <div class="white-key" id="F"></div>
+        <div class="black-key" id="F#"></div>
+        <div class="white-key" id="G"></div>
+        <div class="black-key" id="G#"></div>
+        <div class="white-key" id="A"></div>
+        <div class="black-key" id="A#"></div>
+        <div class="white-key" id="B"></div>
+    </div>
+
+    <script>
+        // 钢琴键音频文件路径
+        const pianoSounds = {
+            C: new Audio('C-note.mp3'),
+            'C#': new Audio('C-sharp-note.mp3'),
+            D: new Audio('D-note.mp3'),
+            'D#': new Audio('D-sharp-note.mp3'),
+            E: new Audio('E-note.mp3'),
+            F: new Audio('F-note.mp3'),
+            'F#': new Audio('F-sharp-note.mp3'),
+            G: new Audio('G-note.mp3'),
+            'G#': new Audio('G-sharp-note.mp3'),
+            A: new Audio('A-note.mp3'),
+            'A#': new Audio('A-sharp-note.mp3'),
+            B: new Audio('B-note.mp3')
+        };
+
+        // 每拍的时长（单位：毫秒，基于120BPM）
+        const timePerBeat = 500; // 每拍500毫秒，即120 BPM
+
+        // 所有音符的数组
+        const allNotes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+
+        // 和弦定义（C 大调、G 大调等）
+        const chords = {
+            C: ['C', 'E', 'G'],  // C Major chord
+            G: ['G', 'B', 'D'],  // G Major chord
+            F: ['F', 'A', 'C'],  // F Major chord
+            A: ['A', 'C#', 'E'], // A Major chord
+            D: ['D', 'F#', 'A']  // D Major chord
+        };
+
+        // 随机选择一个音符
+        function getRandomNote() {
+            const randomIndex = Math.floor(Math.random() * allNotes.length);
+            return allNotes[randomIndex];
+        }
+
+        // 随机选择一个和弦
+        function getRandomChord() {
+            const chordNames = ['C', 'G', 'F', 'A', 'D'];
+            const randomIndex = Math.floor(Math.random() * chordNames.length);
+            return chords[chordNames[randomIndex]];
+        }
+
+        // 播放音符并触发钢琴键的动画
+        function playSound(noteOrChord) {
+            if (Array.isArray(noteOrChord)) {  // 如果是和弦
+                const promises = noteOrChord.map(note => {
+                    return new Promise((resolve) => {
+                        const key = document.getElementById(note);
+                        key.classList.add('key-pressed'); // 添加按键弹奏效果
+                        pianoSounds[note].play();
+                        setTimeout(() => {
+                            key.classList.remove('key-pressed'); // 移除按键动画
+                            resolve(); // 确保所有音符都播放完成
+                        }, 200); // 和按键动画相同的时长
+                    });
+                });
+
+                // 等待所有音符播放完成
+                Promise.all(promises).then(() => {
+                    console.log('和弦播放完毕');
+                });
+            } else {  // 如果是单个音符
+                const key = document.getElementById(noteOrChord);
+                key.classList.add('key-pressed');
+                pianoSounds[noteOrChord].play();
+                setTimeout(() => {
+                    key.classList.remove('key-pressed');
+                }, 200);
+            }
+        }
+
+        // 自动演奏函数，增加节奏感和连贯性
+        function autoPlayMelody() {
+            const isChord = Math.random() > 0.7;  // 30%几率弹奏和弦
+            const noteOrChord = isChord ? getRandomChord() : getRandomNote();  // 随机选择和弦或单音符
+
+            playSound(noteOrChord); // 播放音符或和弦
+
+            // 设置固定的节奏间隔（基于120 BPM）
+            setTimeout(autoPlayMelody, timePerBeat); // 每次演奏后等待一个节拍时间
+        }
+
+        // 启动自动演奏
+        autoPlayMelody();
+    </script> 
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
