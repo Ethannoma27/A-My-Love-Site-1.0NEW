@@ -313,8 +313,38 @@ hr {
   <p>ChatGPT 也可能会犯错。请核查重要信息。</p>
 
 </footer>
+   <script>
+        // 获取访客的 IP 地址
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                const userIP = data.ip; // 获取访客的 IP 地址
+                console.log('访客的 IP 地址：', userIP);
+
+                // 将 IP 地址和页面访问次数发送到本地后端服务器
+                fetch('http://localhost:3000/save-ip', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ip: userIP })
+                })
+                .then(response => response.json())
+                .then(result => {
+                    // 输出保存的 IP 地址
+                    console.log('保存的 IP 地址:', result.ip);
+
+                    // 更新页面上的访问次数
+                    document.getElementById('view-count').textContent = result.views;
+                })
+                .catch(error => console.error('保存 IP 地址失败：', error));
+            })
+            .catch(error => console.error('获取 IP 地址失败：', error));
+
+
+
+    </script>
 </body>
 
+ 
 </html>
-
-
