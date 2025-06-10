@@ -326,9 +326,8 @@ hr {
       const data = await response.json();
       return data.ip;
     } catch (error) {
-      console.error('获取 IP 地址失败：', error);
-      alert('无法获取您的 IP 地址，请稍后再试');
-      return null;
+      // 这里不打印错误，也不弹出提示
+      return null;  // 如果获取失败，直接返回 null，继续执行后续操作
     }
   }
 
@@ -346,16 +345,14 @@ hr {
       if (!response.ok) throw new Error('保存 IP 地址失败');
 
       const result = await response.json();
-      console.log('保存的 IP 地址:', result.ip);
-
-      // 更新页面上的访问次数
+      // 这里更新页面上的访问次数，确保后端返回了 views 信息
       const viewCountElement = document.getElementById('view-count');
       if (viewCountElement) {
         viewCountElement.textContent = `访问次数：${result.views}`;
       }
     } catch (error) {
-      console.error('保存 IP 地址失败：', error);
-      alert('无法保存您的访问数据，请稍后再试');
+      // 这里不打印错误日志，也不弹出提示
+      // 不显示任何提示，让用户的体验尽可能不受影响
     }
   }
 
