@@ -313,38 +313,66 @@ hr {
   <p>ChatGPT 也可能会犯错。请核查重要信息。</p>
 
 </footer>
- <script>
-  // 这里改成你的公网地址，
-  const backendUrl = 'https://8503-109-169-52-131.ngrok-free.app ';
 
-  fetch('https://api.ipify.org?format=json')
-    .then(response => response.json())
-    .then(data => {
-      const userIP = data.ip;
-      console.log('访客的 IP 地址：', userIP);
+<script>
+  // 这里改成你的公网地址
+  const backendUrl = 'https://8503-109-169-52-131.ngrok-free.app';
 
-      fetch(`${backendUrl}/save-ip`, {
+  // 获取访客 IP 地址
+  async function fetchUserIP() {
+    try {
+      const response = await fetch('https://api.ipify.org?format=json');
+      if (!response.ok) throw new Error('获取 IP 地址失败');
+      const data = await response.json();
+      return data.ip;
+    } catch (error) {
+      console.error('获取 IP 地址失败：', error);
+      alert('无法获取您的 IP 地址，请稍后再试');
+      return null;
+    }
+  }
+
+  // 发送 IP 地址到后端
+  async function sendIPToBackend(userIP) {
+    if (!userIP) return;
+
+    try {
+      const response = await fetch(`${backendUrl}/save-ip`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ip: userIP })
-      })
-      .then(response => response.json())
-      .then(result => {
-        console.log('保存的 IP 地址:', result.ip);
-        if (document.getElementById('view-count')) {
-          document.getElementById('view-count').textContent = result.views;
-        }
-      })
-      .catch(error => console.error('保存 IP 地址失败：', error));
-    })
-    .catch(error => console.error('获取 IP 地址失败：', error));
+      });
+
+      if (!response.ok) throw new Error('保存 IP 地址失败');
+
+      const result = await response.json();
+      console.log('保存的 IP 地址:', result.ip);
+
+      // 更新页面上的访问次数
+      const viewCountElement = document.getElementById('view-count');
+      if (viewCountElement) {
+        viewCountElement.textContent = `访问次数：${result.views}`;
+      }
+    } catch (error) {
+      console.error('保存 IP 地址失败：', error);
+      alert('无法保存您的访问数据，请稍后再试');
+    }
+  }
+
+  // 主逻辑
+  async function main() {
+    const userIP = await fetchUserIP();
+    if (userIP) {
+      await sendIPToBackend(userIP);
+    }
+  }
+
+  // 执行主逻辑
+  main();
 </script>
+
 
 </body>
 
-
-
- 
 </html>
+
