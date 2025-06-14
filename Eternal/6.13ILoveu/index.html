@@ -132,66 +132,121 @@ blockquote {
   filter: brightness(0.6);
 }
 
-
-@media (max-width: 600px) {
-  body {
-    font-size: 15px;
-    padding: 0 8px;
-  }
-
-  main {
-    padding: 48px 16px 32px 16px;
-  }
-
-  header {
-    font-size: 1rem;
-    padding: 12px 18px;
-  }
-
-  .chat-bubble {
-    font-size: 0.98rem;
-    padding: 16px 20px;
-  }
-  .chat-bubble strong {
-    color: #7a6363; /* 柔和浅棕色*/
-    font-weight: 700; /* 保持加粗 */
-  }
-
-  .chat-bubble h3 {
-    font-size: 1.2rem;
-  }
-
-  .highlight-quote {
-    font-size: 1rem;
-    padding: 6px 10px;
-  }
-
-  footer {
-    font-size: 0.8rem;
-  }
-}
-/* 小于 600px 的设备（通常是手机） */
-@media (max-width: 600px) {
-  .scene {
-    height: 250px; /* 小屏幕上调整容器的高度 */
-  }
-
-  .floating-text {
-    font-size: 1.5rem;  /* 调整字体大小 */
-  }
-
-  /* 如果图片在某些部分显示不完整，可以调整这里 */
-  img {
-    object-fit: contain; /* 保持图片完整显示，但不会被裁切 */
-  }
-}
-
 hr {
   border: none;
   height: 1px;
   background-color: rgba(161, 135, 135, 0.3); /* 30%不透明度，淡淡的浅棕 */
   margin: 24px 0;
   border-radius: 1px;
+}
+
+
+
+/* 手机端适配部分 */
+@media (max-width: 600px) {
+  /* 手机端全局字体和内外边距调整 */
+  body {
+    font-size: 14px;
+    padding: 0 8px;
+  }
+
+  /* 页面主体区域 */
+  main {
+    padding: 48px 16px 32px 16px;
+    min-height: auto;  /* 避免内容过长，适应内容高度 */
+  }
+
+  /* header 调整 */
+  header {
+    font-size: 1rem;
+    padding: 12px 18px;
+  }
+
+  /* text-bubble 内容框 */
+  .chat-bubble {
+    font-size: 0.98rem;
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
+
+  /* 突出显示的文字 */
+  .highlight {
+    color: #3f7dc4; /* 柔和蓝点缀 */
+    font-weight: 700;
+  }
+
+  /* .scene 背景区域 */
+  .scene {
+    height: 250px;  /* 小屏幕上调整容器的高度 */
+    background-size: cover;  /* 背景图片保持覆盖 */
+    background-position: center;
+    filter: brightness(0.6);
+  }
+
+  /* 调整浮动文字 */
+  .floating-text {
+    font-size: 1.2rem;  /* 调整字体大小 */
+    line-height: 1.4;
+    padding: 12px;
+  }
+
+  /* 文章/留言框 */
+  .final-message {
+    margin-top: 16px;  /* 控制文本与按钮之间的间距 */
+  }
+
+  .final-message h2 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+
+  .final-message p {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  /* 调整按钮 */
+  .btn-container {
+    margin-top: 20px;
+  }
+
+  a {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #ffffff;
+    text-decoration: none;
+    background: linear-gradient(45deg, #4b89dc, #76aee8);
+    box-shadow: 0 6px 16px rgba(75, 137, 220, 0.25);
+    transition: all 0.3s ease;
+  }
+
+  a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 24px rgba(75, 137, 220, 0.35);
+  }
+
+  /* 调整 img 元素的显示，确保图片内容不会被裁切 */
+  img {
+    object-fit: contain;  /* 保持图片完整显示，但不会被裁切 */
+    width: 100%;  /* 图片宽度适应父元素 */
+  }
+
+  /* footer 调整 */
+  footer {
+    font-size: 0.8rem;
+    margin-top: 20px;
+  }
+
+  /* 调整聊天气泡框字体大小和内边距 */
+  .chat-bubble p,
+  .highlight-quote {
+    font-size: 1rem;  /* 保持字体适中 */
+    line-height: 1.5;
+  }
+
 }
 
 
