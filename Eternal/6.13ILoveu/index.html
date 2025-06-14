@@ -170,6 +170,21 @@ blockquote {
     font-size: 0.8rem;
   }
 }
+/* 小于 600px 的设备（通常是手机） */
+@media (max-width: 600px) {
+  .scene {
+    height: 250px; /* 小屏幕上调整容器的高度 */
+  }
+
+  .floating-text {
+    font-size: 1.5rem;  /* 调整字体大小 */
+  }
+
+  /* 如果图片在某些部分显示不完整，可以调整这里 */
+  img {
+    object-fit: contain; /* 保持图片完整显示，但不会被裁切 */
+  }
+}
 
 hr {
   border: none;
