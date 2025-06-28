@@ -280,21 +280,27 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 恢复阴影 */
 }
 
-
-          /* 手机端优化 */
-
-    @media (max-width: 600px) {
+/* 手机端优化 */
+@media (max-width: 600px) {
     h1 {
         font-size: 2em;
     }
     p {
         font-size: 1em;
     }
-  .button {
+
+    .button {
         padding: 8px 20px; /* 缩小按钮尺寸 */
         font-size: 1em; /* 减小按钮文字大小 */
         bottom: 70px; /* 更小的底部距离 */
-        margin-left: -45px; /* 调整居中偏移量 */
+        left: 50%; /* 确保按钮居中 */
+        transform: translateX(-50%); /* 水平居中按钮 */
+        margin-left: 0; /* 清除原来的偏移 */
+    }
+
+    /* 针对第二个按钮，避免重叠 */
+    #loveNavigationButton {
+        bottom: 150px; /* 设置与第一个按钮有足够的间距 */
     }
 }
 
