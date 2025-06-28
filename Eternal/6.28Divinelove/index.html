@@ -290,17 +290,22 @@
     }
 
     .button {
+        width: 150px; /* 设置固定宽度 */
         padding: 8px 20px; /* 缩小按钮尺寸 */
         font-size: 1em; /* 减小按钮文字大小 */
         bottom: 70px; /* 更小的底部距离 */
         left: 50%; /* 确保按钮居中 */
         transform: translateX(-50%); /* 水平居中按钮 */
         margin-left: 0; /* 清除原来的偏移 */
+        
     }
 
     /* 针对第二个按钮，避免重叠 */
     #loveNavigationButton {
-        bottom: 150px; /* 设置与第一个按钮有足够的间距 */
+        width: 150px; /* 设置固定宽度 */
+        padding: 8px 20px; /* 缩小按钮尺寸 */
+        font-size: 1em; /* 减小按钮文字大小 */
+        bottom: 200px; /* 设置与第一个按钮有足够的间距 */
     }
 }
 
@@ -310,7 +315,7 @@
 <body>
 
 <!-- 自定义时间 -->
-<div id="date" class="date">2025年6月28日 21:59 PM</div> 
+<div id="date" class="date">2025年6月28日 22:16 PM</div> 
 
 
        <!-- 动态星空背景 -->
@@ -492,7 +497,4 @@ document.getElementById('loveNavigationButton').addEventListener('click', functi
 
 
 </html>
-
-
-
 
