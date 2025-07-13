@@ -111,8 +111,7 @@
   font-family: 'Cinzel', serif;
   border-radius: 30px;
   cursor: pointer;
-
-  width: 150px;
+  width: 220px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
   position: fixed;
   left: 65%;
@@ -147,7 +146,7 @@
   font-family: 'Cinzel', serif;
   border-radius: 30px;
   cursor: pointer;
-  width: 150px;
+  width: 220px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
   position: fixed;
   left: 65%;
@@ -169,13 +168,11 @@
 
 .mini-popup {
   position: fixed;
-  top: calc(50% + 100px);
+  top: calc(50% - 100px);
   left: 50%;
-  transform: translate(-50%, -50%) scale(0.7); /* 垂直+水平居中，并缩小 */
-
-  width: 520px;
-  height: 460px;
-
+  transform: translateX(-50%); /* 只水平居中 */
+  width: 540px;
+  height: 480px;
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
   display: flex;
@@ -190,10 +187,9 @@
   box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(8px);
   z-index: 9999;
-  animation: fadeInOpacity 0.5s ease forwards;
+  animation: fadeInOpacity 0.5s ease forwards;  /* 只做透明度动画 */
   clip-path: path('M250 90 C190 0, 40 0, 40 120 C40 210, 250 330, 250 330 C250 330, 460 210, 460 120 C460 0, 310 0, 250 90 Z');
 }
-
 
 .mini-popup-content {
   width: 60%;
@@ -331,6 +327,5 @@ document.getElementById('loveNavigationButton').addEventListener('click', functi
 });
     
   </script>
-
 </body>
-</html> 
+</html>
