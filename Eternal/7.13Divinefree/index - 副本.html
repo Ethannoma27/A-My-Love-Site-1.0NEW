@@ -1,24 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>共频 • 心灵成长</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Cinzel:wght@700&display=swap" rel="stylesheet" />
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      height:100vh;
-      overflow:hidden;
-      font-family:'Cinzel', serif;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Cinzel', serif;
       color: #fff;
       background: linear-gradient(135deg, #2b5876, #4e4376, #e0c3fc);
       background-size: 300% 300%;
       animation: bgMove 20s ease infinite;
       position: relative;
     }
-
     @keyframes bgMove {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -26,37 +24,38 @@
     }
 
     .stars, .particles {
-      position:absolute; top:0; left:0;
-      width:100%; height:100%;
-      pointer-events:none;
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
     }
-
     .stars .star {
-      position:absolute;
-      background:#fff;
-      border-radius:50%;
-      opacity:0;
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0;
       animation: starTwinkle 2s infinite ease-in-out;
     }
     @keyframes starTwinkle {
-      0%,100% { opacity:0; }
-      50% { opacity:0.8; }
+      0%, 100% { opacity: 0; }
+      50% { opacity: 0.8; }
     }
-
     .particles .p {
-      position:absolute;
-      width:4px; height:4px;
-      background:rgba(255,255,255,0.2);
-      border-radius:50%;
+      position: absolute;
+      width: 4px; height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
       animation: floatUp linear infinite;
     }
     @keyframes floatUp {
-      to { transform: translateY(-120vh) scale(1.5); opacity:0; }
+      to {
+        transform: translateY(-120vh) scale(1.5);
+        opacity: 0;
+      }
     }
 
     .glow {
-      position:absolute;
-      width:200px; height:200px;
+      position: absolute;
+      width: 200px; height: 200px;
       background: radial-gradient(circle, rgba(255,255,255,0.15), transparent);
       filter: blur(60px);
       animation: glowMove 25s ease-in-out infinite alternate;
@@ -68,160 +67,152 @@
 
     .content {
       position: relative;
-      z-index:1;
-      height:100%;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      padding:2rem;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
     }
 
-               h1 {
-            font-size: 4em;
-            margin-bottom: 1rem;
-            color: #f8f8f8;
-            text-shadow: 0px 0px 10px rgba(255,255,255,0.8), 0px 0px 20px rgba(255,255,255,0.6);
-            animation: float 6s ease-in-out infinite; /* 浮动时间增加为 6s */
-            font-family: 'Dancing Script', cursive; /* 使用浪漫的手写字体 */
-        
+    h1 {
+      font-size: 4em;
+      margin-bottom: 1rem;
+      color: #f8f8f8;
+      text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.6);
+      animation: float 6s ease-in-out infinite;
+      font-family: 'Dancing Script', cursive;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
 
-        }
+    p {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.6em;
+      line-height: 1.8;
+      color: #f8f8f8;
+      text-shadow: 0 0 10px rgba(255,255,255,0.7), 0 0 20px rgba(255,255,255,0.5);
+      animation: fadeIn 12s ease-in-out infinite;
+    }
+    @keyframes fadeIn {
+      0%,100% { opacity: 0; }
+      10%,90% { opacity: 1; }
+    }
 
-   p {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.6em;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-            max-width: 80%;
-            color: #f8f8f8;
-            text-shadow: 0px 0px 10px rgba(255,255,255,0.7), 0px 0px 20px rgba(255,255,255,0.5);
-            animation: fadeIn 12s ease-in-out infinite; /* 渐显效果的停留时间增加到 12s */
-          
-        }
+    /* 按钮样式 */
 
 
-/* 通用灵性按钮样式 */
-.button, #loveNavigationButton {
-  background: linear-gradient(135deg, #98c1d9, #e0fbfc); /* 水蓝渐变象征自由意识 */
-  color: #2c3e50;
-  border: none;
-  padding: 10px 0;
-  font-size: 1.1em;
-  font-family: 'Cinzel', serif;
-  border-radius: 30px;
-  cursor: pointer;
-  width: 220px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+
+   button {
+  -webkit-tap-highlight-color: transparent; /* 防止点击高亮闪烁 */
+  user-select: none;
+  /* 关闭所有动画对文字的影响 */
+}
+button * {
+  animation: none !important;
+  transition: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+    button {
+      background: linear-gradient(135deg, #98c1d9, #e0fbfc);
+      color: #2c3e50;
+      border: none;
+      padding: 10px 0;
+      font-size: 1.1em;
+      font-family: 'Cinzel', serif;
+      border-radius: 30px;
+      cursor: pointer;
+      width: 150px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      transition: transform .25s, box-shadow .3s, background .4s;
+    }
+    button:hover {
+      transform: translateX(-50%) scale(1.05);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+      background: linear-gradient(135deg, #b5e2e7, #ffffff);
+    }
+
+    #playButton { bottom: 200px; }
+    #loveNavigationButton { bottom: 135px; }
+
+    .mini-popup {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.7);
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.3em;
+      line-height: 1.4;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+      z-index: 999;
+    }
+    .mini-popup.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+.heart-burst {
   position: fixed;
-  left: 65%;
-  display: block;
-  z-index: 1000;
-  transition: transform 0.25s ease, box-shadow 0.3s ease, background 0.4s ease;
+  width: 16px;
+  height: 16px;
+  background: pink;
+  transform: rotate(45deg);
+  animation: floatHeart 8s linear infinite;
+  z-index: 1001;
+  opacity: 0.9;
 }
 
-/* 按钮 hover 效果：轻盈放大+柔光提升 */
-.button:hover, #loveNavigationButton:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
-  background: linear-gradient(135deg, #b5e2e7, #ffffff);
+.heart-burst::before,
+.heart-burst::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: pink;
+  border-radius: 50%;
 }
 
-
-#loveNavigationButton {
-  bottom: 135px;
+.heart-burst::before {
+  top: -8px;
+  left: 0;
 }
 
-
-.dynamic-frequency-button {
-  bottom: 200px;
+.heart-burst::after {
+  left: -8px;
+  top: 0;
 }
 
-.dynamic-frequency-button {
-  background: linear-gradient(135deg, #98c1d9, #e0fbfc); /* 水蓝渐变象征自由意识 */
-  color: #2c3e50;
-  border: none;
-  padding: 10px 0;
-  font-size: 1.1em;
-  font-family: 'Cinzel', serif;
-  border-radius: 30px;
-  cursor: pointer;
-  width: 220px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
-  position: fixed;
-  left: 65%;
-  display: block;
-  z-index: 1000;
-  transition: transform 0.25s ease, box-shadow 0.3s ease, background 0.4s ease;
-}
-.dynamic-frequency-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
-  background: linear-gradient(135deg, #b5e2e7, #ffffff);
-}
-
-.pink-text {
-  
-  color: #ff69b4; /* 典型粉色，也可以换成你喜欢的粉色代码 */
-}
-
-
-.mini-popup {
-  position: fixed;
-  top: calc(50% - 100px);
-  left: 50%;
-  transform: translateX(-50%); /* 只水平居中 */
-  width: 540px;
-  height: 480px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 1rem;
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.3em;
-  line-height: 1.4;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(8px);
-  z-index: 9999;
-  animation: fadeInOpacity 0.5s ease forwards;  /* 只做透明度动画 */
-  clip-path: path('M250 90 C190 0, 40 0, 40 120 C40 210, 250 330, 250 330 C250 330, 460 210, 460 120 C460 0, 310 0, 250 90 Z');
-}
-
-.mini-popup-content {
-  width: 60%;
-  height: 60%;
-
-  padding-top: 10%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  transform: translate(-3%, 10%); 
-}
-
-@keyframes fadeInOpacity {
-  from {
-    opacity: 0;
-  }
-  to {
+@keyframes floatHeart {
+  0% {
+    transform: rotate(45deg) translate(var(--dx), var(--dy)) scale(1);
     opacity: 1;
   }
+  100% {
+    transform: rotate(45deg) translate(var(--dx), calc(var(--dy) - 300px)) scale(1.3);
+    opacity: 0.3;
+  }
 }
-
-
 
 
   </style>
 </head>
-
-
 <body>
-
   <div class="stars" id="stars"></div>
   <div class="particles" id="particles"></div>
   <div class="glow" style="--dx:15vw;--dy:20vh;"></div>
@@ -229,103 +220,103 @@
 
   <div class="content">
     <div>
+      <h1>自由频 · 共成长</h1>
+      <p>自由 意识 唤醒<br>主权 剧本 觉醒</p>
+    </div>
+  </div>
 
-    <h1> 自由频 · 共成长</h1> 
+  <!-- 两个按钮 -->
+  <button id="playButton">Divine Free</button>
+  <button id="loveNavigationButton">Back to Free</button>
 
-<!-- Soul mate 按钮 -->
-<button id="playButton" class="dynamic-frequency-button">Divine Free</button>
+  <!-- 音乐 -->
+  <audio id="careAudio" preload="auto">
+    <source src="MP3/Careabout.mp3" type="audio/mp3">
+  </audio>
+  <audio id="likeuAudio" preload="auto">
+    <source src="MP3/Likeu.mp3" type="audio/mp3">
+  </audio>
 
-    <p class="move-down"> 
-    自由 意识 唤醒  <br> 
+  <!-- 弹窗 -->
+  <div id="miniPopup" class="mini-popup">
 
+        💕 惊喜时刻来啦 ~<br>
+    暂停一下，感受内在的温柔 💫<br>
+    <span style="color: #ff69b4;">Like U</span> 是内心的回应
+  </div>
 
-    主权 剧本 觉醒 <br>  
-
-
-</p>
-
-
-  <!-- 爱的导航按钮 -->
-<button id="loveNavigationButton">Back to free</button>
-
-    <!-- 音乐播放器控制 -->
-<div class="music-player">
-    <audio id="myAudio" preload="auto" muted>
-        <source src="MP3/Careabout.mp3" type="audio/mp3">
-        您的浏览器不支持音频播放。
-    </audio>
-</div> 
-
-
-
-
-
-<div id="miniPopup" class="mini-popup" style="display:none;">
-  <div class="mini-popup-content">
-<p>哈哈 别急 <br>暂停更哦  <br> 
-  <span class="pink-text">Baby</span> 💕  
-</p>
-
-</div>
 
   <script>
+  // 星星生成
+  const s = document.getElementById('stars');
+  for (let i = 0; i < 100; i++) {
+    const d = document.createElement('div');
+    d.className = 'star';
+    const size = Math.random() * 2 + 1;
+    d.style.width = d.style.height = size + 'px';
+    d.style.top = Math.random() * 100 + '%';
+    d.style.left = Math.random() * 100 + '%';
+    d.style.animationDelay = Math.random() * 2 + 's';
+    s.appendChild(d);
+  }
 
+  // 粒子生成
+  const pWrap = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'p';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.top = Math.random() * 100 + '%';
+    p.style.animationDuration = Math.random() * 15 + 10 + 's';
+    pWrap.appendChild(p);
+  }
 
-// 爱的导航按钮的点击事件
-document.getElementById('loveNavigationButton').addEventListener('click', function() {
-    document.getElementById('soulPopup').style.display = 'flex';
-});
+  // Divine Free 播放 Careabout.mp3
+  document.getElementById('playButton').addEventListener('click', function () {
+    const audio = document.getElementById('careAudio');
+    audio.currentTime = 0;
+    audio.play();
+  });
 
-function closeSoulPopup() {
-    document.getElementById('soulPopup').style.display = 'none';
+  // Back to Free 播放 Likeu.mp3 + 弹窗 + 心形动画
+  document.getElementById('loveNavigationButton').addEventListener('click', function () {
+    const audio = document.getElementById('likeuAudio');
+    const popup = document.getElementById('miniPopup');
+
+    // 播放音乐
+    audio.currentTime = 0;
+    audio.play();
+
+    // 显示弹窗
+    popup.classList.add('show');
+    setTimeout(() => {
+      popup.classList.remove('show');
+    }, 3000);
+
+    // ❤️ 心形漂浮悬浮动画
+ // ❤️ 只出现 2 颗心，轻盈而有节奏
+for (let i = 0; i < 2; i++) {
+  const heart = document.createElement('div');
+  heart.className = 'heart-burst';
+
+  const x = 48 + Math.random() * 4;
+  const y = 48 + Math.random() * 4;
+  heart.style.left = x + '%';
+  heart.style.top = y + '%';
+
+  const dx = (Math.random() - 0.5) * 60 + 'px';
+  const dy = (Math.random() - 0.5) * 60 + 'px';
+  heart.style.setProperty('--dx', dx);
+  heart.style.setProperty('--dy', dy);
+
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 12000);
 }
 
-    document.getElementById('playButton').addEventListener('click', function() {
-        var audio = document.getElementById('myAudio');
-        
-        // 这里删除了跳转到第1秒的代码，音频会从头开始播放
-        // 解除静音并播放音频
-        audio.muted = false; 
-        audio.play().then(function() {
-            console.log("音乐正在播放");
-        }).catch(function(error) {
-            console.log("播放失败，原因:", error);
-        });
-    });
 
-
-
-    const s = document.getElementById('stars');
-    for(let i=0;i<100;i++){
-      const d = document.createElement('div');
-      d.className = 'star';
-      const x = Math.random()*100, y=Math.random()*100;
-      const size = Math.random()*2+1;
-      d.style.width = d.style.height = size+'px';
-      d.style.top = y+'%'; d.style.left = x+'%';
-      d.style.animationDelay = Math.random()*2+'s';
-      s.appendChild(d);
-    }
-    const pWrap = document.getElementById('particles');
-    for(let i=0;i<30;i++){
-      const p = document.createElement('div');
-      p.className = 'p';
-      p.style.left = Math.random()*100+'%';
-      p.style.top = Math.random()*100+'%';
-      p.style.animationDuration = Math.random()*15+10+'s';
-      pWrap.appendChild(p);
-    }
-
-document.getElementById('loveNavigationButton').addEventListener('click', function() {
-  const popup = document.getElementById('miniPopup');
-  popup.style.display = 'block';
-  
-  // 3秒后自动消失
-  setTimeout(() => {
-    popup.style.display = 'none';
-  }, 3000);
-});
     
-  </script>
+  });
+</script>
+
 </body>
-</html>
+</html> 

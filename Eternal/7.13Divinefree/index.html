@@ -263,7 +263,6 @@
 
 
 
-
 <div id="miniPopup" class="mini-popup" style="display:none;">
   <div class="mini-popup-content">
 <p>哈哈 别急 <br>暂停更哦  <br> 
@@ -272,13 +271,15 @@
 
 </div>
 
-  <script>
+  <script> 
 
 
 // 爱的导航按钮的点击事件
 document.getElementById('loveNavigationButton').addEventListener('click', function() {
-    document.getElementById('soulPopup').style.display = 'flex';
+    // 跳转到其他 URL
+    window.location.href = 'https://www.120525.world/Eternal/7.21ILoveu/';  // 替换成你想跳转的 URL
 });
+
 
 function closeSoulPopup() {
     document.getElementById('soulPopup').style.display = 'none';
@@ -320,16 +321,9 @@ function closeSoulPopup() {
       pWrap.appendChild(p);
     }
 
-document.getElementById('loveNavigationButton').addEventListener('click', function() {
-  const popup = document.getElementById('miniPopup');
-  popup.style.display = 'block';
+
   
-  // 3秒后自动消失
-  setTimeout(() => {
-    popup.style.display = 'none';
-  }, 3000);
-});
-    
+
   </script>
 
 </body>
