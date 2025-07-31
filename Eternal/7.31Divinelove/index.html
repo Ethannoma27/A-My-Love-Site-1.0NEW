@@ -218,18 +218,17 @@
   box-shadow: 0 0 25px #ff70a6;
 }
 
-
-
-
-/* ====== 响应式设计（手机端） ====== */
 @media (max-width: 480px) {
   main {
     padding: 1.8rem 2rem;
-    background-color: rgba(0, 0, 0, 0.2); /* 可选：提升文字对比度 */
+    background-color: rgba(0, 0, 0, 0.2); /* 保持轻微暗背景 */
   }
 
   h1 {
     font-size: 3rem;
+    font-family: "PingFang SC", "Heiti SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.05em; /* 微调字距，让视觉更舒展 */
   }
 
   h2 {
@@ -243,14 +242,15 @@
   }
 
   .rose-bg-blur {
-    background-image: url('images/flower_mobile.jpg'); /* 手机专用竖图 */
+    background-image: url('images/flower_mobile.jpg'); /* 手机专用图 */
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    opacity: 0.5;       /* 提高背景可视度 */
-    filter: blur(6px);  /* 柔和不糊 */
+    opacity: 0.75;       /* 提高透明度，图片更清晰 */
+    filter: blur(3px);   /* 降低模糊值，更柔和 */
   }
 }
+
 
   </style>
 </head>
