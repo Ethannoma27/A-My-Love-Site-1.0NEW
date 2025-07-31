@@ -263,16 +263,15 @@
   <div class="rose-bg-blur"></div>
 
   <!-- 主内容 -->
-   <h1>我爱你</h1>
-  <div class="text-fade" id="textDisplay"></div>
-  <div class="date">2025年7月31日</div>
-
+     <h1>我爱你</h1> 
+    <div class="text-fade" id="textDisplay"></div> 
+    <div class="date">2025年7月31日</div>
   </main>
 
   <!-- 音乐播放器 -->
   <div class="music-player">
     <button id="playButton" aria-label="播放浪漫音乐">Divinelove ♫</button>
-    <audio id="myAudio" preload="auto" loop>
+    <audio id="myAudio" preload="none" loop>
       <source src="MP3/Divinelove.mp3" type="audio/mp3" />
       您的浏览器不支持音频播放。
     </audio>
@@ -280,7 +279,28 @@
 
   <!-- 爱的导航按钮 -->
   <button id="loveNavigationButton" title="回到爱">Back to love</button>
-  <script> 
+
+  <!-- 脚本：播放音乐逻辑 -->
+  <script>
+    const playButton = document.getElementById('playButton');
+    const audio = document.getElementById('myAudio');
+
+    function playAudio() {
+      if (audio.paused) {
+        audio.currentTime = 21;
+        audio.play().then(() => {
+          playButton.textContent = 'Divinelove ♫';
+        }).catch((err) => {
+          alert('无法播放音乐，请确保已点击允许播放音频。');
+          console.error('播放失败：', err);
+        });
+     } 
+    }
+
+    // 绑定事件：支持 iOS、Android 和桌面
+    playButton.addEventListener('click', playAudio);
+    playButton.addEventListener('touchend', playAudio); 
+
 
 const texts = [
   "I Love u", 
@@ -374,26 +394,10 @@ setInterval(showNextText, 5000);
       star.style.animationDelay = `${Math.random() * 5}s`;
       starsContainer.appendChild(star);
     }
-// ====== 音乐播放控制 ======
-const playButton = document.getElementById('playButton');
-const audio = document.getElementById('myAudio');
-
-playButton.addEventListener('click', () => {
-  if (audio.paused) {
-    audio.currentTime = 21; // 从21秒开始播放
-    audio.play().then(() => {
-      playButton.textContent = 'Divinelove ♫';
-    }).catch(() => {
-      alert('自动播放被浏览器限制，请点击允许播放');
-    });
-  }
-});
     // ====== 爱的导航按钮跳转 ======
     document.getElementById('loveNavigationButton').addEventListener('click', () => {
       window.location.href = 'https://www.120525.world/Eternal/7.31Divinelove/'; // 替换为你的链接
     });
   </script>
-
-  
 </body>
 </html>   
