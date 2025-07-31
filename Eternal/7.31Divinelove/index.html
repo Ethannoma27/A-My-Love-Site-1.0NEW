@@ -49,31 +49,6 @@
       0%, 100% { opacity: 0.3; }
       50% { opacity: 1; }
     }
-
-    /* ====== 飘落花瓣 ====== */
-    .petal {
-      position: fixed;
-      top: -50px;
-      pointer-events: none;
-      background-image: url('https://example.com/rose-petal.png');
-      background-size: cover;
-      opacity: 0.9;
-      transform-origin: center;
-    }
-    @keyframes fallPetal {
-      0% {
-        transform: translateY(0) translateX(0) rotate(0deg);
-        opacity: 0;
-      }
-      10% { opacity: 0.6; }
-      50% { opacity: 0.9; }
-      90% { opacity: 0.6; }
-      100% {
-        transform: translateY(110vh) translateX(var(--sway, 0)) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
     /* ====== 主内容容器 ====== */
     main {
       position: relative;
@@ -104,15 +79,6 @@
   background-color: transparent;
 }
 
-/* 在小屏设备中保持一定可见度 */
-@media (max-width: 480px) {
-  .rose-bg-blur {
-    opacity: 0.4;        /* 原来是0.18，几乎透明 */
-    filter: blur(10px);  /* 保持柔和但不要糊成一片 */
-  }
-}
-
-
     /* 给文字容器固定宽度，且居中对齐 */
   #textDisplay {
   font-size: 1.6rem;
@@ -130,7 +96,7 @@
   /* 新增的间距 */
   margin-top: 1rem;    /* 让文字稍微往下离开标题 */
   padding-left: 1rem;  /* 左侧内边距，增加和左边元素的距离 */
-  /* 或者 margin-left: 1rem; 也可以 */
+
 }
     /* ====== 文字样式 ====== */
     h1 {
@@ -252,27 +218,40 @@
   box-shadow: 0 0 25px #ff70a6;
 }
 
-    /* ====== 响应式设计 ====== */
-    @media (max-width: 480px) {
-      main {
-        padding: 1.8rem 2rem;
-      }
-      h1 {
-        font-size: 3rem;
-      }
-      h2 {
-        font-size: 1.2rem;
-        margin-bottom: 1.8rem;
-      }
-      p {
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
-      }
-      .rose-bg-blur {
-        opacity: 0.18;
-        filter: blur(14px);
-      }
-    }
+
+
+
+/* ====== 响应式设计（手机端） ====== */
+@media (max-width: 480px) {
+  main {
+    padding: 1.8rem 2rem;
+    background-color: rgba(0, 0, 0, 0.2); /* 可选：提升文字对比度 */
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1.8rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .rose-bg-blur {
+    background-image: url('images/flower_mobile.jpg'); /* 手机专用竖图 */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0.5;       /* 提高背景可视度 */
+    filter: blur(6px);  /* 柔和不糊 */
+  }
+}
+
   </style>
 </head>
 <body>
@@ -343,9 +322,7 @@ const texts = [
    "那些无拘无束爱你的日子 ", 
    "真好 ",   
    "你让我怎么能不 爱你 "    
-
 ];
-
 const display = document.getElementById('textDisplay');
 let index = 0;
 
@@ -397,7 +374,6 @@ setInterval(showNextText, 5000);
       star.style.animationDelay = `${Math.random() * 5}s`;
       starsContainer.appendChild(star);
     }
-
 // ====== 音乐播放控制 ======
 const playButton = document.getElementById('playButton');
 const audio = document.getElementById('myAudio');
@@ -412,15 +388,12 @@ playButton.addEventListener('click', () => {
     });
   }
 });
-
     // ====== 爱的导航按钮跳转 ======
     document.getElementById('loveNavigationButton').addEventListener('click', () => {
       window.location.href = 'https://www.120525.world/Eternal/7.31Divinelove/'; // 替换为你的链接
     });
   </script>
 
-
-
-
+  
 </body>
-</html>  
+</html>   
