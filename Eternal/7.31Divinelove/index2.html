@@ -87,31 +87,22 @@
     }
 
     /* 背景模糊层 */
-      .rose-bg-blur {
-  position: absolute;
-  inset: 0;
-  background: url('images/flower.jpg') center center / cover no-repeat;
-  filter: blur(3px);
-  opacity: 0.5;
-  z-index: 1;
-  pointer-events: none;
-  border-radius: 20px;
-  width: 100% !important;
-  height: 100% !important;
-  min-width: 200px !important;
-  min-height: 200px !important;
-  border: none;
-  background-color: transparent;
-}
-
-/* 在小屏设备中保持一定可见度 */
-@media (max-width: 480px) {
-  .rose-bg-blur {
-    opacity: 0.4;        /* 原来是0.18，几乎透明 */
-    filter: blur(10px);  /* 保持柔和但不要糊成一片 */
-  }
-}
-
+    .rose-bg-blur {
+      position: absolute;
+      inset: 0;
+      background: url('images/flower.jpg') center center / cover no-repeat;
+      filter: blur(3px);
+      opacity: 0.5;
+      z-index: 1;
+      pointer-events: none;
+      border-radius: 20px;
+      width: 100% !important;
+      height: 100% !important;
+      min-width: 200px !important;
+      min-height: 200px !important;
+      border: none;
+      background-color: transparent;
+    }
 
     /* 给文字容器固定宽度，且居中对齐 */
   #textDisplay {
@@ -418,7 +409,6 @@ playButton.addEventListener('click', () => {
       window.location.href = 'https://www.120525.world/Eternal/7.31Divinelove/'; // 替换为你的链接
     });
   </script>
-
 
 
 
