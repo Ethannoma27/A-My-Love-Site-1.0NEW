@@ -250,8 +250,6 @@
     filter: blur(3px);   /* 降低模糊值，更柔和 */
   }
 }
-
-
   </style>
 </head>
 <body>
@@ -300,7 +298,6 @@
     // 绑定事件：支持 iOS、Android 和桌面
     playButton.addEventListener('click', playAudio);
     playButton.addEventListener('touchend', playAudio); 
-
 
 const texts = [
   "I Love u", 
@@ -375,7 +372,6 @@ function showNextText() {
     index = (index + 1) % texts.length;
   }, 1000);
 }
-
 showNextText();
 setInterval(showNextText, 5000); 
 
