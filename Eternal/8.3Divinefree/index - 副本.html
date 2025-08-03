@@ -103,11 +103,14 @@ body::before {
   z-index: 3;
   pointer-events: none;
 }
+ 
 
 @keyframes waveFlow {
   0% { background-position: 0% 0%; }
   100% { background-position: 100% 0%; }
 }
+
+
 
     /* 细腻粒子和发光层 */
     .particles, .glow-layer {
@@ -275,15 +278,12 @@ body::before {
   }
 }
 
-#playButton, #loveNavigationButton {
-  background: linear-gradient(135deg, rgba(176, 193, 226, 0.5), rgba(216, 227, 245, 0.5));
-  box-shadow: 0 4px 8px rgba(100, 120, 180, 0.1);
-  transition: box-shadow 0.2s ease;
-}
 
-#playButton:active, #loveNavigationButton:active {
-  box-shadow: 0 4px 8px rgba(100, 120, 180, 0.1); /* 保持一致 */
-}
+  #playButton, #loveNavigationButton {
+    background: linear-gradient(135deg, rgba(176, 193, 226, 0.5), rgba(216, 227, 245, 0.5));
+    box-shadow: 0 4px 8px rgba(100, 120, 180, 0.1);
+  }
+
 
   </style>
 </head>
@@ -293,6 +293,7 @@ body::before {
     <path d="M0,20 C400,0 1200,40 1600,20 L1600,0 L0,0 Z" fill="white" opacity="0.3"/>
   </svg>
 </div>
+
 
 <div class="content">
   <h1>淡墨轻染流年，</h1>  
@@ -346,5 +347,5 @@ body::before {
     }
   </script>
   
-</body> 
+</body>
 </html>  
