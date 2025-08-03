@@ -22,6 +22,7 @@
 }
 
 /* 水墨画背景（改为图片方式） */
+
 body::before {
   content: '';
   position: fixed;
@@ -64,7 +65,7 @@ body::before {
       filter: blur(3px);
     }
 
-     .ceramic-glow {
+        .ceramic-glow {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
   background: radial-gradient(circle at 60% 40%, rgba(255,255,255,0.05), transparent 70%);
@@ -202,9 +203,10 @@ body::before {
         opacity: 1;
       }
     }
-#playButton, #loveNavigationButton {
+
+  #playButton, #loveNavigationButton {
   position: fixed;
-  right: 20%;
+  left: 65%;
   width: 160px;
   background: linear-gradient(135deg, #b0c1e2, #d8e3f5); /* 更柔和的蓝灰渐变 */
   color: #2c3e50; /* 舒适的深蓝灰色文字 */
@@ -214,7 +216,8 @@ body::before {
   border-radius: 30px;
   border: none;
   padding: 14px 0;
-  cursor: pointer;
+  cursor: pointer !important;
+  pointer-events: auto;
   box-shadow: 0 4px 8px rgba(100, 120, 180, 0.2);
   /* 动画时间和缓动曲线改成更柔和自然 */
   transition: 
@@ -235,7 +238,6 @@ body::before {
 #playButton {
   bottom: 160px;
 }
-
 #loveNavigationButton {
   bottom: 95px;
 }
@@ -272,29 +274,14 @@ body::before {
   }
 }
 
-/* 之前的代码保持不变 */
+#playButton, #loveNavigationButton {
+  background: linear-gradient(135deg, rgba(176, 193, 226, 0.5), rgba(216, 227, 245, 0.5));
+  box-shadow: 0 4px 8px rgba(100, 120, 180, 0.1);
+  transition: box-shadow 0.2s ease;
+}
 
-@media (max-width: 600px) {
-  .content {
-    margin-top: -100px;
-  }
-
-  h1 {
-    font-size: 2.2em !important;
-    line-height: 1.2;
-    margin-bottom: 0.8rem !important;
-    margin-top: 0 !important;
-  }
-
-  /* 手机端点击按钮不改变颜色、大小 */
-  #playButton:active,
-  #loveNavigationButton:active {
-    background: linear-gradient(135deg, #b0c1e2, #d8e3f5) !important;
-    color: #2c3e50 !important;
-    transform: none !important;
-    box-shadow: 0 4px 8px rgba(100, 120, 180, 0.2) !important;
-    transition: none !important;
-  }
+#playButton:active, #loveNavigationButton:active {
+  box-shadow: 0 4px 8px rgba(100, 120, 180, 0.1); /* 保持一致 */
 }
   </style>
 </head>
@@ -357,5 +344,5 @@ body::before {
     }
   </script>
 
-</body>  
+</body> 
 </html>   
