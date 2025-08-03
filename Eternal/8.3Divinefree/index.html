@@ -305,14 +305,14 @@ body::before {
 
   <!-- 音乐播放器控制 -->
   <audio id="myAudio" preload="auto" muted>
-    <source src="MP3/Careabout.mp3" type="audio/mp3" />
+    <source src="MP3/Porcelain.mp3" type="audio/mp3" />
     您的浏览器不支持音频播放。
   </audio>
 
   <script>
     // 爱的导航按钮点击事件
     document.getElementById('loveNavigationButton').addEventListener('click', function () {
-      window.location.href = '/';
+      window.location.href = 'https://www.120525.world/Eternal/8.3Divinefree/';
     });
 
     // 播放按钮点击事件
@@ -321,10 +321,7 @@ body::before {
       if (audio.paused) {
         audio.muted = false;
         audio.play().catch((e) => console.log('播放失败:', e));
-        this.textContent = '暂停音乐';
-      } else {
-        audio.pause();
-        this.textContent = '播放青花瓷古筝';
+
         // 显示弹窗提示
         const popup = document.getElementById('miniPopup');
         popup.style.display = 'flex';
@@ -348,10 +345,6 @@ body::before {
       pWrap.appendChild(p);
     }
   </script>
-  
-
-
-
   
 </body>
 </html> 
