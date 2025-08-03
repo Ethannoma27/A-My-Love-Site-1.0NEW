@@ -263,7 +263,21 @@ body::before {
   transform: scale(0.98);
   box-shadow: 0 4px 8px rgba(100, 120, 180, 0.2);
   transition: transform 0.1s ease;
+} 
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2em !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  #playButton, #loveNavigationButton {
+    background: linear-gradient(135deg, rgba(176, 193, 226, 0.5), rgba(216, 227, 245, 0.5));
+    box-shadow: 0 4px 8px rgba(100, 120, 180, 0.1);
+  }
 }
+
+
   </style>
 </head>
 <body>
@@ -327,6 +341,10 @@ body::before {
       pWrap.appendChild(p);
     }
   </script>
+  
+
+
+
   
 </body>
 </html> 
