@@ -150,7 +150,8 @@ hr {
     position: relative;
     padding-left: 12px; /* 调整内边距，避免文字紧贴边框 */
     background-color: transparent; /* 明确无背景色 */
-    color: #32485f;
+    color: #32485f; 
+
     font-family: 'Segoe Script', 'Comic Sans MS', cursive, sans-serif;
     font-size: 1.1rem;
     font-weight: 600;
@@ -166,9 +167,13 @@ hr {
     line-height: 1.45;
     font-size: 15px;
   }
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
-/* 手机端适配部分 */
 @media (max-width: 600px) {
+  .compact-content.highlight-quote {
+    font-family: 'Patrick Hand', 'Segoe Script', 'Comic Sans MS', cursive, sans-serif;
+  }
+
   /* 手机端全局字体和内外边距调整 */
   body {
     font-size: 14px;
@@ -420,7 +425,5 @@ hr {
 <footer>
   <p>ChatGPT 也可能会犯错。请核查重要信息。</p>
 </footer>
-
-
 </body>
-</html>  
+</html>   
