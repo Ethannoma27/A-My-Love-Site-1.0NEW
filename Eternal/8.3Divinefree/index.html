@@ -266,11 +266,15 @@ body::before {
 } 
 
 @media (max-width: 600px) {
+  .content {
+    margin-top: -50px; /* 调整整体向上距离，替代 h1 的负 margin-top */
+  }
+
   h1 {
     font-size: 2.2em !important;          /* 稍微小一点 */
     line-height: 1.2;                     /* 增加行间距 */
     margin-bottom: 0.8rem !important;    /* 增加底部间距 */
-    margin-top: -50px;                    /* 减少向上移动距离 */
+    margin-top: 0 !important;             /* 清除负 margin-top，避免叠加 */
   }
 }
 
