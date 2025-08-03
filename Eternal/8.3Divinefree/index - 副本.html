@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>共频 • 心灵成长</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Cinzel:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Cinzel', serif;
+      color: #1a1a1a;
+      background: #f8f5ec; /* 宣纸柔米色 */
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    /* 水墨画背景 */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: url('images/washing.png') no-repeat center/cover;
+      background-size: cover;
+      mix-blend-mode: multiply;
+      filter: brightness(0.95) contrast(1.05) blur(0.5px);
+      opacity: 0.6;
+      animation: inkFlow 60s ease-in-out infinite alternate;
+      z-index: 0;
+      pointer-events: none;
+    }
+    @keyframes inkFlow {
+      0% {background-position: 45% 55%;}
+      50% {background-position: 55% 45%;}
+      100% {background-position: 45% 55%;}
+    }
+    /* 青花瓷纹理柔光蒙版 */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: url('images/washing.png') repeat;
+      mix-blend-mode: screen;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 1;
+      filter: blur(3px);
+    }
+    .ceramic-glow {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at 60% 40%, rgba(255,255,255,0.05), transparent 70%);
+      filter: blur(80px);
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .water-ripple {
+      position: fixed;
+      bottom: 0; left: 0; width: 100%; height: 100px;
+      background: url('images/water-ripple.png') repeat-x;
+      background-size: auto 100px;
+      opacity: 0.3;
+      animation: waveFlow 14s linear infinite;
+      pointer-events: none;
+      z-index: 2;
+      clip-path: path('M0 20 C400 0, 1200 40, 1600 20 L1600 100 L0 100 Z');
+    }
+    .ripple-curve {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 30px;
+      z-index: 3;
+      pointer-events: none;
+    }
+    @keyframes waveFlow {
+      0% {background-position: 0% 0%;}
+      100% {background-position: 100% 0%;}
+    }
+    /* 细腻粒子和发光层 */
+    .particles, .glow-layer {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .particle {
+      position: absolute;
+      background: rgba(180, 210, 230, 0.15);
+      border-radius: 50%;
+      filter: drop-shadow(0 0 6px rgba(180, 210, 230, 0.5));
+      animation: floatUp linear infinite;
+      opacity: 0.7;
+      will-change: transform, opacity;
+    }
+    @keyframes floatUp {
+      to {
+        transform: translateY(-120vh) scale(1.8);
+        opacity: 0;
+      }
+    }
+    .glow-layer {
+      background: radial-gradient(circle at center, rgba(70, 130, 180, 0.25), transparent 70%);
+      filter: blur(50px);
+      animation: glowMove 35s ease-in-out infinite alternate;
+      z-index: 2;
+      opacity: 0.6;
+    }
+    @keyframes glowMove {
+      0% {
+        transform: translate(15vw, 20vh) scale(1);
+      }
+      100% {
+        transform: translate(-15vw, -20vh) scale(1.4);
+      }
+    }
+    /* 内容区整体缩小15% */
+    .content {
+      position: relative;
+      z-index: 10;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 1.7rem; /* 2rem * 0.85 */
+      user-select: none;
+      transform: scale(0.85);
+      transform-origin: center center;
+      width: 100%;
+    }
+    h1 {
+      font-size: 3.8em; /* 4.5em * 0.85 */
+      margin-bottom: 0.85rem; /* 1rem * 0.85 */
+      color: #dbe9f4;
+      text-shadow:
+        0 0 8px rgba(130, 180, 230, 0.9),
+        0 0 18px rgba(130, 180, 230, 0.7);
+      animation: float 6s ease-in-out infinite;
+      font-family: 'Dancing Script', cursive;
+      letter-spacing: 0.05em;
+    }
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+    p {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.53em; /* 1.8em * 0.85 */
+      line-height: 1.8;
+      max-width: 80%;
+      color: #c4d8f1;
+      text-shadow:
+        0 0 6px rgba(130, 180, 230, 0.7),
+        0 0 12px rgba(130, 180, 230, 0.5);
+      animation: fadeIn 14s ease-in-out infinite;
+      margin-bottom: 1.7rem; /* 2rem * 0.85 */
+    }
+    @keyframes fadeIn {
+      0%, 100% {
+        opacity: 0.5;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+    /* 按钮样式缩小且流畅 */
+    #playButton, #loveNavigationButton {
+      position: fixed;
+      left: 65%;
+      width: 136px; /* 160 * 0.85 */
+      background: linear-gradient(135deg, #b0c1e2, #d8e3f5);
+      color: #2c3e50;
+      font-family: 'Cinzel', serif;
+      font-weight: 500;
+      font-size: 0.98em; /* 略微缩小 */
+      border-radius: 25px; /* 30 * 0.85 */
+      border: none;
+      padding: 12px 0;
+      cursor: pointer !important;
+      pointer-events: auto;
+      box-shadow: 0 4px 8px rgba(100, 120, 180, 0.2);
+      transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        background 0.45s ease-in-out;
+      transform-origin: center center;
+      z-index: 10;
+      margin: 0;
+      will-change: transform, box-shadow, background;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    #playButton {
+      bottom: 150px; /* 170 * 0.88 */
+    }
+    #loveNavigationButton {
+      bottom: 90px; /* 105 * 0.85 */
+    }
+    #playButton:hover,
+    #loveNavigationButton:hover {
+      background: linear-gradient(135deg, #d0dbf7, #f0f5ff);
+      transform: scale(1.03);
+      box-shadow:
+        0 10px 20px rgba(100, 120, 180, 0.6),
+        0 4px 10px rgba(100, 120, 180, 0.4);
+      color: #1a2a45;
+    }
+    #playButton:active,
+    #loveNavigationButton:active {
+      transform: scale(0.98);
+      box-shadow: 0 4px 8px rgba(100, 120, 180, 0.2);
+      transition: transform 0.1s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="water-ripple">
+    <svg class="ripple-curve" viewBox="0 0 1600 30" preserveAspectRatio="none">
+      <path d="M0,20 C400,0 1200,40 1600,20 L1600,0 L0,0 Z" fill="white" opacity="0.3"/>
+    </svg>
+  </div>
+
+
+  <div class="content">
+    <h1>淡墨流年里，</h1>
+    <h1>烟雨可拾归心？</h1>
+    <button id="playButton">播放青花瓷古筝</button>
+    <button id="loveNavigationButton">回归自由</button>
+  </div>
+
+  <!-- 音乐播放器控制 -->
+  <audio id="myAudio" preload="auto" muted>
+    <source src="MP3/Careabout.mp3" type="audio/mp3" />
+    您的浏览器不支持音频播放。
+  </audio>
+
+  <script>
+    // “回归自由”按钮，跳转主页
+    document.getElementById('loveNavigationButton').addEventListener('click', () => {
+      window.location.href = '/';
+    });
+
+    // 播放按钮逻辑
+    const playBtn = document.getElementById('playButton');
+    const audio = document.getElementById('myAudio');
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.muted = false; // 取消静音
+        audio.play().catch(e => {
+          console.warn('播放失败:', e);
+        });
+        playBtn.textContent = '暂停音乐';
+      } else {
+        audio.pause();
+        playBtn.textContent = '播放青花瓷古筝';
+      }
+    });
+
+    // 生成细腻粒子效果（40个粒子）
+    const particlesContainer = document.createElement('div');
+    particlesContainer.className = 'particles';
+    document.body.appendChild(particlesContainer);
+
+    for (let i = 0; i < 40; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      const size = Math.random() * 3 + 1;
+      particle.style.width = size + 'px';
+      particle.style.height = size + 'px';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.top = Math.random() * 100 + '%';
+      particle.style.animationDuration = (Math.random() * 18 + 15) + 's';
+      particle.style.animationDelay = (Math.random() * 10) + 's';
+      particlesContainer.appendChild(particle);
+    }
+  </script>
+</body>
+</html> 
