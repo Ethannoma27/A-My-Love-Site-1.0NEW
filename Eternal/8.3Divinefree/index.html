@@ -75,7 +75,6 @@ body::before {
   z-index: 2;
 }
 
-
 .water-ripple {
   position: fixed;
   bottom: 0;
@@ -264,27 +263,57 @@ body::before {
 
 @media (max-width: 600px) {
   .content {
-    margin-top: -100px; /* 调整整体向上距离，替代 h1 的负 margin-top */
+    margin-top: -100px;
   }
 
   h1 {
-    font-size: 2.2em !important;          /* 稍微小一点 */
-    line-height: 1.2;                     /* 增加行间距 */
-    margin-bottom: 0.8rem !important;    /* 增加底部间距 */
-    margin-top: 0 !important;             /* 清除负 margin-top，避免叠加 */
+    font-size: 2.2em !important;
+    line-height: 1.2;
+    margin-bottom: 0.8rem !important;
+    margin-top: 0 !important;
   }
-}
 
-#playButton, #loveNavigationButton {
-  background: linear-gradient(135deg, rgba(176, 193, 226, 0.5), rgba(216, 227, 245, 0.5));
+/* 手机端按钮样式优化 */
+#playButton,
+#loveNavigationButton {
+  background: linear-gradient(
+    135deg,
+    rgba(176, 193, 226, 0.5),
+    rgba(216, 227, 245, 0.5)
+  );
   box-shadow: 0 4px 8px rgba(100, 120, 180, 0.1);
-  transition: box-shadow 0.2s ease;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+
+  -webkit-tap-highlight-color: transparent;
+  backface-visibility: hidden;
+  will-change: transform, box-shadow;
+  user-select: none;
+  touch-action: manipulation;
 }
 
-#playButton:active, #loveNavigationButton:active {
-  box-shadow: 0 4px 8px rgba(100, 120, 180, 0.1); /* 保持一致 */
-}
+/* 手机端点击状态不改变视觉 */
+#playButton:active,
+#loveNavigationButton:active {
+  background: linear-gradient(
+    135deg,
+    rgba(176, 193, 226, 0.5),
+    rgba(216, 227, 245, 0.5)
+  );
+  box-shadow: 0 4px 8px rgba(100, 120, 180, 0.1);
+  transform: scale(0.98); /* 保留轻微按压感 */
+  transition: transform 0.1s ease;
 
+}
+} 
   </style>
 </head>
 <body>
@@ -345,6 +374,6 @@ body::before {
       pWrap.appendChild(p);
     }
   </script>
-  
+
 </body> 
-</html>  
+</html>   
