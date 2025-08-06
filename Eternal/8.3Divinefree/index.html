@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>如果爱•有天意</title> 
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Cinzel:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+
   <style>
     * {
       margin: 0;
@@ -22,7 +24,6 @@
 }
 
 /* 水墨画背景（改为图片方式） */
-
 body::before {
   content: '';
   position: fixed;
@@ -65,7 +66,7 @@ body::before {
       filter: blur(3px);
     }
 
-        .ceramic-glow {
+   .ceramic-glow {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
   background: radial-gradient(circle at 60% 40%, rgba(255,255,255,0.05), transparent 70%);
@@ -282,7 +283,17 @@ body::before {
 
 #playButton:active, #loveNavigationButton:active {
   box-shadow: 0 4px 8px rgba(100, 120, 180, 0.1); /* 保持一致 */
+} 
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
+
+.fade-out {
+  animation: fadeOut 2s ease forwards;
+}
+
   </style>
 </head>
 <body>
@@ -301,6 +312,12 @@ body::before {
     <button id="loveNavigationButton">Back to free</button>
   </div>
 
+<div id="typewriter" style="position: fixed; bottom: 150px; left: 50%; transform: translateX(-50%);
+  font-size: 2.8em; font-family: 'Ma Shan Zheng', cursive;
+  color: #f0f8ff; text-shadow: 0 0 8px rgba(130, 180, 230, 0.8); z-index: 20;
+  white-space: pre-line; text-align: center;">
+</div>
+
   <!-- 音乐播放器控制 -->
   <audio id="myAudio" preload="auto" muted>
     <source src="MP3/Porcelain.mp3" type="audio/mp3" />
@@ -308,10 +325,45 @@ body::before {
   </audio>
 
   <script>
-    // 爱的导航按钮点击事件
-    document.getElementById('loveNavigationButton').addEventListener('click', function () {
-      window.location.href = 'https://www.120525.world/Eternal/8.3Divinefree/';
-    });
+
+document.getElementById('loveNavigationButton').addEventListener('click', function () {
+  const messages = [
+    "我想 邀请你 一起勾勒\n",
+    "我们未来自主的人生蓝图"
+  ];
+  const displayArea = document.getElementById('typewriter');
+  displayArea.innerText = '';
+  displayArea.classList.remove('fade-out');
+
+  let msgIndex = 0;
+  let charIndex = 0;
+
+  function typeChar() {
+    if (charIndex < messages[msgIndex].length) {
+      displayArea.innerText += messages[msgIndex][charIndex];
+      charIndex++;
+      setTimeout(typeChar, 180);
+    } else {
+      msgIndex++;
+      if (msgIndex < messages.length) {
+        charIndex = 0;
+        displayArea.innerText += '\n';
+        setTimeout(typeChar, 3000);
+      } else {
+        // 全部打完后，3秒后执行淡出并跳转
+        setTimeout(() => {
+          displayArea.classList.add('fade-out');
+
+          // ✅ 加入跳转逻辑
+          window.location.href = 'https://www.120525.world/Eternal/8.6ILoveu'; // 替换为目标地址 
+
+        }, 3000);
+      }
+    }
+  }
+
+  typeChar();
+});
 
     // 播放按钮点击事件
     document.getElementById('playButton').addEventListener('click', function () {
@@ -343,8 +395,6 @@ body::before {
       pWrap.appendChild(p);
     }
   </script>
-
-
 
 </body> 
 </html>   
