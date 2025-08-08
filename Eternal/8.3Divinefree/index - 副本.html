@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>如果爱•有天意</title> 
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Cinzel:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+   body {
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Cinzel', serif;
+  color: #1a1a1a;
+  background: #f8f5ec; /* 宣纸柔米色 */
+  position: relative;
+}
+
+/* 水墨画背景（改为图片方式） */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('images/washing.png') no-repeat center/cover;
+  background-size: cover;
+  mix-blend-mode: multiply;
+  filter: brightness(0.95) contrast(1.05) blur(0.5px);
+  opacity: 0.6;
+  animation: inkFlow 60s ease-in-out infinite alternate;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes inkFlow {
+  0% {
+    background-position: 45% 55%;
+  }
+  50% {
+    background-position: 55% 45%;
+  }
+  100% {
+    background-position: 45% 55%;
+  }
+}
+
+    /* 青花瓷纹理柔光蒙版 */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: url('images/washing.png') repeat;
+      mix-blend-mode: screen;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 1;
+      filter: blur(3px);
+    }
+
+   .ceramic-glow {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle at 60% 40%, rgba(255,255,255,0.05), transparent 70%);
+  filter: blur(80px);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.water-ripple {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: url('images/water-ripple.png') repeat-x;
+  background-size: auto 100px;
+  opacity: 0.3;
+  animation: waveFlow 14s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+
+  /* 让上边变成自然波浪形状 */
+  clip-path: path('M0 20 C400 0, 1200 40, 1600 20 L1600 100 L0 100 Z');
+}
+
+/* 这个是自然的波纹形状，*/
+.ripple-curve {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+@keyframes waveFlow {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 0%; }
+}
+
+    /* 细腻粒子和发光层 */
+    .particles, .glow-layer {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .particle {
+      position: absolute;
+      background: rgba(180, 210, 230, 0.15);
+      border-radius: 50%;
+      filter: drop-shadow(0 0 6px rgba(180, 210, 230, 0.5));
+      animation: floatUp linear infinite;
+      opacity: 0.7;
+    }
+    @keyframes floatUp {
+      to {
+        transform: translateY(-120vh) scale(1.8);
+        opacity: 0;
+      }
+    }
+
+    .glow-layer {
+      background: radial-gradient(circle at center, rgba(70, 130, 180, 0.25), transparent 70%);
+      filter: blur(50px);
+      animation: glowMove 35s ease-in-out infinite alternate;
+      z-index: 2;
+      opacity: 0.6;
+    }
+    @keyframes glowMove {
+      0% {
+        transform: translate(15vw, 20vh) scale(1);
+      }
+      100% {
+        transform: translate(-15vw, -20vh) scale(1.4);
+      }
+    }
+
+    /* 内容区 */
+    .content {
+      position: relative;
+      margin-top: -80px; /* 数值根据你想上移多少调节 */
+      z-index: 10;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      user-select: none;
+    }
+
+    h1 {
+      font-size: 4.5em;
+      margin-bottom: 1rem;
+      color: #dbe9f4;
+      text-shadow:
+        0 0 8px rgba(130, 180, 230, 0.9),
+        0 0 18px rgba(130, 180, 230, 0.7);
+      animation: float 6s ease-in-out infinite;
+      font-family: 'Dancing Script', cursive;
+      letter-spacing: 0.05em;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    p {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8em;
+      line-height: 1.8;
+      max-width: 80%;
+      color: #c4d8f1;
+      text-shadow:
+        0 0 6px rgba(130, 180, 230, 0.7),
+        0 0 12px rgba(130, 180, 230, 0.5);
+      animation: fadeIn 14s ease-in-out infinite;
+      margin-bottom: 2rem;
+    }
+
+    @keyframes fadeIn {
+      0%, 100% {
+        opacity: 0.5;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+  #playButton, #loveNavigationButton {
+  position: fixed;
+  left: 65%;
+  width: 160px;
+  background: linear-gradient(135deg, #b0c1e2, #d8e3f5); /* 更柔和的蓝灰渐变 */
+  color: #2c3e50; /* 舒适的深蓝灰色文字 */
+  font-family: 'Cinzel', serif;
+  font-weight: 500; /* 稍微加粗，但不是太重 */
+  font-size: 1.15em;
+  border-radius: 30px;
+  border: none;
+  padding: 14px 0;
+  cursor: pointer !important;
+  pointer-events: auto;
+  box-shadow: 0 4px 8px rgba(100, 120, 180, 0.2);
+  /* 动画时间和缓动曲线改成更柔和自然 */
+  transition: 
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), 
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1), 
+    background 0.45s ease-in-out;
+  transform-origin: center center;
+  z-index: 10;
+  margin: 0;
+
+  /* 性能优化 */
+  will-change: transform, box-shadow, background;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* 定位 */
+#playButton {
+  bottom: 160px;
+}
+#loveNavigationButton {
+  bottom: 95px;
+}
+
+/* Hover状态 */
+#playButton:hover,
+#loveNavigationButton:hover {
+  background: linear-gradient(135deg, #d0dbf7, #f0f5ff);
+  transform: scale(1.03);
+  box-shadow:
+    0 10px 20px rgba(100, 120, 180, 0.6),
+    0 4px 10px rgba(100, 120, 180, 0.4);
+  color: #1a2a45; /* 悬浮时文字颜色加深一点 */
+}
+
+/* 点击按下反馈 */
+#playButton:active,
+#loveNavigationButton:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 8px rgba(100, 120, 180, 0.2);
+  transition: transform 0.1s ease;
+} 
+
+@media (max-width: 600px) {
+  .content {
+    margin-top: -100px; /* 调整整体向上距离，替代 h1 的负 margin-top */
+  }
+
+  h1 {
+    font-size: 2.2em !important;          /* 稍微小一点 */
+    line-height: 1.2;                     /* 增加行间距 */
+    margin-bottom: 0.8rem !important;    /* 增加底部间距 */
+    margin-top: 0 !important;             /* 清除负 margin-top，避免叠加 */
+  }
+}
+
+#playButton, #loveNavigationButton {
+  background: linear-gradient(135deg, rgba(176, 193, 226, 0.5), rgba(216, 227, 245, 0.5));
+  box-shadow: 0 4px 8px rgba(100, 120, 180, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+#playButton:active, #loveNavigationButton:active {
+  box-shadow: 0 4px 8px rgba(100, 120, 180, 0.1); /* 保持一致 */
+} 
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.fade-out {
+  animation: fadeOut 2s ease forwards;
+}
+
+  </style>
+</head>
+<body>
+<div class="water-ripple">
+  <svg class="ripple-curve" viewBox="0 0 1600 30" preserveAspectRatio="none">
+    <path d="M0,20 C400,0 1200,40 1600,20 L1600,0 L0,0 Z" fill="white" opacity="0.3"/>
+  </svg>
+</div>
+
+<div class="content">
+  <h1>淡墨轻染流年，</h1>  
+  <h1>&nbsp;&nbsp;烟雨可解归意？</h1>  
+</div> 
+    <button id="playButton">Divine Free</button>
+
+    <button id="loveNavigationButton">Back to free</button>
+  </div>
+
+<div id="typewriter" style="position: fixed; bottom: 150px; left: 50%; transform: translateX(-50%);
+  font-size: 2.8em; font-family: 'Ma Shan Zheng', cursive;
+  color: #f0f8ff; text-shadow: 0 0 8px rgba(130, 180, 230, 0.8); z-index: 20;
+  white-space: pre-line; text-align: center;">
+</div>
+
+  <!-- 音乐播放器控制 -->
+  <audio id="myAudio" preload="auto" muted>
+    <source src="MP3/Porcelain.mp3" type="audio/mp3" />
+    您的浏览器不支持音频播放。
+  </audio>
+
+  <script>
+
+document.getElementById('loveNavigationButton').addEventListener('click', function () {
+  const messages = [
+    "我想 邀请你 一起勾勒\n",
+    "我们未来自主的人生蓝图"
+  ];
+  const displayArea = document.getElementById('typewriter');
+  displayArea.innerText = '';
+  displayArea.classList.remove('fade-out');
+
+  let msgIndex = 0;
+  let charIndex = 0;
+
+  function typeChar() {
+    if (charIndex < messages[msgIndex].length) {
+      displayArea.innerText += messages[msgIndex][charIndex];
+      charIndex++;
+      setTimeout(typeChar, 180);
+    } else {
+      msgIndex++;
+      if (msgIndex < messages.length) {
+        charIndex = 0;
+        displayArea.innerText += '\n';
+        setTimeout(typeChar, 3000);
+      } else {
+        // 全部打完后，3秒后执行淡出并跳转
+        setTimeout(() => {
+          displayArea.classList.add('fade-out');
+
+          // ✅ 加入跳转逻辑
+          window.location.href = 'https://www.120525.world/Eternal/8.6ILoveu'; // 替换为目标地址 
+
+        }, 3000);
+      }
+    }
+  }
+
+  typeChar();
+});
+
+    // 播放按钮点击事件
+    document.getElementById('playButton').addEventListener('click', function () {
+      const audio = document.getElementById('myAudio');
+      if (audio.paused) {
+        audio.muted = false;
+        audio.play().catch((e) => console.log('播放失败:', e));
+
+        // 显示弹窗提示
+        const popup = document.getElementById('miniPopup');
+        popup.style.display = 'flex';
+        setTimeout(() => {
+          popup.style.display = 'none';
+        }, 2500);
+      }
+    });
+
+    // 生成细腻粒子
+    const pWrap = document.getElementById('particles');
+    for (let i = 0; i < 40; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 3 + 1;
+      p.style.width = p.style.height = size + 'px';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.top = Math.random() * 100 + '%';
+      p.style.animationDuration = (Math.random() * 18 + 15) + 's';
+      p.style.animationDelay = (Math.random() * 10) + 's';
+      pWrap.appendChild(p);
+    }
+  </script>
+
+</body> 
+</html>   
