@@ -227,28 +227,32 @@ p {
 }
 
 
-/* 手机适配 */
 @media (max-width: 480px) {
   main {
-    padding: 1.8rem 2rem;
-    background-color: rgba(255, 255, 255, 0.7);
+    padding: 1.5rem;
+    max-width: 90%;
+    background-color: rgba(255, 255, 255, 0.78);
   }
 
   h1 {
-    font-size: 3rem;
-    font-family: "PingFang SC", "Heiti SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-  }
-
-  h2 {
-    font-size: 1.2rem;
-    margin-bottom: 1.8rem;
-  }
-
-  p {
-    font-size: 1.2rem;
+    font-size: 2.4rem;
     margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  #textDisplay {
+    font-size: 1.2rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-top: 0.8rem;
+    line-height: 1.8;
+  }
+
+  .date {
+    font-size: 0.9rem;
+    margin-left: 0;
+    text-align: center;
+    margin-top: 3rem;
   }
 
   .rose-bg-blur {
@@ -257,7 +261,25 @@ p {
     background-position: center center;
     background-repeat: no-repeat;
     opacity: 0.35;
-    filter: blur(5px);
+    filter: blur(4px) brightness(1.1);
+  }
+
+  /* 调整按钮在手机右下角但留白 */
+  .music-player {
+    right: 20px;
+    bottom: 110px;
+  }
+
+  #loveNavigationButton {
+    right: 20px;
+    bottom: 40px;
+  }
+
+  #playButton,
+  #loveNavigationButton {
+    width: 130px;
+    height: 45px;
+    font-size: 0.95rem;
   }
 }
 
@@ -381,6 +403,4 @@ setInterval(showNextText, 5000);
   </script>
   
 </body> 
-
-
 </html>   
