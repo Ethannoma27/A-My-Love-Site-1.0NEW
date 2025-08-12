@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Unconditional Love</title>
+  
+  <style>
+   /* ====== 导入字体 ====== */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Noto+Serif+SC&display=swap');
+
+/* ====== 重置和基础样式 ====== */
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+body, html {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Noto Serif SC', serif;
+  background: linear-gradient(135deg, #ffe6f0 0%, #fff7fb 100%);
+  color: #6b4c57;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+/* ====== 星空效果 ====== */
+.stars {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0; left: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.star {
+  position: absolute;
+  background: #ff85a2;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation-name: twinkle;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.9; }
+}
+
+/* ====== 主内容容器 ====== */
+main {
+  position: relative;
+  z-index: 10;
+  padding: 2.5rem 3rem;
+  border-radius: 20px;
+  max-width: 650px;
+  text-align: center;
+  user-select: none;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 24px rgba(255, 133, 162, 0.25);
+}
+
+/* 背景模糊层 */
+.rose-bg-blur {
+  position: absolute;
+  inset: 0;
+  background: url('images/flower.jpg') center center / cover no-repeat;
+  filter: blur(3px) brightness(1.1);   /* 减少模糊 + 增亮一点 */
+  opacity: 0.5;                        /* 增强可见度 */
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 20px;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 200px !important;
+  min-height: 200px !important;
+  background-color: transparent;
+}
+
+
+/* 文字容器 */
+#textDisplay {
+  font-size: 1.6rem;
+  font-style: italic;
+  color: #ff6680;
+  text-shadow: 0 0 5px #ff9cb2;
+  max-width: 600px;
+  min-height: 2.2em;
+  margin: 1rem auto 0;
+  padding-left: 2rem; 
+  overflow-wrap: break-word;
+  opacity: 1;
+  transition: opacity 1s ease;
+  user-select: none;
+}
+
+/* 标题 */
+h1 {
+  position: relative;
+  z-index: 2;
+  font-family: 'Dancing Script', cursive;
+  font-size: 4rem;
+  color: #ff5273;
+  text-shadow:
+    0 0 6px #ff5273,
+    0 0 15px #ff6f8e,
+    0 0 25px #ff8a9f;
+  animation: floatBreathe 6s ease-in-out infinite;
+}
+
+/* 副标题 */
+h2 {
+  position: relative;
+  z-index: 2;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.5rem;
+  font-style: italic;
+  color: #d9738c;
+  margin-bottom: 2.5rem;
+  text-shadow: 0 0 3px #f7b2bc;
+}
+
+p {
+  position: relative;
+  z-index: 2;
+  font-size: 1.4rem;
+  line-height: 2;
+  margin-bottom: 1.4rem;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  animation: fadeInUp 2s forwards;
+  text-shadow:
+    0 0 8px #ff8aa580,
+    0 0 12px #ff9cbf75;
+}
+
+.date {
+  position: relative;
+  z-index: 2;
+  margin-top: 25rem;
+
+  margin-left: -10rem; 
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ff8aa9;
+  text-shadow: 0 0 10px #ff9db2;
+}
+
+/* 动画 */
+@keyframes floatBreathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 音乐播放器 */
+.music-player {
+  position: fixed;
+  right: 150px;
+  bottom: 135px;
+  z-index: 20;
+}
+
+#playButton {
+  background: transparent;
+  border: 2px solid #ff99aa;        /* 更实粉色边框 */
+  color: #ff6f8c;                   /* 字体稍浓一些 */
+  width: 150px;
+  height: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(255, 119, 149, 0.5); /* 稍重一点点阴影 */
+  transition: all 0.3s ease;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#playButton:hover {
+  background: #ffb6c1;                            /* hover 背景更实在 */
+  color: white;
+  box-shadow: 0 0 25px rgba(255, 119, 149, 0.8);   /* hover 阴影更显眼 */
+}
+
+/* 爱的导航按钮 */
+#loveNavigationButton {
+  position: fixed;
+  right: 150px;
+  bottom: 70px;
+  background: transparent;
+  border: 2px solid #ff99aa;
+  color: #ff6f8c;
+  width: 150px;
+  height: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(255, 119, 149, 0.5);
+  transition: all 0.3s ease;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#loveNavigationButton:hover {
+  background: #ffb6c1;
+  color: white;
+  box-shadow: 0 0 25px rgba(255, 119, 149, 0.8);
+}
+
+
+/* 手机适配 */
+@media (max-width: 480px) {
+  main {
+    padding: 1.8rem 2rem;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  h1 {
+    font-size: 3rem;
+    font-family: "PingFang SC", "Heiti SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1.8rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .rose-bg-blur {
+    background-image: url('images/flower_mobile.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0.35;
+    filter: blur(5px);
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- 星空层 -->
+  <div class="stars"></div>
+
+  <!-- 背景模糊层 -->
+  <div class="rose-bg-blur"></div>
+
+  <!-- 主内容 -->
+     <h1>Beautiful</h1> 
+    <div class="text-fade" id="textDisplay"></div> 
+    <div class="date">2025年8月12日</div>
+  </main>
+
+  <!-- 音乐播放器 -->
+  <div class="music-player">
+    <button id="playButton" aria-label="播放浪漫音乐">Divinelove ♫</button>
+    <audio id="myAudio" preload="none" loop>
+      <source src="MP3/Divinelove.mp3" type="audio/mp3" />
+      您的浏览器不支持音频播放。
+    </audio>
+  </div>
+
+  <!-- 爱的导航按钮 -->
+  <button id="loveNavigationButton" title="回到爱">Back to love</button>
+
+  <!-- 脚本：播放音乐逻辑 -->
+  <script>
+    const playButton = document.getElementById('playButton');
+    const audio = document.getElementById('myAudio');
+
+    function playAudio() {
+      if (audio.paused) {
+        audio.currentTime = 21;
+        audio.play().then(() => {
+          playButton.textContent = 'Divinelove ♫';
+        }).catch((err) => {
+          alert('无法播放音乐，请确保已点击允许播放音频。');
+          console.error('播放失败：', err);
+        });
+     } 
+    }
+
+    // 绑定事件：支持 iOS、Android 和桌面
+    playButton.addEventListener('click', playAudio);
+    playButton.addEventListener('touchend', playAudio); 
+
+const texts = [
+    "最近给你发了表白，",
+
+    "没想到早上醒来 ",
+    "看见你悄悄上线的那一刻， ", 
+    "心好像有一点点 开花了 哈哈", 
+    "感觉就像宇宙给我送来今日份小惊喜~",
+    "喜欢和你轻盈联结的 心流 HeartFlow，", 
+    "然后 就莫名的想听，你笑起来真好看，", 
+
+    "喜欢这样与你相处的松弛感", 
+    "和你在一起，每一刻都特别幸运",
+    "爱你，就是这么简单又美好" 
+];
+const display = document.getElementById('textDisplay');
+let index = 0;
+
+// 创建一个隐藏元素，用于测量文本宽度
+const measurer = document.createElement('span');
+measurer.style.visibility = 'hidden';
+measurer.style.whiteSpace = 'nowrap';
+measurer.style.position = 'absolute';
+measurer.style.fontSize = getComputedStyle(display).fontSize;
+measurer.style.fontFamily = getComputedStyle(display).fontFamily;
+document.body.appendChild(measurer);
+
+// 计算最长文本宽度，设置容器宽度固定
+let maxWidth = 0;
+texts.forEach(text => {
+  measurer.textContent = text;
+  const width = measurer.getBoundingClientRect().width;
+  if (width > maxWidth) maxWidth = width;
+});
+display.style.width = Math.ceil(maxWidth) + 'px';
+
+measurer.remove();
+
+function showNextText() {
+  display.style.opacity = 0; // 渐隐
+
+  setTimeout(() => {
+    display.textContent = texts[index];
+    display.style.opacity = 1; // 渐显
+    index = (index + 1) % texts.length;
+  }, 1000);
+}
+showNextText();
+setInterval(showNextText, 5000); 
+
+    // ====== 生成星星 ======
+    const starsContainer = document.querySelector('.stars');
+    const numberOfStars = 150;
+    for(let i = 0; i < numberOfStars; i++){
+      const star = document.createElement('span');
+      star.classList.add('star');
+      const size = Math.random() * 2 + 1;
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.top = `${Math.random() * 100}vh`;
+      star.style.left = `${Math.random() * 100}vw`;
+      star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+      star.style.animationDelay = `${Math.random() * 5}s`;
+      starsContainer.appendChild(star);
+    }
+    // ====== 爱的导航按钮跳转 ======
+    document.getElementById('loveNavigationButton').addEventListener('click', () => {
+      window.location.href = 'https://www.120525.world/Eternal/8.12Divinelove/'; // 替换为你的链接
+    });
+  </script>
+  
+</body> 
+
+
+</html>   
