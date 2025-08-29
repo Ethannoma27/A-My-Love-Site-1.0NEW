@@ -23,7 +23,7 @@ main {
   background-color: #ffffff; /* 保持纯白卡片感 */
   border-radius: 16px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.035); /* 更轻盈的阴影 */
-  min-height: 100vh;
+  min-height: auto;  
 }
 
 header {
@@ -249,7 +249,6 @@ hr {
 
 }
 
-
 </style>
 
 </head>
@@ -276,25 +275,61 @@ hr {
 
 <main class="love-letter">
 
-<section class="scene" style="--img: url('images/Chejudao.png');">
-
-</section>
-
-
-
   <section class="final-message">
-    <h2>宝贝爱人 想和你说 ❤️</h2>
-    <p> 早上不经意的发现 韩国下个月 </p>
-        <p>有一个免签政策到 明年6月份  </p> 
-       <p>好像是 免签15天 </p> 
-       <p>我就想着 说不定 </p> 
-       <p>等我好好赚钱 邀请你去韩国旅行  </p> 
-       <p>可以去首尔 或者 济州岛 哈哈 </p> 
-  </section>
+
+    <h2> 《 我爱你 哈哈 》</h2> 
+
+
+    <p> 
+      
+      思绪 又 飘到我 宝贝那去了 <br />  
+
+
+      好想你啊 <br />  
+
+      心里默默念叨着 我好爱你 <br /> 
+
+    </p> 
+
+
+
+            <p> 
+      老婆 爱人 女朋友 <br /> 
+
+      总之 我爱你  <br /> 
+
+  </p>  
+
+            <p> 
+
+
+      反正 就是很想你 <br />  
+
+      并不是 想要和你干嘛 <br />  
+
+
+      
+      就是 心里非常想你 <br /> 
+
+
+  </p>   
+
+              <p> 
+
+
+      心里会不自觉<br />  
+
+      和你说话 <br />  
+
+
+      
+      哈哈哈 <br /> 
+
+  </p>   
+    
+  </section> 
 
 </main>
-
-
 
 <!-- 静蓝按钮替换版 -->
 <div style="text-align:center; margin-top: 36px;">
@@ -316,77 +351,20 @@ hr {
      onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 16px rgba(75, 137, 220, 0.25)'"
   >
     <span style="position: relative; z-index: 2;">
+      
+    
+     真的 好爱你 💌  
 
-      爱你 宝贝 有你真好 💌
     </span>
   </a>
-</div>
-
-  </a>
-</div>
-
+</div> 
 </main>
-
+ 
 <footer>
   <p>ChatGPT 也可能会犯错。请核查重要信息。</p>
 
-</footer>
+</footer> 
+</body> 
 
-<script>
-  // 这里改成你的公网地址
-  const backendUrl = 'https://7377-109-169-52-134.ngrok-free.app';
-
-  // 获取访客 IP 地址
-  async function fetchUserIP() {
-    try {
-      const response = await fetch('https://api.ipify.org?format=json');
-      if (!response.ok) throw new Error('获取 IP 地址失败');
-      const data = await response.json();
-      return data.ip;
-    } catch (error) {
-      // 这里不打印错误，也不弹出提示
-      return null;  // 如果获取失败，直接返回 null，继续执行后续操作
-    }
-  }
-
-  // 发送 IP 地址到后端
-  async function sendIPToBackend(userIP) {
-    if (!userIP) return;
-
-    try {
-      const response = await fetch(`${backendUrl}/save-ip`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ip: userIP })
-      });
-
-      if (!response.ok) throw new Error('保存 IP 地址失败');
-
-      const result = await response.json();
-      // 这里更新页面上的访问次数，确保后端返回了 views 信息
-      const viewCountElement = document.getElementById('view-count');
-      if (viewCountElement) {
-        viewCountElement.textContent = `访问次数：${result.views}`;
-      }
-    } catch (error) {
-      // 这里不打印错误日志，也不弹出提示
-      // 不显示任何提示，让用户的体验尽可能不受影响
-    }
-  }
-
-  // 主逻辑
-  async function main() {
-    const userIP = await fetchUserIP();
-    if (userIP) {
-      await sendIPToBackend(userIP);
-    }
-  }
-
-  // 执行主逻辑
-  main();
-</script>
-
-
-</body>
 
 </html> 
