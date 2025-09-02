@@ -280,6 +280,42 @@
     100% { transform: translateY(-100vh); opacity: 0; }
   }
 
+  @media screen and (max-width: 480px) {
+  body {
+    font-family: 'Dancing Script', cursive, sans-serif;
+    padding: 1rem;
+    font-size: 16px;
+    background-size: cover;
+  }
+
+  .content {
+    padding: 1rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  h1 {
+    display: none;
+  }
+
+  p {
+    font-family: 'Dancing Script', cursive, sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 90vw;
+    padding: 0 0.5rem;
+    white-space: normal;
+    color: #f8f8f8;
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+  }
+}
+
 
   </style>
 </head>
@@ -308,19 +344,22 @@
 
     每次和你重逢 那么开心 <br>  
 
-    昨天我想 爱你 或许就像宿命 <br>  
+    昨天我想 爱你 就像宿命的牵引 <br>  
 
-    没有预设 只是还爱着 <br>  
+    没有预设 因为爱像锚定感的安心 <br>  
 
-    我希望你 自由 我也一样 <br>   
+    爱是 因为内心所向 与 自由<br>   
 
-    我不是只是提供爱和情绪价值 <br>   
+    爱不是提供爱的证明和情绪价值 <br>   
 
-    希望你更加轻松 更加自由 <br>   
+    更让彼此更加轻松 更加自由 <br>   
 
-    不强求你做怎样的选择 <br>   
+    不强求 我们未来的选择 <br>   
 
-    我爱你不是限制 也不是控制 是为了自由 <br>   
+    我爱你不是限制 也不是控制 因为爱就是爱本身<br>  
+
+
+
 </p>
 
 
@@ -341,7 +380,7 @@
 <!-- 弹窗 -->
 <div id="miniPopup" class="mini-popup" style="display:none;">
   <div class="mini-popup-content">
-    <p>我们都要更加快乐 <br>要活的更加自由  <br> 
+    <p>爱 就像无尽的探索 <br> 联结着 好奇 和 自由 <br> 
       <span class="pink-text">Baby</span> 💕  
     </p>
   </div>
@@ -461,10 +500,8 @@ loveButton.addEventListener('animationend', () => {
 
 </script>
 
-
-
 </body>
 
 
 
-</html>   
+</html>    
