@@ -471,7 +471,11 @@ miniPopup.addEventListener('transitionend', (e) => {
     miniPopup.style.display = 'none';
     console.log('弹窗已隐藏');
   }
-});
+}); 
+
+    // ✅ 加这里：跳转
+    window.location.href = 'https://www.120525.world/Eternal/9.7ILoveu/';  // <-- 改成你的 URL 
+
 
 // loveButton 点击显示弹窗，5秒后开始渐隐消失（只用一个定时器）
 loveButton.addEventListener('click', () => {
@@ -496,11 +500,7 @@ loveButton.addEventListener('animationend', () => {
   loveButton.classList.remove('click-effect');
 });
 
-
 </script>
 
-</body>
-
-
-
+</body> 
 </html>    
