@@ -59,34 +59,18 @@
       padding-bottom: 8px;
   
     } 
-         /* 叙事概括部分 */
-.narrative-summary {
-  background-color: #f7faff;  /* 非常浅的蓝色，显得更淡雅 */
-  padding: 30px;
-  border-radius: 12px;
-  margin-bottom: 40px;
-  font-size: 1.3rem;
-  color: #3a5c88; 
-  text-align: left;  /* 文字左对齐，避免时间戳影响文字 */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  position: relative;  /* 让时间戳相对这个区域定位 */
-}
 
-
-/* 特定段落字体变小 */
-.small-text {
-  font-size: 1rem;  /* 将这个段落的字体设置得小一些 */
-} 
-
-/* 时间戳样式 */
-#timestamp {
-  font-size: 0.9rem;  /* 字体小一些 */
-  color: #6d7b88;  /* 字体颜色稍浅，避免冲突 */
-  position: absolute;  /* 相对于 .narrative-summary 定位 */
-  right: 15px;  /* 距离右边的距离 */
-  bottom: 5px;  /* 增加底部距离，稍微下移时间戳 */ 
-}
-
+      /* 叙事概括部分 */
+    .narrative-summary {
+      background-color: #f7faff;  /* 非常浅的蓝色，显得更淡雅 */
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      font-size: 1.3rem;
+      color: #3a5c88; 
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
 
     /* 时间轴容器 */
     .timeline-container {
@@ -118,8 +102,8 @@
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* 更浅的阴影 */
   width: 80%;
-  font-size: 1rem;  /* 将这个段落的字体设置得小一些 */ 
-  color: #3a5c88; /* 更低调的文字颜色 */
+  font-size: 1.1rem;
+  color: #6b7c8a; /* 更低调的文字颜色 */
   transition: all 0.3s ease;
   border: 1px solid #f0f0f0; /* 增加微妙的边框线 */
 }
@@ -142,27 +126,7 @@
   position: absolute;
   left: -18px;
    top: 5px;  /* 圆点继续向上移动 */ 
-} 
-
-
-
-button {
-  padding: 10px 20px;
-  margin: 10px 0;
-  font-size: 16px;
-  background-color: #9b59b6;  /* 紫色 */
-  color: white;
-  border: none;
-  border-radius: 30px; /* 圆角效果 */
-  cursor: pointer;
-  transition: all 0.3s ease;
 }
-
-button:hover {
-  background-color: #8e44ad;  /* 紫色稍深 */
-  transform: scale(1.05); /* 放大效果 */
-}
-
 
     footer {
       text-align: center;
@@ -222,18 +186,13 @@ button:hover {
 
   <main> 
 
-<!-- 叙事概括部分 --> 
-<div class="narrative-summary">
-  <p>写给自己，也写给我的爱人</p>
-  <p class="small-text">我和我的爱人也算是因文字而结缘，都喜欢阅读，我从小就热爱文字的表达，我的宝贝爱人总是希望被看见被懂得哈哈，喜欢与爱人的共鸣而喜悦的每天 </p>
-  <p class="small-text">我喜欢和你的爱与成长，对世界的探索和感悟，超越时间和空间的陪伴，和你说不够的话，和朋友聊了太多太多与你的故事，因为这不是我一个人的痴情，哈哈 </p>
-  <p class="small-text">我们都在做着自己，有自己独立自由运行的行星轨迹，有彼此独立完整的自己，不因依附对方才完整，但是两颗星球的爱，又有互相的引力，哈哈哈</p>
-  <p id="timestamp">更新: </p> 
-</div>
+ <!-- 叙事概括部分 -->
+    <div class="narrative-summary">
+      <p>写给自己，也写给我的爱人</p>
 
+      <p>今天 很想 慢慢 把我们故事 写出来 在我的记忆中的 </p> 
 
-  <!-- 用于更新时间戳或清除时间戳的按钮 -->
-  <button id="timestamp-button">更新时间戳</button> 
+    </div>  
 
         <!-- 章节标题 -->
     <div class="chapter-title">
@@ -327,13 +286,15 @@ button:hover {
       </div>   
 
 
+
     </main> 
  
 
 
+
 <!-- 静蓝按钮替换版 -->
 <div style="text-align:center; margin-top: 36px;">
-  <a href="https://www.120525.world/Eternal/9.30ILoveu/" target="_blank"  
+  <a href="" target="_blank"  
      style="
        display: inline-block;
        padding: 16px 32px;
@@ -354,7 +315,9 @@ button:hover {
 
       
       
-       
+      
+      
+      
     还会 慢慢 写的哦 💌  
       
     </span> 
@@ -364,43 +327,6 @@ button:hover {
 </main>
 <footer>
   <p>ChatGPT 也可能会犯错。请核查重要信息。</p>
-</footer> 
-
-
-<script>
-  // 获取当前时间，格式：2025年10月1日 12:15 
-  function getCurrentTime() {
-    const now = new Date();
-    const year = now.getFullYear();  // 年
-    const month = String(now.getMonth() + 1);  // 月（不需要补零）
-    const day = String(now.getDate());  // 日（不需要补零）
-    const hours = String(now.getHours()).padStart(2, '0');  // 小时，始终保证两位
-    const minutes = String(now.getMinutes()).padStart(2, '0');  // 分钟，始终保证两位
-    return `${year}年${month}月${day}日 ${hours}:${minutes}`;  // 格式：2025年10月1日 12:15
-  }
-
-  // 将当前时间存储到 localStorage 并更新到页面
-  function updateTimestamp() {
-    const currentTime = getCurrentTime();
-    localStorage.setItem('timestamp', currentTime);  // 存储时间戳
-    document.getElementById('timestamp').textContent = `更新: ${currentTime}`;  // 更新页面显示
-  }
-
-  // 页面加载时，初始化时间，若有存储时间则显示
-  window.onload = function() {
-    const storedTimestamp = localStorage.getItem('timestamp');
-    if (storedTimestamp) {
-      // 如果有存储时间戳，则显示存储的时间
-      document.getElementById('timestamp').textContent = `更新: ${storedTimestamp}`;
-    } else {
-      // 如果没有存储时间戳，显示当前时间
-      updateTimestamp();
-    }
-  };
-
-  // 按钮点击事件，更新时间戳
-  document.getElementById('timestamp-button').addEventListener('click', updateTimestamp);
-</script>
-
+</footer>
 </body>
-</html>     
+</html>      
