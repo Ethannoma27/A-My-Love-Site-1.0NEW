@@ -225,57 +225,15 @@ button:hover {
 <!-- 叙事概括部分 --> 
 <div class="narrative-summary">
   <p>写给自己，也写给我的爱人</p>
-<p class="small-text">亲爱的，</p>
+  <p class="small-text">我和我的爱人也算是因文字而结缘，都喜欢阅读，我从小就热爱文字的表达，我的宝贝爱人总是希望被看见被懂得哈哈，喜欢与爱人的共鸣而喜悦的每天 </p>
+  <p class="small-text">我喜欢和你的爱与成长，对世界的探索和感悟，超越时间和空间的陪伴，和你说不够的话，和朋友聊了太多太多与你的故事，因为这不是我一个人的痴情，哈哈 </p>
+  <p class="small-text">我们都在做着自己，有自己独立自由运行的行星轨迹，有彼此独立完整的自己，不因依附对方才完整，但是两颗星球的爱，又有互相的引力，哈哈哈</p>
+  <p id="timestamp">更新: </p> 
+</div>
 
-<p class="small-text">最近我发现，<br>
-我真的很喜欢那种，和你在一起时最单纯的感觉。</p>
 
-<p class="small-text">没有目的，也不扮演角色，<br> 
-
-只是心贴着心地靠近，<br>
-那份轻盈、自在，真好。</p>
-
-<p class="small-text">我爱你，不是因为你是谁、成为什么人，<br>
-而是因为你就是你，<br>
-那个真实的、自然的、会笑会闹、率真又自由的你。</p> 
-
-<p class="small-text">我们聊天的时候，<br> 
-我们不需要伪装、不需要思考太多，<br>
-
-只是简单的联结感，已经感觉到很美好的爱的流动，</p> 
-
-<p class="small-text">我记得那些简单的日子：<br>
-吃完饭去下十围散步，<br>
-放飞机，我背着你像单纯的孩子一样笑得那么开心 ——<br>
-
-现在想到你也觉得很幸福，<br> 
-去年11月见面，你跟我说我们还会有很多新的回忆，<br> 
-</p> 
-
-<p class="small-text">原来幸福的真谛，<br>
-从来都不是欲望和物质，<br> 
-而是与你并肩时，那份轻松和快乐。</p>
-
-<p class="small-text">其实我也懂浪漫、懂仪式感，<br>
-但我更希望，它们不是责任或任务，<br>
-而是我们发自内心的表达，<br>
-是我们想给彼此的小心思、小温柔，<br>
-你的青春，你的美，在我的心里，在我的眼里，<br> 
-真好 </p>  
-
-<p class="small-text">我只希望我们一直都可以这样：<br>
-做最真实、最舒服的自己，<br>
-不需要扮演谁，也不需要证明什么。</p>
-
-<p class="small-text">你在，我也在，<br> 
-这就已经很足够了。</p>
-
-<p class="small-text">爱你 </p> 
-
-<p id="timestamp"> 2025年10月5日 12:56</p> 
-
-</div> 
-
+  <!-- 用于更新时间戳或清除时间戳的按钮 -->
+  <button id="timestamp-button">更新时间戳</button> 
 
         <!-- 章节标题 -->
     <div class="chapter-title">
@@ -367,11 +325,13 @@ button:hover {
           <p>我觉得我女朋友很喜欢在我们的记忆播种很多的养分，这些回忆都很珍贵，其实我胆子有点小的哈哈，和她在一起才能壮胆子去欢乐谷过万圣节</p>
         </div>
       </div>   
+
+
     </main> 
  
 
-<!-- 静蓝按钮替换版 -->
 
+<!-- 静蓝按钮替换版 -->
 <div style="text-align:center; margin-top: 36px;">
   <a href="https://www.120525.world/Eternal/9.30ILoveu/" target="_blank"  
      style="
@@ -391,16 +351,56 @@ button:hover {
      onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 16px rgba(75, 137, 220, 0.25)'"
   >
     <span style="position: relative; z-index: 2;"> 
-           
-   我喜欢和你一起书写 我们人生的美好 💌  
+
+      
+      
+       
+    还会 慢慢 写的哦 💌  
       
     </span> 
   </a>
 </div>
+
 </main>
 <footer>
   <p>ChatGPT 也可能会犯错。请核查重要信息。</p>
 </footer> 
+
+
+<script>
+  // 获取当前时间，格式：2025年10月1日 12:15 
+  function getCurrentTime() {
+    const now = new Date();
+    const year = now.getFullYear();  // 年
+    const month = String(now.getMonth() + 1);  // 月（不需要补零）
+    const day = String(now.getDate());  // 日（不需要补零）
+    const hours = String(now.getHours()).padStart(2, '0');  // 小时，始终保证两位
+    const minutes = String(now.getMinutes()).padStart(2, '0');  // 分钟，始终保证两位
+    return `${year}年${month}月${day}日 ${hours}:${minutes}`;  // 格式：2025年10月1日 12:15
+  }
+
+  // 将当前时间存储到 localStorage 并更新到页面
+  function updateTimestamp() {
+    const currentTime = getCurrentTime();
+    localStorage.setItem('timestamp', currentTime);  // 存储时间戳
+    document.getElementById('timestamp').textContent = `更新: ${currentTime}`;  // 更新页面显示
+  }
+
+  // 页面加载时，初始化时间，若有存储时间则显示
+  window.onload = function() {
+    const storedTimestamp = localStorage.getItem('timestamp');
+    if (storedTimestamp) {
+      // 如果有存储时间戳，则显示存储的时间
+      document.getElementById('timestamp').textContent = `更新: ${storedTimestamp}`;
+    } else {
+      // 如果没有存储时间戳，显示当前时间
+      updateTimestamp();
+    }
+  };
+
+  // 按钮点击事件，更新时间戳
+  document.getElementById('timestamp-button').addEventListener('click', updateTimestamp);
+</script>
 
 </body>
 </html>     
