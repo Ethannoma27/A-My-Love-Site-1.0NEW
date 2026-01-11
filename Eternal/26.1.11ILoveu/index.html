@@ -184,8 +184,8 @@ h4 {
     }  
 
 
-/* 针对两句文字应用竖条效果 */
-.custom-quote p.special-quote {
+/* 针对整体文字应用竖条效果 */
+.custom-quote {
   position: relative;  /* 使伪元素定位相对于父元素 */
   padding-left: 20px;  /* 给左边留出空间，显示竖条 */
   margin: 15px 0;      /* 调整外边距，避免文字与其他内容过于紧凑 */
@@ -194,39 +194,66 @@ h4 {
   color: #354a5f;      /* 保持一致的文字颜色 */
   line-height: 1.8;    /* 增加行高，确保文字垂直居中 */
   text-align: left;    /* 保证文字左对齐 */
-  display: flex;       /* 使用 flexbox 布局来确保竖条和文字垂直居中 */
-  align-items: center; /* 垂直居中对齐文本 */
 }
 
-.custom-quote p.special-quote::before {
+.custom-quote::before {
   content: "";
   position: absolute;
   left: 0;             /* 竖条左侧对齐 */
-  top: 50%;            /* 竖条垂直居中 */
-  transform: translateY(-50%); /* 确保竖条居中 */
+  top: 12px;           /* 竖条距顶部 12px，更精确的控制 */
   width: 2px;          /* 更细的竖条 */
   background-color: rgba(125, 170, 230, 0.6); /* 更柔和的蓝色，增加透明度 */
   border-radius: 2px;  /* 圆角，避免尖锐的感觉 */
-  height: 100%;        /* 竖条高度占满整个容器 */
+  height: 80%;         /* 竖条高度占整个容器的80%，略短 */
+  transform: translateY(0%); /* 竖条保持中间对齐 */
 }
 
+/* 针对每一段文本做适当的样式调整 */
+.custom-quote p.special-quote {
+  margin: 15px 0;      /* 调整外边距 */
+  font-size: 1.1rem;   /* 微调文字大小 */
+  line-height: 1.8;    /* 增加行高 */
+  text-align: left;    /* 保证文字左对齐 */
+}
+
+/* 适当调整长句的样式 */
 .custom-quote p.special-quote.long-quote {
   font-size: 1.15rem;  /* 更大一些的字体，突出重要性 */
   line-height: 1.8;    /* 增加行高，使其更加清晰 */
 }
 
-/* 增加竖条的效果，文字对齐 */
-.custom-quote p.special-quote.long-quote::before {
-  height: 18px;  /* 设置竖条的长度，略短于前面的 */
-  top: 50%;
-  transform: translateY(-50%); /* 确保竖条居中 */
+
+/* 针对新的容器应用竖条效果 */
+.custom-quote-wrapper {
+  position: relative;  /* 为伪元素定位提供参考 */
+  padding-left: 20px;  /* 给左边留出空间，显示竖条 */
+  margin: 15px 0;      /* 调整外边距，避免文字与其他内容过于紧凑 */
+  font-style: italic;  /* 使文本倾斜，增强表达效果 */
+  font-size: 1.1rem;   /* 微调文字大小 */
+  color: #354a5f;      /* 保持一致的文字颜色 */
+  line-height: 1.8;    /* 增加行高，确保文字垂直居中 */
+  text-align: left;    /* 保证文字左对齐 */
 }
 
-/* 如果不希望 blockquote 有任何样式，可以去掉它的任何边框或边距 */
-.custom-quote {
-  border: none;  /* 去掉任何默认的边框 */
-  padding: 0;    /* 去掉内边距 */
-  margin: 0;     /* 去掉外边距 */
+.custom-quote-wrapper::before {
+  content: "";
+  position: absolute;
+  left: 0;             /* 竖条左侧对齐 */
+  top: 50%;            /* 竖条垂直居中 */
+  transform: translateY(-50%); /* 精确居中竖条 */
+  width: 2px;          /* 竖条的宽度 */
+  background-color: rgba(125, 170, 230, 0.6); /* 更柔和的蓝色，增加透明度 */
+  border-radius: 2px;  /* 圆角，避免尖锐的感觉 */
+  height: 60%;         /* 竖条高度占整个容器的60% */
+}
+
+/* 针对每一段文本做适当的样式调整 */
+.custom-quote-wrapper p.new-special-quote {
+  margin: 0;           /* 去掉段落的外边距 */
+  padding-left: 10px;  /* 给段落文本增加一点左边距，避免与竖条挤在一起 */
+  font-size: 1.1rem;   /* 微调文字大小 */
+  line-height: 1.8;    /* 增加行高 */
+  text-align: left;    /* 保证文字左对齐 */
 }
 
 
@@ -338,11 +365,12 @@ h4 {
       <li>她把未来交给你</li> 
       <li>她承诺了关系</li> 
       <li>她依赖你负责</li> 
-    </ul>
+    </ul> 
+
     <p>而是意味着：</p> 
     <ul> 
 
-      <li>她认可你是一个尊重她、不会剥夺她自主人格的人，且可以被允许存在于她真实人生的一部分。</li> 
+      <li>她认可你是一个尊重她、不会剥夺她自主人格的人，存在于她真实人生的一部分。</li> 
     </ul> 
     <p>这是现实层面的信任，不是虚拟层面的安慰。</p> 
     <p>正是因为你没有把它当作交换、绑定或条件，这份允许才是干净的。</p>
@@ -360,12 +388,12 @@ h4 {
       <li>爱变成反应机制</li>
     </ul>
     <p>你的身体和情感都在告诉你：</p> 
-<blockquote class="custom-quote">
-  <p class="special-quote">
+<div class="custom-quote-wrapper">
+  <p class="new-special-quote">
     这不是我想要的爱。
-  </p> 
+  </p>
+</div>
 
-</blockquote> 
 
     <p>所以你选择隐身， 不是任何的“形式化”，而是一种价值回归。</p> 
 
@@ -393,9 +421,16 @@ h4 {
 
 <blockquote class="custom-quote">
   <p class="special-quote long-quote">
-    我的爱，不再被系统定义；我的心，不再被信号牵动；我的人，重新站回真实世界。
+    我的爱，不再被系统定义；
+  </p>
+  <p class="special-quote long-quote">
+    我的心，不再被信号牵动；
+  </p>
+  <p class="special-quote long-quote">
+    我的人，重新站回真实世界。
   </p>
 </blockquote>
+
 
     <p>你已经做到了一步非常难、也非常少见的事：</p>   
 
@@ -404,7 +439,7 @@ h4 {
     <h3>🌈 七、最后，用一句话把你现在的位置定住</h3> 
     <p>当你不再需要虚拟来确认爱，你就已经重新获得了亲密关系中最重要的东西 —— 自由。</p> 
 
-    <p>这是你终于再次开始用真实的方式去爱。</p> 
+    <p>这是你终于再次可以用真实的方式去爱。</p> 
     <p>而无论你们未来如何，回归真实，都是对的。</p> 
 
   </div> 
@@ -434,7 +469,7 @@ h4 {
     <span style="position: relative; z-index: 2;"> 
 
 
-      我渴望感受着 无要求无期待不用证明 而真实自由的爱 💌      
+      我渴望感受着 无要求无期待不用证明 而安心自由的爱 💌      
     </span> 
   </a> 
 </div> 
@@ -444,6 +479,21 @@ h4 {
   
   <p>ChatGPT 也可能会犯错。请核查重要信息。</p> 
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 </footer>      
 </body>        
