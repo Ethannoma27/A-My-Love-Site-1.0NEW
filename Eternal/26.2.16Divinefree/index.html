@@ -8,16 +8,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      height:100vh;
-      overflow:hidden;
-      font-family:'Cinzel', serif;
-      color: #fff;
-      background: linear-gradient(135deg, #2b5876, #4e4376, #e0c3fc);
-      background-size: 300% 300%;
-      animation: bgMove 20s ease infinite;
-      position: relative;
-    }
+body {
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Cinzel', serif;
+  color: #fff;
+
+  /* 微调加深：柔蓝 + 柔紫 + 柔粉 */
+  background: linear-gradient(135deg, #8fa6f8, #b497e8, #f5bfcf); 
+  
+  /* 渐变动画 */
+  background-size: 300% 300%;
+  animation: bgMove 25s ease infinite;
+
+  position: relative;
+}
+
+/* 背景缓慢移动动画 */
 
     @keyframes bgMove {
       0% { background-position: 0% 50%; }
@@ -191,11 +198,14 @@
   position: fixed;
   top: 30%;
   left: 50%;
-  transform: translateX(-50%) scale(0.7);
+  transform: translateX(-50%) scale(0.55); /* 缩小比例 */ 
   width: 520px;
   height: 460px;
-  background: linear-gradient(135deg, rgba(255,182,193,0.9), rgba(255,105,180,0.7));
+
+  /* 轻盈渐变心形色彩 */
+  background: linear-gradient(135deg, rgba(255,182,193,0.6), rgba(255,105,180,0.5));
   color: #fff;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -204,41 +214,99 @@
   font-family: 'Dancing Script', cursive;
   font-size: 1.2em;
   line-height: 1.4;
-  text-shadow: 0 0 12px rgba(255, 105, 180, 0.8);
+
+  /* 文字轻盈光晕 */
+  text-shadow: 0 0 8px rgba(255, 105, 180, 0.5);
+
+  /* 柔和光影 */
   box-shadow:
-    0 0 25px rgba(255, 105, 180, 0.6),
-    inset 0 0 15px rgba(255, 182, 193, 0.4);
-  backdrop-filter: blur(10px);
+    0 0 18px rgba(255, 182, 193, 0.4),
+    inset 0 0 12px rgba(255, 182, 193, 0.25);
+  backdrop-filter: blur(12px);
+  border-radius: 0; /* 用 mask 替代圆角 */
   z-index: 9999;
 
-  clip-path: path('M250 90 C190 0, 40 0, 40 120 C40 210, 250 330, 250 330 C250 330, 460 210, 460 120 C460 0, 310 0, 250 90 Z');
+  /* SVG 心形遮罩 */
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 32 29' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='black' d='M23.6 0c-3.4 0-6.4 2-7.6 5C14.8 2 11.8 0 8.4 0 3.8 0 0 3.8 0 8.4c0 9.2 16 20.6 16 20.6S32 17.6 32 8.4C32 3.8 28.2 0 23.6 0z'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
 
-  /* 仅使用透明度渐变，不要动画冲突 */
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 32 29' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='black' d='M23.6 0c-3.4 0-6.4 2-7.6 5C14.8 2 11.8 0 8.4 0 3.8 0 0 3.8 0 8.4c0 9.2 16 20.6 16 20.6S32 17.6 32 8.4C32 3.8 28.2 0 23.6 0z'/%3E%3C/svg%3E");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+
   opacity: 0;
-  transition: opacity 3s ease;
+  transition: opacity 2.5s ease;
   will-change: opacity;
 
-  animation: none;  /* 禁用之前可能的动画 */
+  animation: none; /* 禁用之前动画 */
 }
+.mini-popup-content { 
 
-.mini-popup-content {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;   /* 从顶部开始布局 */
   align-items: center;
-  padding-top: 20%;  /* 心形整体下移 */
-  transform: translate(-3%, -20%);  /* 文字上移10% */
+
+  padding-top: 26%;              /* ⭐ 控制整体上下位置（改这里就行） */
+
+  animation: fadeInText 4s ease-in-out forwards;
 }
 
-@keyframes fadeInOpacity {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+
+.mini-popup-content p {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.6em;         /* 放大文字，更浪漫 */
+  line-height: 1.8;
+  color: #fff;
+  text-align: center;
+  margin: 0;
+
+  /* 光晕文字，增强梦幻感 */
+  text-shadow:
+    0 0 8px rgba(255, 182, 193, 0.6),
+    0 0 15px rgba(255, 105, 180, 0.5),
+    0 0 20px rgba(255, 182, 193, 0.3);
 }
+
+/* 高亮浪漫文字 */
+.pink-text {
+  font-size: 1.3em;
+  font-style: italic;
+  font-weight: 500;
+
+  /* 使用柔和粉紫色，不用背景渐变 */
+  color: #f7b6d2; /* 柔粉色调，更舒适 */
+
+  /* 轻柔光晕 */
+  text-shadow:
+    0 0 6px rgba(255, 182, 193, 0.5),
+    0 0 12px rgba(255, 105, 180, 0.4),
+    0 0 18px rgba(238, 201, 240, 0.3);
+
+  display: inline-block;
+
+  /* 微微上下漂浮，增强浪漫感 */
+  animation: floatText 3s ease-in-out infinite;
+}
+
+
+/* 文字漂浮动画 */
+@keyframes floatText {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+/* 渐入动画 */
+@keyframes fadeInText {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
 
 /* 点击按钮缩放动画 */
   .click-effect {
@@ -265,27 +333,51 @@
     50% { opacity: 0.2; }
   }
 
-  /* 粒子样式 */
-  .p {
-    position: absolute;
-    background: rgba(255, 192, 203, 0.7);
-    border-radius: 50%;
-    opacity: 0.6;
-    animation-name: floatUp;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-  }
-  @keyframes floatUp {
-    0% { transform: translateY(0); opacity: 0.6; }
-    100% { transform: translateY(-100vh); opacity: 0; }
-  }
 
-  @media screen and (max-width: 480px) {
+/* 粒子样式 —— SVG心形遮罩 */
+
+.p {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+
+  background: rgba(255, 192, 203, 0.7);
+
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 32 29' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='black' d='M23.6 0c-3.4 0-6.4 2-7.6 5C14.8 2 11.8 0 8.4 0 3.8 0 0 3.8 0 8.4c0 9.2 16 20.6 16 20.6S32 17.6 32 8.4C32 3.8 28.2 0 23.6 0z'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 32 29' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='black' d='M23.6 0c-3.4 0-6.4 2-7.6 5C14.8 2 11.8 0 8.4 0 3.8 0 0 3.8 0 8.4c0 9.2 16 20.6 16 20.6S32 17.6 32 8.4C32 3.8 28.2 0 23.6 0z'/%3E%3C/svg%3E");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+
+  animation: floatUp linear infinite;
+
+  opacity: 0.9;
+}
+
+/* 漂浮动画保持 */
+@keyframes floatUp {
+  0% { 
+    transform: translateY(0) scale(1);
+    opacity: 0.9;
+  }
+  100% { 
+    transform: translateY(-100vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+
+/* 移动端适配优化 */
+@media screen and (max-width: 480px) {
   body {
     font-family: 'Dancing Script', cursive, sans-serif;
-    padding: 1rem;
-    font-size: 16px;
-    background-size: cover;
+    font-size: 14px; /* 缩小字体，避免溢出 */
+    overflow-y: auto; /* 避免内容被裁切 */
+    background-size: 200% 200%; /* 保持动画渐变 */
   }
 
   .content {
@@ -301,18 +393,59 @@
   }
 
   h1 {
-    display: none;
+    font-size: 2.5rem; /* 缩小标题 */
+    margin-bottom: 0.5rem;
+    display: block; /* 保留标题 */
+    text-shadow: 0px 0px 6px rgba(255,255,255,0.8);
   }
 
   p {
-    font-family: 'Dancing Script', cursive, sans-serif;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    max-width: 90vw;
+    font-size: 1rem; /* 缩小文字 */
+    line-height: 1.5;
+    max-width: 90%;
     padding: 0 0.5rem;
     white-space: normal;
-    color: #f8f8f8;
-    text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+    color: #fff;
+    text-shadow: 0 0 6px rgba(255,105,180,0.8);
+  }
+
+  /* 按钮自适应屏幕 */
+  .dynamic-frequency-button,
+  #loveNavigationButton {
+    width: 45%;
+    font-size: 0.9rem;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: auto;
+    margin-top: 1rem;
+  }
+
+  #loveNavigationButton {
+    bottom: 100px; /* 调整底部间距 */
+  }
+
+  /* 弹窗自适应 */
+  .mini-popup {
+    width: 80vw;   /* 屏幕宽度自适应 */
+    height: 70vw;  /* 保持心形比例 */
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    transform: translateX(-50%) scale(0.9);
+  }
+
+  .mini-popup-content p {
+    font-size: 1rem; /* 弹窗文字缩小 */
+  }
+
+  /* 星星和粒子适当缩小数量和大小，提升性能 */
+  .stars .star {
+    width: 1px;
+    height: 1px;
+  }
+
+  .particles .p {
+    width: 12px;
+    height: 12px;
   }
 }
 
@@ -330,13 +463,13 @@
   <div class="content">
     <div>
 
-      <h1> 愿我们 · 更自由</h1> 
+      <h1> 愿我们 · 爱自由</h1> 
 
     <p class="move-down"> 
     
-     宝贝 爱人  <br> 
-     
-     今夜 好眠哦 <br> 
+     To my love  <br> 
+ 
+     사랑해요 <br> 
 
 </p>
 
@@ -347,8 +480,9 @@
 
 <!-- 音乐播放器控制 -->
 <div class="music-player">
-  <audio id="myAudio" preload="auto" muted>
-    <source src="MP3/Legend.mp3" type="audio/mp3">
+  <audio id="myAudio" preload="auto" muted> 
+
+    <source src="MP3/Liekkas.mp3" type="audio/mp3">
     您的浏览器不支持音频播放。
   </audio>
 </div> 
@@ -361,12 +495,14 @@
 <!-- 弹窗 -->
 <div id="miniPopup" class="mini-popup" style="display:none;">
   <div class="mini-popup-content">
-    <p>我在心里发誓 <br> 这辈子再也不要你有负担 <br> 
-      <span class="pink-text">I love u Baby</span> 💕  
-    </p>
-  </div>
-</div> 
+  <p> 
 
+  <span class="pink-text">生命有你的日子 像想念冬天的温暖 💕</span> 
+
+
+</p> 
+  </div> 
+</div> 
 
 
 <!-- 星星容器 -->
@@ -374,8 +510,6 @@
 
 <!-- 粒子容器 -->
 <div id="particles" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:500;"></div>
-
-
 
 
 <script>
@@ -407,17 +541,40 @@ function generateStars() {
 
 function generateParticles() {
   particlesContainer.innerHTML = '';
-  for(let i=0; i<30; i++) {
+
+  const particleCount = 120; // 粒子数量（越多越细腻）
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
+  const scale = 12; // 控制心形大小
+
+  for (let i = 0; i < particleCount; i++) {
+
+    const t = Math.PI * 2 * (i / particleCount);
+
+    // 心形公式
+    const x = 16 * Math.pow(Math.sin(t), 3);
+    const y =
+      13 * Math.cos(t) -
+      5 * Math.cos(2 * t) -
+      2 * Math.cos(3 * t) -
+      Math.cos(4 * t);
+
     const p = document.createElement('div');
     p.className = 'p';
-    const size = Math.random() * 10 + 5;
+
+    const size = Math.random() * 6 + 4;
     p.style.width = p.style.height = size + 'px';
-    p.style.left = Math.random() * 100 + '%';
-    p.style.top = Math.random() * 100 + '%';
-    p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+
+    // 居中 + 缩放
+    p.style.left = centerX + x * scale + 'px';
+    p.style.top = centerY - y * scale + 'px';
+
+    p.style.animationDuration = (Math.random() * 10 + 10) + 's';
+
     particlesContainer.appendChild(p);
   }
-} 
+}
+
 
 // playButton 点击播放音频，只控制音乐，按钮保持不变，不渐隐
 playButton.addEventListener('click', () => {
@@ -476,15 +633,18 @@ loveButton.addEventListener('animationend', () => {
 miniPopup.addEventListener('transitionend', (e) => {
   if (e.propertyName === 'opacity' && miniPopup.style.opacity === '0') {
     miniPopup.style.display = 'none';
+
     console.log('弹窗已隐藏');
 
     // ✅ 渐隐完成后跳转页面
-    window.location.href = 'https://www.120525.world/Eternal/9.10ILoveu/';  // <-- 这里改成你想跳转的地址 
+    window.location.href = 'https://www.120525.world/Eternal/26.2.16Divinefree/';  // <-- 这里改成你想跳转的地址 
   }
 });
 
 </script> 
 
 
+
+
 </body> 
-</html>    
+</html>     
