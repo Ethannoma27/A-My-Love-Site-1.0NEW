@@ -480,7 +480,7 @@ body {
 
 <!-- 音乐播放器控制 -->
 <div class="music-player">
-  <audio id="myAudio" preload="auto" muted> 
+<audio id="myAudio" preload="auto" muted loop> 
 
     <source src="MP3/Liekkas.mp3" type="audio/mp3">
     您的浏览器不支持音频播放。
@@ -634,7 +634,7 @@ miniPopup.addEventListener('transitionend', (e) => {
   if (e.propertyName === 'opacity' && miniPopup.style.opacity === '0') {
     miniPopup.style.display = 'none';
 
-    console.log('弹窗已隐藏');
+    console.log('弹窗已隐藏'); 
 
     // ✅ 渐隐完成后跳转页面
     window.location.href = 'https://www.120525.world/Eternal/26.2.16Divinefree/';  // <-- 这里改成你想跳转的地址 
