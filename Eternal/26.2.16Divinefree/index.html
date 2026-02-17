@@ -193,16 +193,42 @@ body {
   will-change: opacity;
 }
 
+.mini-popup::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  height: 220%;
+  background: linear-gradient(
+    120deg,
+    rgba(0,255,200,0.2),
+    rgba(0,150,255,0.25),
+    rgba(120,0,255,0.2),
+    rgba(0,255,200,0.2)
+  );
+  filter: blur(80px);
+  animation: auroraFlow 25s ease-in-out infinite;
+  pointer-events: none;
+}
 
+@keyframes auroraFlow {
+  0%   { transform: rotate(0deg) translateY(0); }
+  50%  { transform: rotate(8deg) translateY(-6%); }
+  100% { transform: rotate(0deg) translateY(0); }
+}
+/* ====================== */
+/* 心形弹窗 - 平滑显示 */
+/* ====================== */
 .mini-popup {
   position: fixed;
-  top: 30%;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%) scale(0.55); /* 缩小比例 */ 
+  transform: translate(-50%, -50%) scale(0.55); /* 水平+垂直居中，并缩放 */
   width: 520px;
   height: 460px;
 
-  /* 轻盈渐变心形色彩 */
+  overflow: hidden;
   background: linear-gradient(135deg, rgba(255,182,193,0.6), rgba(255,105,180,0.5));
   color: #fff;
 
@@ -237,25 +263,30 @@ body {
   mask-position: center;
   mask-size: contain;
 
+  /* 渐显效果 */
   opacity: 0;
   transition: opacity 2.5s ease;
   will-change: opacity;
 
-  animation: none; /* 禁用之前动画 */
+  animation: none; /* 禁用旧动画 */
 }
-.mini-popup-content { 
 
+/* 弹窗内部内容 */
+.mini-popup-content { 
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;   /* 从顶部开始布局 */
+  justify-content: center;   /* 居中显示 */
   align-items: center;
-
-  padding-top: 26%;              /* ⭐ 控制整体上下位置（改这里就行） */
-
+  padding-top: 0;            /* 不再向下推 */
   animation: fadeInText 4s ease-in-out forwards;
 }
 
+/* 内部文字渐显 */
+@keyframes fadeInText {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
 
 .mini-popup-content p {
   font-family: 'Dancing Script', cursive;
@@ -368,8 +399,7 @@ body {
     transform: translateY(-100vh) scale(1.2);
     opacity: 0;
   }
-}
-
+}  
 
 /* 移动端适配优化 */
 @media screen and (max-width: 480px) {
@@ -449,6 +479,7 @@ body {
   }
 }
 
+
   </style>
 </head>
 
@@ -497,8 +528,8 @@ body {
   <div class="mini-popup-content">
   <p> 
 
-  <span class="pink-text">The love seem 冬天北极光般 
-温暖明亮 平凡 即是美好 💕</span> 
+  <span class="pink-text">The love seem 冬天北极光  <br> 
+温暖如春 平凡时光 <br> 即是美好 💕</span> 
 
 </p> 
 

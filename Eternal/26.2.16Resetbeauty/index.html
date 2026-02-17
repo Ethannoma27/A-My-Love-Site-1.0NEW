@@ -399,16 +399,23 @@ body {
     transform: translateY(-100vh) scale(1.2);
     opacity: 0;
   }
-}
+} 
 
 
-/* 移动端适配优化 */
+
+/* ====================== */
+/* 移动端整体缩放 20% */
+/* ====================== */
 @media screen and (max-width: 480px) {
   body {
     font-family: 'Dancing Script', cursive, sans-serif;
-    font-size: 14px; /* 缩小字体，避免溢出 */
+    font-size: 14px; /* 缩小字体 */
     overflow-y: auto; /* 避免内容被裁切 */
-    background-size: 200% 200%; /* 保持动画渐变 */
+    background-size: 200% 200%;
+    
+    /* 整体缩小 20% */
+    transform: scale(0.8);
+    transform-origin: top center; /* 缩放基准点在顶部居中 */
   }
 
   .content {
@@ -426,7 +433,7 @@ body {
   h1 {
     font-size: 2.5rem; /* 缩小标题 */
     margin-bottom: 0.5rem;
-    display: block; /* 保留标题 */
+    display: block;
     text-shadow: 0px 0px 6px rgba(255,255,255,0.8);
   }
 
@@ -455,17 +462,17 @@ body {
     bottom: 100px; /* 调整底部间距 */
   }
 
-  /* 弹窗自适应 */
+  /* 弹窗自适应，保持心形比例 */
   .mini-popup {
-    width: 80vw;   /* 屏幕宽度自适应 */
-    height: 70vw;  /* 保持心形比例 */
+    width: 80vw;
+    height: 70vw;
     -webkit-mask-size: contain;
     mask-size: contain;
-    transform: translateX(-50%) scale(0.9);
+    transform: translate(-50%, -50%) scale(0.72); /* 缩小原先 0.9 的基础 */
   }
 
   .mini-popup-content p {
-    font-size: 1rem; /* 弹窗文字缩小 */
+    font-size: 1rem;
   }
 
   /* 星星和粒子适当缩小数量和大小，提升性能 */
@@ -480,7 +487,9 @@ body {
   }
 }
 
-  </style>
+
+  </style> 
+
 </head>
 
 
@@ -528,21 +537,20 @@ body {
   <div class="mini-popup-content">
   <p> 
 
-  <span class="pink-text">The love seem 冬天北极光般 
-温暖明亮 平凡 即是美好 💕</span> 
+  <span class="pink-text">The love seem 冬天北极光  <br> 
+温暖如春 平凡时光 <br> 即是美好 💕</span> 
+
 
 </p> 
 
   </div> 
 </div> 
 
-
 <!-- 星星容器 -->
 <div id="stars" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:500;"></div>
 
 <!-- 粒子容器 -->
 <div id="particles" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:500;"></div>
-
 
 <script>
 
@@ -606,7 +614,6 @@ function generateParticles() {
     particlesContainer.appendChild(p);
   }
 }
-
 
 // playButton 点击播放音频，只控制音乐，按钮保持不变，不渐隐
 playButton.addEventListener('click', () => {
@@ -675,7 +682,5 @@ miniPopup.addEventListener('transitionend', (e) => {
 
 </script> 
 
-
-
 </body> 
-</html>     
+</html>      
